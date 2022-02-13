@@ -1,0 +1,103 @@
+//Todo accesible global, todo lo importante de la app (MODEL)
+var CORE = 
+{
+    //state of app
+    server: null, 
+    canvas: null, 
+    modules: [],
+    mouse_pos :[0,0],
+    keys: {},
+    //settings
+    server_url:  "ws://localhost:9001", 
+    init: function()
+    {
+        this.last_time = performance.now(); 
+        //this.canvas = document.querySelector("canvas");
+        //this.server = new WebSocket(server_url); 
+
+        CLIENT.init(this.server); 
+        GFX.init(); 
+        WORLD.init(); 
+        LOGIC.init(); 
+        //bind events
+        document.body.addEventListener("keydown", this.onKey.bind(this)); 
+        document.body.addEventListener("keyup", this.onKey.bind(this)); 
+        document.body.addEventListener("mousedown", this.onMouse.bind(this)); 
+        document.body.addEventListener("keydown", this.onMouse.bind(this)); 
+        document.body.addEventListener("keydown", this.onMouse.bind(this)); 
+        document.body.addEventListener("keydown", this.onMouse.bind(this)); 
+
+        //this.loop();
+        this.draw(); 
+    }, 
+
+    onKey:  function(event)
+    {
+        //process key 
+        this.keys[event.key] = event.type == "keydown" ? true: false; 
+
+        if(event.key == "F1")
+        {
+            event.preventDefault(); 
+        }
+
+        for(var i =0; i< this.modules.length; i++)
+        {
+            var modules = this.modules[i]; 
+            if (modules.onKey)
+                modules.onKey(); 
+        }
+
+    }, 
+
+    onMouse: function(e)
+    {
+        var rect = this.canvas.getBoundingClientRect(); 
+        var canvasx = this.mouse_pos[0] = e.clientX - rect.left; 
+        var canvasy = this.mouse_pos[1] = e.clientY - rect.top;
+        if(e.type == "mousedown")
+        {
+
+        }
+        else if(e.type == "mousemove")
+        {
+
+        } 
+        else //mousup
+        {
+
+        }
+    }, 
+
+    // loop: function()
+    // {
+    //     this.draw(); 
+
+    //     var now = performance.now(); 
+    //     var elapsed_time = (now - this.last_time)/ 1000; 
+
+    //     this.last_time = now; 
+    //     this.update(elapsed_time); 
+    //     requestAnimationFrame(this.loop.bind(this)); 
+
+    // },
+
+    draw: function()
+    {
+        for(var i =0; i< this.modules.length; i++)
+        {
+            var modules = this.modules[i]; 
+            if (modules.draw)
+                modules.draw(); 
+        }
+    }, 
+    update: function(dt)
+    {
+        for(var i =0; i< this.modules.length; i++)
+        {
+            var modules = this.modules[i]; 
+            if (modules.update)
+                modules.update(dt); 
+        }
+    }
+}
