@@ -52,21 +52,21 @@ var CORE =
 
     onMouse: function(e)
     {
-        var rect = this.canvas.getBoundingClientRect(); 
-        var canvasx = this.mouse_pos[0] = e.clientX - rect.left; 
-        var canvasy = this.mouse_pos[1] = e.clientY - rect.top;
-        if(e.type == "mousedown")
-        {
+        //var rect = this.canvas.getBoundingClientRect(); 
+        // var canvasx = this.mouse_pos[0] = e.clientX - rect.left; 
+        // var canvasy = this.mouse_pos[1] = e.clientY - rect.top;
+        // if(e.type == "mousedown")
+        // {
 
-        }
-        else if(e.type == "mousemove")
-        {
+        // }
+        // else if(e.type == "mousemove")
+        // {
 
-        } 
-        else //mousup
-        {
+        // } 
+        // else //mousup
+        // {
 
-        }
+        // }
     }, 
 
     // loop: function()
