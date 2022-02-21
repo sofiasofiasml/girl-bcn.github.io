@@ -1,4 +1,4 @@
-//Los datos de la appliación
+//Los datos de la appliación 
 //CLASS USER
 class User {
     constructor(name, id) {
@@ -62,7 +62,7 @@ var WORLD={
     id: 0, 
     init: function()
     {
-        this.loadWorld(demo); 
+        // this.loadWorld(demo); 
     },
 
     createUser: function()

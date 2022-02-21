@@ -30,7 +30,6 @@
         </ul>
     </nav>
     <main>
-              
         <div class="popup-Votacion" id="popup-Votacion">
             <div class="overlay-Votacion"></div>
             <div class="content-Votacion">
@@ -79,27 +78,14 @@
                <br>
                 <label>Hora para la votación: <input type="time" name="eta"></label>
                 <br><br>
-                <input type="submit" value="Enviar">
+                <input type="submit" value="Enviar" onclick="LOGIC.writtenData()">
             </div>
         </div>
         
         <h2>Eventos</h2>
-        <div class="Evento">
-            <div class="content">
-                <h4>Evento</h4>
-                <div class="description-event">Fecha:
-                    <img src="img/band.jpeg">
-                </div> 
-                <label>Apuntarse:</label>
-                <input name="Asistencia" id="Asistencia">
-                <input type="submit">
-                <ul>
-                    <li>Sofia</li>
-                    <li>Clau</li>
-                </ul>
-                <div class="ContadorAsistentes">Asistentes: 2</div>
-            </div>  
-        </div>
+        <div id="AddEvents"></div>
+       
+
         <div id="news"></div>
         <p>Calendario de eventos: </p>
         <div >
@@ -144,7 +130,6 @@
    </footer>
     
     <!-- Javascript -->
-    <script type="text/javascript" src="json.js"></script>
     <script type="text/javascript" src="initFirebase.js"></script>
     <script type="text/javascript" src="core.js"></script>
     <script type="text/javascript" src="client.js"></script>

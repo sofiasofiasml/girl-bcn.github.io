@@ -9,6 +9,10 @@ var CORE =
     keys: {},
     //settings
     server_url:  "ws://localhost:9001", 
+    addEvents: "", 
+    addEventVotation: false, 
+    nameNewEvent: "Prueba", 
+    navUl: "", 
     init: function()
     {
         this.last_time = performance.now(); 
@@ -26,7 +30,9 @@ var CORE =
         document.body.addEventListener("keydown", this.onMouse.bind(this)); 
         document.body.addEventListener("keydown", this.onMouse.bind(this)); 
         document.body.addEventListener("keydown", this.onMouse.bind(this)); 
-
+        this.nameNewEvent = document.querySelector("input#nameUser"); 
+        this.addEvents = document.querySelector("#AddEvents"); 
+        this.navUl = document.querySelector("nav ul"); 
         //this.loop();
         this.draw(); 
     }, 
