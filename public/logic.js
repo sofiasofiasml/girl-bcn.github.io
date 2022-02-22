@@ -19,6 +19,7 @@ var LOGIC = {
     //mirar si los datos estan vacios
     writtenData: function()
     {
+        saveDB(); 
         GFX.createDivEventos(); 
         if(CORE.addEventVotation){
             var VotacionesNew =  document.createElement("a");
@@ -30,6 +31,8 @@ var LOGIC = {
             CORE.navUl.appendChild(li); 
         }
     }, 
+
+     
     //Ordenar lista en funcion de la fecha
     // https://es.stackoverflow.com/questions/259945/ordenar-ul-javascript
     ordenarLista: function(idUl){
