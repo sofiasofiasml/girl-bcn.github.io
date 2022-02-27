@@ -45,7 +45,7 @@ var GFX =
             if(i==0)
                 liEvent.innerText = "Sofia"; 
             if(i==1)
-                liEvent.innerText = "Clau"; 
+                liEvent.innerText = "F"; 
                 ulEvent.appendChild(liEvent); 
         }
         var contEvent = document.createElement("div"); 

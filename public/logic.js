@@ -19,7 +19,9 @@ var LOGIC = {
     //mirar si los datos estan vacios
     writtenData: function()
     {
-        saveDB(); 
+        this.saveDB(); 
+
+        
         GFX.createDivEventos(); 
         if(CORE.addEventVotation){
             var VotacionesNew =  document.createElement("a");
@@ -31,7 +33,18 @@ var LOGIC = {
             CORE.navUl.appendChild(li); 
         }
     }, 
-
+    saveDB: function()
+    {
+        var data = {
+            nameEvento: "DTS", 
+            imagenEvento: "img/band.jpeg",
+            fechaEvento: "22/03/21", 
+            hora: "20.00h",
+            asistentes: 0, 
+            votacion: "yes"
+        }
+        insertData(data, "Eventos"); 
+    }, 
      
     //Ordenar lista en funcion de la fecha
     // https://es.stackoverflow.com/questions/259945/ordenar-ul-javascript
