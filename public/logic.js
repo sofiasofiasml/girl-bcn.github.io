@@ -19,10 +19,10 @@ var LOGIC = {
     //mirar si los datos estan vacios
     writtenData: function()
     {
+        GFX.createDivEventos(); 
         this.saveDB(); 
 
         
-        GFX.createDivEventos(); 
         if(CORE.addEventVotation){
             var VotacionesNew =  document.createElement("a");
             VotacionesNew.classList.add("votacion");
@@ -35,14 +35,7 @@ var LOGIC = {
     }, 
     saveDB: function()
     {
-        var data = {
-            nameEvento: "DTS", 
-            imagenEvento: "img/band.jpeg",
-            fechaEvento: "22/03/21", 
-            hora: "20.00h",
-            asistentes: 0, 
-            votacion: "yes"
-        }
+        var data = CORE.DicEvents[CORE.DicEvents.length-1]; 
         insertData(data, "Eventos"); 
     }, 
      

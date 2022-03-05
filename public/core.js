@@ -1,7 +1,19 @@
 //Todo accesible global, todo lo importante de la app (MODEL)
+ClassicEditor
+    .create( document.querySelector( '#NewEventDescription' ), {
+        // ...
+        link: {
+            defaultProtocol: 'http://'
+            
+        }
+    } )
+.then(  )
+.catch( error =>{console.error(error)} );
+
 var CORE = 
 {
     //state of app
+    initDB: true, 
     server: null, 
     canvas: null, 
     modules: [],
@@ -13,6 +25,7 @@ var CORE =
     addEventVotation: false, 
     nameNewEvent: "Prueba", 
     navUl: "", 
+    DicEvents: [],
     init: function()
     {
         this.last_time = performance.now(); 

@@ -44,19 +44,39 @@ function insertData(data, name){
 function gotData(data)
 {
     var scores = data.val(); 
-    var keys = Object.keys(scores); 
-    console.log(keys); 
-    for (var i =0; i<keys.length; i++)
-    {
-        var k = keys[i]; 
-        var name =  scores[k].name; 
-        var score =  scores[k].score; 
-        console.log(name, score); 
+    if(scores){
+        var keys = Object.keys(scores); 
+        console.log(keys); 
+        if(CORE.initDB){
+            for (var i =0; i<keys.length; i++)
+            {
+                var k = keys[i]; 
+                var title =  scores[k].title; 
+                var id =  scores[k].id; 
+                var date =  scores[k].date; 
+                var hour =  scores[k].hour; 
+                var image =  scores[k].image; 
+                var votation =  scores[k].votation; 
+                var content =  scores[k].content; 
+                console.log(title, id, date, hour, image, votation); 
+                GFX.createDivEventosDB(title, id, date, hour, image, votation, content); 
+            }
+            CORE.initDB = false; 
+        }
+        else{
+            var k = keys[keys.length-1]; 
+            var title =  scores[k].title; 
+            var id =  scores[k].id; 
+            var date =  scores[k].date; 
+            var hour =  scores[k].hour; 
+            var image =  scores[k].image; 
+            var votation =  scores[k].votation; 
+            var content =  scores[k].content; 
+            console.log(title, id, date, hour, image, votation); 
+            GFX.createDivEventosDB(title, id, date, hour, image, votation, content); 
+
+        }
     }
-    console.log(keys[0]); 
-    var h = keys[0]; 
-    //ref.child(h).removeValue();
-    delateData(); 
 }
  function errData(err)
  {

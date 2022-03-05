@@ -26,7 +26,7 @@
         </div>
     </header>
     <nav>
-        <h2>Votaciones</h2>
+        <h2>Ideas de Planes</h2>
         <ul>
             <li><a class= "votacion" onclick="GFX.togglePopupVotacion()">Evento: Prueba</a></li>
         </ul>
@@ -55,30 +55,32 @@
                 <div class="close-btn" onclick="GFX.togglePopup()">&times</div>
                 <h3>Añadir evento</h3>
                 <label >Nombre Evento: </label>
-                <input type="text" id="nameUser" name="nameUser">
+                <input type="text" id="nameEvent" name="nameEvent">
                 <br>
                 <label>Fecha del evento:
-                    <input type="date" name="bday" required pattern="\d{4}-\d{2}-\d{2}">
+                    <input type="date" id= "dateEvent" name="dateEvent" required pattern="\d{4}-\d{2}-\d{2}">
                     <span class="validity"></span>
                   </label>
                 <br>
-                <label for="url">Lugar:</label>
+                <label>Hora: <input type="time" id="horaEvent" name="eta"></label>
+                <br>
+                <!-- <label for="url">Lugar:</label>
 
                 <input type="url" name="url" id="url" placeholder="https://example.com"pattern="https://.*" size="30" required>
-                <br>
-                <label> Descripción: <textarea></textarea></label>
+                <br> -->
+                <label> Descripción: <textarea id="NewEventDescription"></textarea></label>
                 <br>
                 <label>Imagen:      
                 <input type="file"
                 id="imagen" name="imagen"
                 accept="image/png, image/jpeg"></label>  
-                <br>
+                <!-- <br>
                 <button>Activar votación</button>
                 <br>
                 <label>Día para la votación: <input type="date" name="bday" required pattern="\d{4}-\d{2}-\d{2}">
                     <span class="validity"></span></label>
                <br>
-                <label>Hora para la votación: <input type="time" name="eta"></label>
+                <label>Hora para la votación: <input type="time" name="eta"></label> -->
                 <br><br>
                 <input type="submit" value="Enviar" onclick="LOGIC.writtenData()">
             </div>
@@ -132,6 +134,7 @@
    </footer>
     
     <!-- Javascript -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
