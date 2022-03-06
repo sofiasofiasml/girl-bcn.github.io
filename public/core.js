@@ -1,14 +1,18 @@
 //Todo accesible global, todo lo importante de la app (MODEL)
 ClassicEditor
     .create( document.querySelector( '#NewEventDescription' ), {
-        // ...
+        toolbar: [ ],
+        
         link: {
             defaultProtocol: 'http://'
             
         }
     } )
 .then(  )
-.catch( error =>{console.error(error)} );
+.catch( error =>{console.error(error)
+} );
+
+
 
 var CORE = 
 {
