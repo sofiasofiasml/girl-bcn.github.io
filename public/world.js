@@ -22,14 +22,16 @@ User.prototype.toJSON = function()
 }
 
 class News {
-    constructor(id, title, image, content, date, hour, votation) {
+    constructor(id, title, image, content, date, hour, votation, key) {
         this.id = id, 
+        this.key = key, 
         this.title = title, 
         this.image = image, 
         this.content = content, 
         this.date = date, 
         this.hour = hour, 
-        this.votation = votation
+        this.votation = votation,
+        this.asistentes = []
     }
 }
 
@@ -38,24 +40,28 @@ class News {
 News.prototype.fromJSON = function(json)
 {
     this.id = json.id, 
+    this.key= json.key, 
     this.title = json.title, 
     this.image = json.image, 
     this.content = json.content, 
     this.date = json.date, 
     this.hour = json.hour, 
-    this.votation = json.votation
+    this.votation = json.votation, 
+    this.asistentes = json.asistentes
 }
 //enviar info al servidor
 News.prototype.toJSON = function()
 {
     return{
         id: this.id, 
+        key: this.key, 
         title: this.title, 
         image: this.image, 
         content: this.content, 
         date: this.date, 
         hour: this.hour, 
-        votation: this.votation
+        votation: this.votation,
+        asistentes: this.asistentes
     }
 }
 var WORLD={

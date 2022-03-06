@@ -23,6 +23,23 @@ var GFX =
     {
         seeData("Eventos"); 
     },
+    addAsistent:function(event)
+    {
+        var value = document.querySelector('#Asistencia').value; 
+        writeNewPost(event.name, 'asistentes', value) 
+        this.seeAsistentes(event, value); 
+        document.querySelector('#Asistencia').value = ""; 
+    },
+    seeAsistentes:function(event, value)
+    {
+        var ulEvent = document.querySelector("#ul"+event.name);
+        var liEvent = document.createElement("li"); 
+        liEvent.innerText = value; 
+        ulEvent.appendChild(liEvent); 
+
+        var contAsisten = document.querySelector('.ContadorAsistentes'+event.name); 
+        contAsisten.innerText = "Asistentes: "+ CORE.DicEvents[event.name].asistentes.length; 
+    },
     createDivEventos: function()
     {
         var nameEvent = document.createElement("h4");
@@ -39,31 +56,12 @@ var GFX =
         var imgEvent = document.createElement("img");
         imgEvent.src = "img/band.jpeg"; 
 
-        var AsistenciaEvent = document.createElement("input"); 
-        var AsisDescEvent = document.createElement("label"); 
-        AsisDescEvent.innerText= "Apuntarse:"; 
-        AsistenciaEvent.id="Asistencia"; 
-
-        var bSubmit = document.createElement("input"); 
-        bSubmit.setAttribute("type", "submit");
-        var ulEvent = document.createElement("ul");
-        
-        var contEvent = document.createElement("div"); 
-        contEvent.classList.add("ContadorAsistentes");
-        contEvent.innerText = "Asistentes: 0"; 
-
-
-        var cont1Event = document.createElement("div"); 
-        cont1Event.classList.add("content"); 
-
-        var div1Event = document.createElement("div"); 
-        div1Event.classList.add("Evento"); 
         var id = CORE.DicEvents.length; 
-        var newEve = new News(id, valuenameEvent.value, imgEvent.src, descriptionEvent.innerHTML, valueDate.value, valueHour.value, "No"); 
+        var newEve = new News(id, valuenameEvent.value, imgEvent.src, descriptionEvent.innerHTML, valueDate.value, valueHour.value, "No", "", []); 
         CORE.DicEvents[CORE.DicEvents.length]=newEve; 
 
     }, 
-    createDivEventosDB: function(title, id, date, hour, image, votation, content)
+    createDivEventosDB: function(title, id, date, hour, image, votation, content, asistentes, key)
     {
         var nameEvent = document.createElement("h4");
         var valuenameEvent = document.querySelector("#nameEvent"); 
@@ -85,19 +83,20 @@ var GFX =
 
         var bSubmit = document.createElement("input"); 
         bSubmit.setAttribute("type", "submit");
+        bSubmit.setAttribute("class", "submit");
+        bSubmit.setAttribute("name", id);
+        bSubmit.setAttribute("onclick", "GFX.addAsistent(this)");
         var ulEvent = document.createElement("ul");
+        ulEvent.setAttribute("id", "ul"+id);
         
-        // for (var i = 0; i<2; i++){
-        //     var liEvent = document.createElement("li"); 
-        //     if(i==0)
-        //         liEvent.innerText = "Sofia"; 
-        //     if(i==1)
-        //         liEvent.innerText = "F"; 
-        //         ulEvent.appendChild(liEvent); 
-        // }
+        for (var i = 0; i<asistentes.length; i++){
+            var liEvent = document.createElement("li"); 
+                liEvent.innerText = asistentes[i]; 
+                ulEvent.appendChild(liEvent); 
+        }
         var contEvent = document.createElement("div"); 
-        contEvent.classList.add("ContadorAsistentes");
-        contEvent.innerText = "Asistentes: 0"; 
+        contEvent.classList.add("ContadorAsistentes"+id);
+        contEvent.innerText = "Asistentes: "+asistentes.length; 
 
 
         var cont1Event = document.createElement("div"); 
@@ -106,9 +105,15 @@ var GFX =
         var div1Event = document.createElement("div"); 
         div1Event.classList.add("Evento"); 
         if(CORE.initDB){
-            var newEve = new News(id, valuenameEvent, imgEvent.src, descriptionEvent.innerHTML, valueDate, valueHour, votation); 
+            var newEve = new News(id, valuenameEvent, imgEvent.src, descriptionEvent.innerHTML, valueDate, valueHour, votation, asistentes, key, asistentes); 
+            if(asistentes)
+                newEve.asistentes = asistentes; 
             CORE.DicEvents[CORE.DicEvents.length]=newEve; 
+            // if(asistentes.length !=0)
+            //     CORE.DicEvents[CORE.DicEvents.length].asistentes = asistentes; 
         }
+        CORE.DicEvents[CORE.DicEvents.length-1].key =key; 
+
         descriptionEvent.appendChild(imgEvent); 
         cont1Event.appendChild(nameEvent); 
         cont1Event.appendChild(descriptionEvent); 

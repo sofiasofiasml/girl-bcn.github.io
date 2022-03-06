@@ -32,6 +32,19 @@ function insertData(data, name){
      var ref = database.ref(name); 
      ref.on('value', gotData,errData); 
  }
+// Añadir asistentes en db
+ function writeNewPost(id, campo, value) {
+
+    for(var i=0; i< CORE.DicEvents.length; i++){
+        if(CORE.DicEvents[i].id == id)
+        var k = CORE.DicEvents[i].key; 
+        CORE.DicEvents[i].asistentes.push(value); 
+    }
+    var db = firebase.database();
+
+    db.ref("Eventos/"+k+"/"+campo).push(value);
+        
+}
 
 //  function delateData()
 //  {
@@ -53,13 +66,16 @@ function gotData(data)
                 var k = keys[i]; 
                 var title =  scores[k].title; 
                 var id =  scores[k].id; 
+                var key =  k; 
                 var date =  scores[k].date; 
                 var hour =  scores[k].hour; 
                 var image =  scores[k].image; 
                 var votation =  scores[k].votation; 
                 var content =  scores[k].content; 
-                console.log(title, id, date, hour, image, votation); 
-                GFX.createDivEventosDB(title, id, date, hour, image, votation, content); 
+                var asistentes = Object.values(scores[k].asistentes); 
+
+                console.log(title, id, date, hour, image, votation, asistentes); 
+                GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key); 
             }
             CORE.initDB = false; 
         }
@@ -67,13 +83,16 @@ function gotData(data)
             var k = keys[keys.length-1]; 
             var title =  scores[k].title; 
             var id =  scores[k].id; 
+            var key =  k; 
             var date =  scores[k].date; 
             var hour =  scores[k].hour; 
             var image =  scores[k].image; 
             var votation =  scores[k].votation; 
             var content =  scores[k].content; 
-            console.log(title, id, date, hour, image, votation); 
-            GFX.createDivEventosDB(title, id, date, hour, image, votation, content); 
+            var asistentes = Object.values(scores[k].asistentes); 
+
+            console.log(title, id, date, hour, image, votation, asistentes); 
+            GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key); 
 
         }
     }
