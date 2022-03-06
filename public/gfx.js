@@ -25,10 +25,12 @@ var GFX =
     },
     addAsistent:function(event)
     {
-        var value = document.querySelector('#Asistencia').value; 
+        var value = document.querySelector('#Asistencia'+event.name).value; 
         writeNewPost(event.name, 'asistentes', value) 
         this.seeAsistentes(event, value); 
-        document.querySelector('#Asistencia').value = ""; 
+        document.querySelector('#Asistencia'+event.name).value = ""; 
+        var el = document.querySelector('#Evento'+event.name);
+        el.remove(); // Removes the div with the 'div-02' id
     },
     seeAsistentes:function(event, value)
     {
@@ -79,7 +81,7 @@ var GFX =
         var AsistenciaEvent = document.createElement("input"); 
         var AsisDescEvent = document.createElement("label"); 
         AsisDescEvent.innerText= "Apuntarse:"; 
-        AsistenciaEvent.id="Asistencia"; 
+        AsistenciaEvent.id="Asistencia"+id; 
 
         var bSubmit = document.createElement("input"); 
         bSubmit.setAttribute("type", "submit");
@@ -104,6 +106,8 @@ var GFX =
 
         var div1Event = document.createElement("div"); 
         div1Event.classList.add("Evento"); 
+        div1Event.setAttribute("id", "Evento"+id);
+
         if(CORE.initDB){
             var newEve = new News(id, valuenameEvent, imgEvent.src, descriptionEvent.innerHTML, valueDate, valueHour, votation, asistentes, key, asistentes); 
             if(asistentes)

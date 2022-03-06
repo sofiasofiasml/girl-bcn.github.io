@@ -46,14 +46,7 @@ function insertData(data, name){
         
 }
 
-//  function delateData()
-//  {
-//     var ref = database.ref('/scores/'+ '-MwwC_1OvG_cpzOOXUnJ').set({
 
-//     }); 
-//     var keys = Object.keys(scores); 
-//     ref.child(keys[0]).remove(); 
-//  }
 function gotData(data)
 {
     var scores = data.val(); 
@@ -91,8 +84,9 @@ function gotData(data)
             var image =  scores[k].image; 
             var votation =  scores[k].votation; 
             var content =  scores[k].content; 
-            var asistentes = Object.values(scores[k].asistentes); 
-
+            var asistentes  = [];  
+            if(scores[k].asistentes)
+                var asistentes = Object.values(scores[k].asistentes); 
             console.log(title, id, date, hour, image, votation, asistentes); 
             GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key); 
 
