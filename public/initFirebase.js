@@ -71,8 +71,10 @@ function gotData(data)
                 var hour =  scores[k].hour; 
                 var image =  scores[k].image; 
                 var votation =  scores[k].votation; 
-                var content =  scores[k].content; 
-                var asistentes = Object.values(scores[k].asistentes); 
+                var content =  scores[k].content;
+                var asistentes  = [];  
+                if(scores[k].asistentes)
+                    var asistentes = Object.values(scores[k].asistentes); 
 
                 console.log(title, id, date, hour, image, votation, asistentes); 
                 GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key); 
