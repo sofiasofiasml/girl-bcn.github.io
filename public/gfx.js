@@ -75,7 +75,6 @@ var GFX =
         descriptionEvent.innerHTML =  content; 
 
         var imgEvent = document.createElement("img");
-        console.log(image); 
         var index = image.indexOf("/img/");
         imgEvent.src = image.substring(index, image.length);
         imgEvent.alt = "img_event"; 

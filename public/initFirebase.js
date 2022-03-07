@@ -52,7 +52,7 @@ function gotData(data)
     var scores = data.val(); 
     if(scores){
         var keys = Object.keys(scores); 
-        console.log(keys); 
+        //console.log(keys); 
         if(CORE.initDB){
             for (var i =0; i<keys.length; i++)
             {
@@ -69,7 +69,7 @@ function gotData(data)
                 if(scores[k].asistentes)
                     var asistentes = Object.values(scores[k].asistentes); 
 
-                console.log(title, id, date, hour, image, votation, asistentes); 
+                //console.log(title, id, date, hour, image, votation, asistentes); 
                 GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key); 
             }
             CORE.initDB = false; 
@@ -87,7 +87,7 @@ function gotData(data)
             var asistentes  = [];  
             if(scores[k].asistentes)
                 var asistentes = Object.values(scores[k].asistentes); 
-            console.log(title, id, date, hour, image, votation, asistentes); 
+            //console.log(title, id, date, hour, image, votation, asistentes); 
             GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key); 
 
         }
