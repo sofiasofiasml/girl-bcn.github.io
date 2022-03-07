@@ -207,10 +207,20 @@ ul{
   font-size: 20px;
   margin-bottom: 10px;
 }
+/*pantalla pequeña movil*/
 .Evento .content .description-event img{
   height: 150px;
-  float: right;
-  margin-right: 15px;
+  margin-right: 50px;
+  
+}
+/*pantalla grande pc*/
+@media only screen and (min-width: 400px) {
+  .Evento .content .description-event img{
+    height: 150px;
+    float: right;
+    margin-right: 50px;
+    
+  }
 }
 /* Votacion */
 .votacion:hover{
