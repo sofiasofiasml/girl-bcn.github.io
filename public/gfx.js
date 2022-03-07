@@ -14,7 +14,7 @@ var GFX =
     togglePopup: function()
     {
         document.getElementById("popup-AddEvent").classList.toggle("active"); 
-        window.scrollTo(0,0);
+        window.scrollTo(0,1);
     },
     togglePopupVotacion: function()
     {
