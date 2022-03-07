@@ -77,6 +77,8 @@ var GFX =
 
         var imgEvent = document.createElement("img");
         imgEvent.src = image; 
+        imgEvent.alt = "img_event"; 
+        imgEvent.title = "img_event"; 
 
         var AsistenciaEvent = document.createElement("input"); 
         var AsisDescEvent = document.createElement("label"); 
