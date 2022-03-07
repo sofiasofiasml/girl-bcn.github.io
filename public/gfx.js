@@ -54,12 +54,10 @@ var GFX =
         descriptionEvent.classList.add("description-event");
         var proba= document.querySelector(".ck.ck-editor__main p");
         descriptionEvent.innerHTML = proba.innerHTML; 
-
-        var imgEvent = document.createElement("img");
-        imgEvent.src = "img/band.jpeg"; 
+        var image = 'img/band.jpeg'; 
 
         var id = CORE.DicEvents.length; 
-        var newEve = new News(id, valuenameEvent.value, imgEvent.src, descriptionEvent.innerHTML, valueDate.value, valueHour.value, "No", "", []); 
+        var newEve = new News(id, valuenameEvent.value, image, descriptionEvent.innerHTML, valueDate.value, valueHour.value, "No", "", []); 
         CORE.DicEvents[CORE.DicEvents.length]=newEve; 
 
     }, 
@@ -76,7 +74,9 @@ var GFX =
         descriptionEvent.innerHTML =  content; 
 
         var imgEvent = document.createElement("img");
-        imgEvent.src = image; 
+        console.log(image); 
+        var index = image.indexOf("/img/");
+        imgEvent.src = image.substring(index, image.length);
         imgEvent.alt = "img_event"; 
         imgEvent.title = "img_event"; 
 
