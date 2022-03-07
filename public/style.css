@@ -197,7 +197,9 @@ ul{
   background: rgba(218, 208, 208, 0.9);
   border-radius: 20px;
   padding-bottom: 100px;
+
 }
+
 .Evento .content{
   margin-left: 20px;
   color: #24262b;
@@ -220,6 +222,17 @@ ul{
     float: right;
     margin-right: 50px;
     
+  }
+  
+}
+
+/*pantalla grande pc*/
+@media only screen and (min-width: 1500px) {
+
+  .Evento{
+    width: 1000px;
+    margin-left: 20%;
+  
   }
 }
 /* Votacion */
