@@ -18,6 +18,7 @@ var CORE =
 {
     //state of app
     initDB: true, 
+    initDBVot: true, 
     server: null, 
     canvas: null, 
     modules: [],

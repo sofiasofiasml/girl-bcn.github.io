@@ -107,9 +107,24 @@ function gotData(data)
     if(scores && data.key== "Votation")
     {
         var keys = Object.keys(scores); 
-        for (var i =0; i<keys.length; i++)
-        {
-            var k = keys[i]; 
+        if(CORE.initDBVot){ // Solo se carga una vez toda la db 
+            for (var i =0; i<keys.length; i++)
+            {
+                var k = keys[i]; 
+                var name =  scores[k].name; 
+                var id =  scores[k].id; 
+                if(scores[k].lisoptions)
+                    var lisOp = Object.values(scores[k].lisoptions); 
+                else
+                    var lisOp = []; 
+                CORE.Votation[CORE.Votation.length] = new Votation(id,name, lisOp); 
+                GFX.addlistnav(); 
+
+            }
+            CORE.initDBVot = false; 
+        }
+        else{
+            var k = keys[keys.length-1]; 
             var name =  scores[k].name; 
             var id =  scores[k].id; 
             if(scores[k].lisoptions)

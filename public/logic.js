@@ -39,7 +39,6 @@ var LOGIC = {
         //DB  
         var data = CORE.Votation[CORE.Votation.length-1]
         insertData(data, "Votation"); 
-        GFX.addlistnav(); 
     }, 
     saveDB: function()
     {
@@ -72,7 +71,28 @@ var LOGIC = {
         arrayCanciones.sort((a, b) => a.textContent.localeCompare(b.textContent))
         .forEach(li => ul.appendChild(li));
        
+    }, 
+    //obtener info de la votacion o de la idea 
+    InfoVotationElement: function(element)
+    {
+        if(element){
+            var id = element.id.substring(8, element.id.length);
+
+            for (var i = 0; i < CORE.Votation.length; i++)
+            {
+                if(id == CORE.Votation[i].id)
+                {
+                    var options = CORE.Votation[i].lisoptions; 
+                    GFX.addButtonOptionVotation(CORE.Votation[i].name, options); 
+                    //Modificar DB 
+                }
+            }
+        }
+        else //borrar hijos de overlay remove
+            GFX.removeChildOverlay(); 
+            
     }
+
 
 
 }; 

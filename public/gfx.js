@@ -17,9 +17,10 @@ var GFX =
         document.getElementById("popup-AddEvent").classList.toggle("active"); 
         window.scrollTo(0,1);
     },
-    togglePopupVotacion: function()
+    togglePopupVotacion: function(element)
     {
         document.getElementById("popup-Votacion").classList.toggle("active"); 
+        LOGIC.InfoVotationElement(element); 
     }, 
     togglePopupVot: function()
     {
@@ -43,7 +44,7 @@ var GFX =
         var divnav = document.querySelector("#ulnav"); 
         var liEvent = document.createElement("li"); 
         var aEvent = document.createElement("a"); 
-        aEvent.setAttribute("onclick", "GFX.togglePopupVotacion()");
+        aEvent.setAttribute("onclick", "GFX.togglePopupVotacion(this)");
         aEvent.classList.add("votacion");
         var leng =CORE.Votation.length-1;  
         aEvent.id = "votacion"+leng;
@@ -147,8 +148,7 @@ var GFX =
             if(asistentes)
                 newEve.asistentes = asistentes; 
             CORE.DicEvents[CORE.DicEvents.length]=newEve; 
-            // if(asistentes.length !=0)
-            //     CORE.DicEvents[CORE.DicEvents.length].asistentes = asistentes; 
+            
         }
         CORE.DicEvents[CORE.DicEvents.length-1].key =key; 
 
@@ -164,6 +164,29 @@ var GFX =
         CORE.addEvents.appendChild(div1Event); 
 
     },
+    addButtonOptionVotation: function(name, options)
+    {
+        var divInfoVotation = document.querySelector("#InfoVotacionDB"); 
+        var title = document.createElement("h4");
+        title.innerText = name; 
+        divInfoVotation.appendChild(title); 
+
+        for(var i =0; i< options.length; i++)
+        {
+            var buttonOption = document.createElement("button");
+            buttonOption.innerText = options[i]; 
+            divInfoVotation.appendChild(buttonOption); 
+            
+        }
+    }, 
+    removeChildOverlay: function()
+    {
+        var divInfoVotation = document.querySelector("#InfoVotacionDB"); 
+
+        while (divInfoVotation.firstChild) {
+            divInfoVotation.removeChild(divInfoVotation.lastChild);
+            }
+    }
     
 }
 
