@@ -164,7 +164,7 @@ var GFX =
         CORE.addEvents.appendChild(div1Event); 
 
     },
-    addButtonOptionVotation: function(name, options)
+    addButtonOptionVotation: function(id, name, options)
     {
         var divInfoVotation = document.querySelector("#InfoVotacionDB"); 
         var title = document.createElement("h4");
@@ -174,10 +174,17 @@ var GFX =
         for(var i =0; i< options.length; i++)
         {
             var buttonOption = document.createElement("button");
+            buttonOption.setAttribute("onclick", "LOGIC.sumValue(this)");
+
             buttonOption.innerText = options[i]; 
             divInfoVotation.appendChild(buttonOption); 
             
         }
+        var textvotation = document.createElement("div");
+        textvotation.id = "textVot"; 
+        textvotation.innerText = CORE.Votation[id].votlist; 
+        divInfoVotation.appendChild(textvotation); 
+
     }, 
     removeChildOverlay: function()
     {

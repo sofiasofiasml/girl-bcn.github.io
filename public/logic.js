@@ -48,12 +48,14 @@ var LOGIC = {
     saveDBvotation: function()
     {
         var listOptions = []; 
+        var votlist = []; 
         for(var i=1; i<CORE.contvoationactual+1; i++)
         {
             var inputs = document.querySelector("#Input"+i); 
             listOptions.push(inputs.value); 
+            votlist.push(0); 
         }
-        var auxVotation = new Votation(CORE.Votation.length, document.querySelector("#nameVotationOverlay").value, listOptions); 
+       var auxVotation = new Votation(CORE.Votation.length, document.querySelector("#nameVotationOverlay").value, listOptions, votlist, ""); 
        CORE.Votation[CORE.Votation.length] = auxVotation; 
         
     },
@@ -82,18 +84,34 @@ var LOGIC = {
             {
                 if(id == CORE.Votation[i].id)
                 {
+                    CORE.overlayactive =CORE.Votation[i].id; 
                     var options = CORE.Votation[i].lisoptions; 
-                    GFX.addButtonOptionVotation(CORE.Votation[i].name, options); 
+                    var votlist = CORE.Votation[i].votlist; 
+                    GFX.addButtonOptionVotation(id, CORE.Votation[i].name, options); 
                     //Modificar DB 
+                    //this.modVotation(options,votlist); 
                 }
             }
         }
         else //borrar hijos de overlay remove
             GFX.removeChildOverlay(); 
             
+    }, 
+    // modVotation: function(options,votlist)
+    // {
+           
+    // }, 
+    sumValue: function(event)
+    {
+        var j = CORE.overlayactive; 
+        for(var i =0; i<CORE.Votation[j].lisoptions.length; i++)
+        {
+            if(event.textContent == CORE.Votation[j].lisoptions[i])
+            {
+                CORE.Votation[j].votlist[i] += 1;  
+            }
+        }
+        writeNewDatavotation(j, "votlist", CORE.Votation[j].votlist)
     }
-
-
-
 }; 
 CORE.modules.push(LOGIC); 

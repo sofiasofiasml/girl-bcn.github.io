@@ -36,10 +36,12 @@ class News {
 }
 
 class Votation {
-    constructor(id, name, lisoptions){
+    constructor(id, name, lisoptions, votlist, key){
         this.id = id, 
         this.name = name, 
         this.lisoptions = lisoptions
+        this.votlist = votlist, 
+        this.key = key
     }
 }
 //Info del servidor

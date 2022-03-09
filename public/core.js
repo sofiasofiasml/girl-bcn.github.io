@@ -25,6 +25,7 @@ var CORE =
     mouse_pos :[0,0],
     keys: {},
     contvoationactual:0, 
+    overlayactive: 0, 
     //settings
     server_url:  "ws://localhost:9001", 
     addEvents: "", 

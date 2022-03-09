@@ -52,11 +52,11 @@ function writeNewDatavotation(id, campo, value) {
     for(var i=0; i< CORE.Votation.length; i++){
         if(CORE.Votation[i].id == id)
         var k = CORE.Votation[i].key; 
-        CORE.Votation[i].asistentes.push(value); 
+        //CORE.Votation[i].asistentes.push(value); 
     }
     var db = firebase.database();
 
-    db.ref("Votation/"+k+"/"+campo).push(value);
+    db.ref("Votation/"+k+"/"+campo).set(value);
         
 }
 
@@ -111,13 +111,18 @@ function gotData(data)
             for (var i =0; i<keys.length; i++)
             {
                 var k = keys[i]; 
+                var key =  k; 
                 var name =  scores[k].name; 
                 var id =  scores[k].id; 
-                if(scores[k].lisoptions)
+                if(scores[k].lisoptions && scores[k].votlist){
                     var lisOp = Object.values(scores[k].lisoptions); 
-                else
+                    var lisVot = Object.values(scores[k].votlist); 
+                }
+                else{
                     var lisOp = []; 
-                CORE.Votation[CORE.Votation.length] = new Votation(id,name, lisOp); 
+                    var lisVot = []; 
+                }
+                CORE.Votation[CORE.Votation.length] = new Votation(id,name, lisOp,lisVot, key); 
                 GFX.addlistnav(); 
 
             }
@@ -127,11 +132,15 @@ function gotData(data)
             var k = keys[keys.length-1]; 
             var name =  scores[k].name; 
             var id =  scores[k].id; 
-            if(scores[k].lisoptions)
+            if(scores[k].lisoptions && scores[k].votlist){
                 var lisOp = Object.values(scores[k].lisoptions); 
-            else
+                var lisVot = Object.values(scores[k].votlist); 
+            }
+            else{
                 var lisOp = []; 
-            CORE.Votation[CORE.Votation.length] = new Votation(id,name, lisOp); 
+                var lisVot = []; 
+            }
+            CORE.Votation[CORE.Votation.length] = new Votation(id,name, lisOp, lisVot, key); 
             GFX.addlistnav(); 
 
         }
