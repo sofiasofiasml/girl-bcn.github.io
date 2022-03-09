@@ -35,7 +35,13 @@ class News {
     }
 }
 
-
+class Votation {
+    constructor(id, name, lisoptions){
+        this.id = id, 
+        this.name = name, 
+        this.lisoptions = lisoptions
+    }
+}
 //Info del servidor
 News.prototype.fromJSON = function(json)
 {

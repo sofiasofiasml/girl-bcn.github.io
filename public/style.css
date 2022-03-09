@@ -243,7 +243,8 @@ ul{
 /* Overlay: AddEvent*/
 
 .popup-AddEvent .overlay-AddEvent,
-.popup-Votacion .overlay-Votacion
+.popup-Votacion .overlay-Votacion,
+.popup-Vot .overlay-Vot
 {
   position: fixed;
   top: 0px;
@@ -255,7 +256,8 @@ ul{
   display: none; 
 }
 .popup-AddEvent  .content-AddEvent,
-.popup-Votacion .content-Votacion
+.popup-Votacion .content-Votacion,
+.popup-Vot .content-Vot
 {
   position: absolute;
   top: 50%;
@@ -278,7 +280,8 @@ ul{
   text-align: center;
 } 
 .popup-AddEvent .close-btn,
-.popup-Votacion .close-btn
+.popup-Votacion .close-btn,
+.popup-Vot .close-btn
 {
   position: absolute;
   right: 20px;
@@ -296,11 +299,14 @@ ul{
 }
 
 .popup-AddEvent.active .overlay-AddEvent, 
-  .popup-Votacion.active .overlay-Votacion{
+.popup-Votacion.active .overlay-Votacion,
+.popup-Vot.active .overlay-Vot
+{
   display: block;
 }
 .popup-AddEvent.active .content-AddEvent,
-.popup-Votacion.active .content-Votacion
+.popup-Votacion.active .content-Votacion, 
+.popup-Vot.active .content-Vot
 {
   transition: all 300ms ease-in-out;
   transform: translate(-50%,-50%) scale(1);

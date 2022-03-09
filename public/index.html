@@ -24,9 +24,9 @@
         </div>
     </header>
     <nav>
-        <h2>Ideas de Planes</h2>
-        <ul>
-            <li><a class= "votacion" onclick="GFX.togglePopupVotacion()">Evento: Prueba</a></li>
+        <h2>Ideas/Votaciones</h2>
+        <ul id="ulnav">
+            
         </ul>
     </nav>
     <main>
@@ -62,25 +62,33 @@
                 <br>
                 <label>Hora: <input type="time" id="horaEvent" name="eta"></label>
                 <br>
-                <!-- <label for="url">Lugar:</label>
 
-                <input type="url" name="url" id="url" placeholder="https://example.com"pattern="https://.*" size="30" required>
-                <br> -->
                 <label> Descripción: <textarea id="NewEventDescription"></textarea></label>
                 <br>
                 <label>Imagen:      
                 <input type="file"
                 id="imagen" name="imagen"
                 accept="image/png, image/jpeg"></label>  
-                <!-- <br>
-                <button>Activar votación</button>
-                <br>
-                <label>Día para la votación: <input type="date" name="bday" required pattern="\d{4}-\d{2}-\d{2}">
-                    <span class="validity"></span></label>
-               <br>
-                <label>Hora para la votación: <input type="time" name="eta"></label> -->
+                
                 <br><br>
                 <input type="submit" value="Enviar" onclick="LOGIC.writtenData()">
+            </div>
+        </div>
+
+            <div class="popup-Vot" id="popup-Vot">
+                <div class="overlay-Vot"></div>
+                <div class="content-Vot">
+                    <div class="close-btn" onclick="GFX.togglePopupVot()">&times</div>
+                <h3>Añadir Votación o idea</h3>
+                <label>Nombre Evento/votacion: </label>
+                <input type="text" id="nameVotationOverlay" name="nameVotation">
+                <br>
+                Añadir opciones: 
+                <div id="addOtherInput"></div>
+                <br>
+                <button onclick="GFX.addInput()">+</button>
+                <br><br>
+                <input type="submit" value="Enviar" onclick="LOGIC.writtenVotation()">
             </div>
         </div>
         
@@ -115,7 +123,7 @@
                     <h4>Contribuir</h4>
                     <ul>
                         <li><a onclick="GFX.togglePopup()">Añadir evento</a></li>
-                        <li><a href="#">Dar ideas de planes</a></li>
+                        <li><a onclick="GFX.togglePopupVot()">Añadir ideas/votaciones</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

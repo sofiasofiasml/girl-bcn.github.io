@@ -46,11 +46,25 @@ function insertData(data, name){
         
 }
 
+// Añadir votacion db
+function writeNewDatavotation(id, campo, value) {
+
+    for(var i=0; i< CORE.Votation.length; i++){
+        if(CORE.Votation[i].id == id)
+        var k = CORE.Votation[i].key; 
+        CORE.Votation[i].asistentes.push(value); 
+    }
+    var db = firebase.database();
+
+    db.ref("Votation/"+k+"/"+campo).push(value);
+        
+}
+
 
 function gotData(data)
 {
     var scores = data.val(); 
-    if(scores){
+    if(scores && data.key =="Eventos"){
         var keys = Object.keys(scores); 
         //console.log(keys); 
         if(CORE.initDB){
@@ -69,7 +83,6 @@ function gotData(data)
                 if(scores[k].asistentes)
                     var asistentes = Object.values(scores[k].asistentes); 
 
-                //console.log(title, id, date, hour, image, votation, asistentes); 
                 GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key); 
             }
             CORE.initDB = false; 
@@ -87,8 +100,24 @@ function gotData(data)
             var asistentes  = [];  
             if(scores[k].asistentes)
                 var asistentes = Object.values(scores[k].asistentes); 
-            //console.log(title, id, date, hour, image, votation, asistentes); 
             GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key); 
+            
+        }
+    }
+    if(scores && data.key== "Votation")
+    {
+        var keys = Object.keys(scores); 
+        for (var i =0; i<keys.length; i++)
+        {
+            var k = keys[i]; 
+            var name =  scores[k].name; 
+            var id =  scores[k].id; 
+            if(scores[k].lisoptions)
+                var lisOp = Object.values(scores[k].lisoptions); 
+            else
+                var lisOp = []; 
+            CORE.Votation[CORE.Votation.length] = new Votation(id,name, lisOp); 
+            GFX.addlistnav(); 
 
         }
     }

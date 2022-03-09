@@ -33,12 +33,31 @@ var LOGIC = {
             CORE.navUl.appendChild(li); 
         }
     }, 
+    writtenVotation:function()
+    {
+        this.saveDBvotation(); 
+        //DB  
+        var data = CORE.Votation[CORE.Votation.length-1]
+        insertData(data, "Votation"); 
+        GFX.addlistnav(); 
+    }, 
     saveDB: function()
     {
         var data = CORE.DicEvents[CORE.DicEvents.length-1]; 
         insertData(data, "Eventos"); 
     }, 
-     
+    saveDBvotation: function()
+    {
+        var listOptions = []; 
+        for(var i=1; i<CORE.contvoationactual+1; i++)
+        {
+            var inputs = document.querySelector("#Input"+i); 
+            listOptions.push(inputs.value); 
+        }
+        var auxVotation = new Votation(CORE.Votation.length, document.querySelector("#nameVotationOverlay").value, listOptions); 
+       CORE.Votation[CORE.Votation.length] = auxVotation; 
+        
+    },
     //Ordenar lista en funcion de la fecha
     // https://es.stackoverflow.com/questions/259945/ordenar-ul-javascript
     ordenarLista: function(idUl){

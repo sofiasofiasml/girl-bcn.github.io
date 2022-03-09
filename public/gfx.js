@@ -5,6 +5,7 @@ var GFX =
     init: function()
     {
         this.addEventDB(); //setInterval('contador()',1000); Para que cada 1000 mili segundos se vaya actualizando
+        
     }, 
 
     draw: function()
@@ -20,9 +21,40 @@ var GFX =
     {
         document.getElementById("popup-Votacion").classList.toggle("active"); 
     }, 
+    togglePopupVot: function()
+    {
+        document.getElementById("popup-Vot").classList.toggle("active"); 
+        CORE.contvoationactual = 0; 
+        window.scrollTo(0,1);
+    },
+    addInput: function()
+    {
+        var divOverlay = document.querySelector("#addOtherInput"); 
+
+        var inputdiv = document.createElement("input");
+        CORE.contvoationactual +=1; 
+
+        inputdiv.id = "Input"+CORE.contvoationactual;
+        divOverlay.appendChild(inputdiv); 
+
+    },
+    addlistnav:function()
+    {
+        var divnav = document.querySelector("#ulnav"); 
+        var liEvent = document.createElement("li"); 
+        var aEvent = document.createElement("a"); 
+        aEvent.setAttribute("onclick", "GFX.togglePopupVotacion()");
+        aEvent.classList.add("votacion");
+        var leng =CORE.Votation.length-1;  
+        aEvent.id = "votacion"+leng;
+        aEvent.innerText = CORE.Votation[CORE.Votation.length-1].name; 
+        liEvent.appendChild(aEvent); 
+        divnav.appendChild(liEvent); 
+    },
     addEventDB:function()
     {
         seeData("Eventos"); 
+        seeData("Votation"); 
     },
     addAsistent:function(event)
     {
@@ -131,7 +163,9 @@ var GFX =
         div1Event.appendChild(cont1Event); 
         CORE.addEvents.appendChild(div1Event); 
 
-    }
+    },
+    
 }
+
 
 CORE.modules.push(GFX); 

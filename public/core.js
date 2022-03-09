@@ -23,6 +23,7 @@ var CORE =
     modules: [],
     mouse_pos :[0,0],
     keys: {},
+    contvoationactual:0, 
     //settings
     server_url:  "ws://localhost:9001", 
     addEvents: "", 
@@ -30,6 +31,7 @@ var CORE =
     nameNewEvent: "Prueba", 
     navUl: "", 
     DicEvents: [],
+    Votation:[],
     init: function()
     {
         this.last_time = performance.now(); 
