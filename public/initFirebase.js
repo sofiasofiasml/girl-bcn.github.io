@@ -6,6 +6,8 @@
 
  // Your web app's Firebase configuration
  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+ 
  const firebaseConfig = {
    apiKey: "AIzaSyAQC3c8Uc8z-AI89EdScSyYy6rNZzyXYgs",
    authDomain: "girls-bcn.firebaseapp.com",
@@ -44,6 +46,35 @@ function insertData(data, name){
 
     db.ref("Eventos/"+k+"/"+campo).push(value);
         
+}
+
+function delatenodeDBforTime() 
+{
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+
+    for(var i=0; i< CORE.DicEvents.length; i++){
+        var dateOrdnear = CORE.DicEvents[i].date; 
+        var indexBar = dateOrdnear.indexOf('-'); 
+        var year = dateOrdnear.substring(0, indexBar);
+        dateOrdnear = dateOrdnear.replace(dateOrdnear.substring(0,indexBar+1),'');
+        var indexBar = dateOrdnear.indexOf('-'); 
+        var mes = dateOrdnear.substring(0, indexBar);
+        var dia = dateOrdnear.substring(indexBar+1, dateOrdnear.length);
+        dateOrdnear = mes+'/'+dia+'/'+year; 
+        if(Date.parse(today)>Date.parse(dateOrdnear))
+        {
+            var k = CORE.DicEvents[i].key; 
+            var db = firebase.database();
+
+            db.ref("Eventos/"+k).remove();
+
+        }
+    }        
 }
 
 // Añadir votacion db
@@ -114,15 +145,9 @@ function gotData(data)
                 var key =  k; 
                 var name =  scores[k].name; 
                 var id =  scores[k].id; 
-                if(scores[k].lisoptions && scores[k].votlist){
-                    var lisOp = Object.values(scores[k].lisoptions); 
-                    var lisVot = Object.values(scores[k].votlist); 
-                }
-                else{
-                    var lisOp = []; 
-                    var lisVot = []; 
-                }
-                CORE.Votation[CORE.Votation.length] = new Votation(id,name, lisOp,lisVot, key); 
+                var link =  scores[k].link; 
+                var resp =  scores[k].resp; 
+                CORE.Votation[CORE.Votation.length] = new Votation(id,name, key, link, resp); 
                 GFX.addlistnav(); 
 
             }
@@ -132,15 +157,8 @@ function gotData(data)
             var k = keys[keys.length-1]; 
             var name =  scores[k].name; 
             var id =  scores[k].id; 
-            if(scores[k].lisoptions && scores[k].votlist){
-                var lisOp = Object.values(scores[k].lisoptions); 
-                var lisVot = Object.values(scores[k].votlist); 
-            }
-            else{
-                var lisOp = []; 
-                var lisVot = []; 
-            }
-            CORE.Votation[CORE.Votation.length] = new Votation(id,name, lisOp, lisVot, key); 
+            var resp =  scores[k].resp; 
+            CORE.Votation[CORE.Votation.length] = new Votation(id,name, key, link, resp); 
             GFX.addlistnav(); 
 
         }

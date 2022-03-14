@@ -212,11 +212,11 @@ ul{
 /*pantalla pequeña movil*/
 .Evento .content .description-event img{
   height: 150px;
-  margin-right: 50px;
+  margin-left: 19%;
   
 }
 /*pantalla grande pc*/
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 500px) {
   .Evento .content .description-event img{
     height: 150px;
     float: right;
@@ -312,3 +312,34 @@ ul{
   transform: translate(-50%,-50%) scale(1);
 
 } 
+
+/* swiper */
+
+
+#swip {
+  position: relative;
+  height: 100%;
+  background: #24262b;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+.swiper {
+  width: 50%; 
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 50%; 
+
+}
+
+.swiper-slide img {
+  display: block; 
+  width: 100%; 
+}

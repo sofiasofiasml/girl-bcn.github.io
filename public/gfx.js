@@ -5,7 +5,7 @@ var GFX =
     init: function()
     {
         this.addEventDB(); //setInterval('contador()',1000); Para que cada 1000 mili segundos se vaya actualizando
-        
+        delatenodeDBforTime(); 
     }, 
 
     draw: function()
@@ -89,8 +89,16 @@ var GFX =
         var proba= document.querySelector(".ck.ck-editor__main p");
         descriptionEvent.innerHTML = proba.innerHTML; 
         var image = 'img/band.jpeg'; 
-
         var id = CORE.DicEvents.length; 
+
+        if(id!=0)
+        {
+            for(var i =0; i<CORE.DicEvents.length; i++)
+            {
+                if(CORE.DicEvents[i].id==id)
+                    id++; 
+            }
+        }
         var newEve = new News(id, valuenameEvent.value, image, descriptionEvent.innerHTML, valueDate.value, valueHour.value, "No", "", []); 
         CORE.DicEvents[CORE.DicEvents.length]=newEve; 
 
@@ -164,26 +172,43 @@ var GFX =
         CORE.addEvents.appendChild(div1Event); 
 
     },
-    addButtonOptionVotation: function(id, name, options)
+    addButtonOptionVotation: function(id, name, link, resp)
     {
         var divInfoVotation = document.querySelector("#InfoVotacionDB"); 
         var title = document.createElement("h4");
         title.innerText = name; 
         divInfoVotation.appendChild(title); 
 
-        for(var i =0; i< options.length; i++)
-        {
-            var buttonOption = document.createElement("button");
-            buttonOption.setAttribute("onclick", "LOGIC.sumValue(this)");
+        var linkgoog = document.createElement("h4");
+        linkgoog.innerText = "Link votación"; 
+        divInfoVotation.appendChild(linkgoog); 
+        var lik = document.createElement("a");
+        lik.title = "Google aswer";
+        lik.href =  link; 
+        lik.innerText = 'Link Votación'; 
 
-            buttonOption.innerText = options[i]; 
-            divInfoVotation.appendChild(buttonOption); 
-            
-        }
-        var textvotation = document.createElement("div");
-        textvotation.id = "textVot"; 
-        textvotation.innerText = CORE.Votation[id].votlist; 
-        divInfoVotation.appendChild(textvotation); 
+        divInfoVotation.appendChild(lik); 
+        var br = document.createElement("br");
+        divInfoVotation.appendChild(br); 
+
+        var linkres = document.createElement("h4");
+        linkres.innerText = "Link respuestas"; 
+        divInfoVotation.appendChild(linkres); 
+        var r = document.createElement("a");
+        r.title = "Google resp";
+        r.href =  resp; 
+        r.innerText = 'Link respuestas'; 
+        divInfoVotation.appendChild(r); 
+        
+        {/* <input type="submit" value="Borrar" onclick="LOGIC.idChangeToDelate(this)">  */}
+        var sub = document.createElement("input");
+        sub.setAttribute("type", "submit");
+        sub.setAttribute("value", "Borrar");
+        sub.setAttribute("onclick", "LOGIC.idChangeToDelate(this)");
+        sub.setAttribute("name", "submit"+id);
+        
+        divInfoVotation.appendChild(br); 
+        divInfoVotation.appendChild(sub); 
 
     }, 
     removeChildOverlay: function()

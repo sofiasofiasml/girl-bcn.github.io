@@ -13,7 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Festive&family=Mali:wght@500&display=swap" rel="stylesheet">
-    
+    <link  rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
 </head>
 <body>
 
@@ -34,18 +35,9 @@
             <div class="overlay-Votacion"></div>
             <div class="content-Votacion">
                 <div class="close-btn" onclick="GFX.togglePopupVotacion()">&times</div>
-                <!-- <h3>Votación día-hora evento:</h3>
-                <label>Día:</label>
-                <ul>
-                    <li><button>10/2/21: 10.00h</button></li>
-                </ul>
-                <label>Hora:</label>
-                <ul>
-                    <li><button> 10.00h</button></li>
-                </ul> -->
                 <div id="InfoVotacionDB"></div>
-                <br><br>
-                <input type="submit" value="Enviar">
+                <!-- <br><br> -->
+                <!-- <input type="submit" value="Borrar" onclick="LOGIC.idChangeToDelate(this)">  -->
             </div>
         </div>
         <div class="popup-AddEvent" id="popup-AddEvent">
@@ -65,12 +57,12 @@
                 <br>
 
                 <label> Descripción: <textarea id="NewEventDescription"></textarea></label>
-                <br>
+                <!-- <br>
                 <label>Imagen:      
                 <input type="file"
                 id="imagen" name="imagen"
                 accept="image/png, image/jpeg"></label>  
-                
+                 -->
                 <br><br>
                 <input type="submit" value="Enviar" onclick="LOGIC.writtenData()">
             </div>
@@ -84,10 +76,15 @@
                 <label>Nombre Evento/votacion: </label>
                 <input type="text" id="nameVotationOverlay" name="nameVotation">
                 <br>
-                Añadir opciones: 
-                <div id="addOtherInput"></div>
+                Link google aswers: 
+                <input type="text" id="googleaswer" name="googleaswer">
                 <br>
-                <button onclick="GFX.addInput()">+</button>
+                Link ver respuestas: 
+                <input type="text" id="googleResp" name="googleResp">
+
+                <!-- <div id="addOtherInput"></div>
+                <br>
+                <button onclick="GFX.addInput()">+</button> -->
                 <br><br>
                 <input type="submit" value="Enviar" onclick="LOGIC.writtenVotation()">
             </div>
@@ -102,6 +99,35 @@
         <div >
             <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=Europe%2FMadrid&showCalendars=0&showPrint=0&showTitle=0&src=c29maWEubWFydGluZXoubG9wZXouOThAZ21haWwuY29t&src=bXI3MjIxbmdpdGU4dDNrN3RzM3VwNHM5ZTBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%237986CB&color=%23F6BF26" id = "calendar"  ></iframe> 
         </div>
+        <div>
+            <h3>Publicidad y locales del colectivo</h3>
+            
+        <!-- Swiper -->
+        <div id = "swip">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="img/1.png" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/carita.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/casalambda.jpg" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/arena.png" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/nenis.jpg" />
+                    </div>
+                    
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div> 
+
+        
     </main>
     <footer class="footer">
         <div class="container">
@@ -152,6 +178,9 @@
     <script type="text/javascript" src="gfx.js"></script>
     <script type="text/javascript" src="logic.js"></script>
     <script type="text/javascript" src="world.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script type="text/javascript" src="swiper.min.js"></script>
     <!-- Arracncamos app -->
     <script>CORE.init()</script>
 </body>

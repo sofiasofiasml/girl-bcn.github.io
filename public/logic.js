@@ -47,15 +47,15 @@ var LOGIC = {
     }, 
     saveDBvotation: function()
     {
-        var listOptions = []; 
-        var votlist = []; 
-        for(var i=1; i<CORE.contvoationactual+1; i++)
-        {
-            var inputs = document.querySelector("#Input"+i); 
-            listOptions.push(inputs.value); 
-            votlist.push(0); 
-        }
-       var auxVotation = new Votation(CORE.Votation.length, document.querySelector("#nameVotationOverlay").value, listOptions, votlist, ""); 
+        // var listOptions = []; 
+        // var votlist = []; 
+        // for(var i=1; i<CORE.contvoationactual+1; i++)
+        // {
+        //     var inputs = document.querySelector("#Input"+i); 
+        //     listOptions.push(inputs.value); 
+        //     votlist.push(0); 
+        // }
+       var auxVotation = new Votation(CORE.Votation.length, document.querySelector("#nameVotationOverlay").value,  "", document.querySelector("#googleaswer").value, document.querySelector("#googleResp").value); 
        CORE.Votation[CORE.Votation.length] = auxVotation; 
         
     },
@@ -85,9 +85,9 @@ var LOGIC = {
                 if(id == CORE.Votation[i].id)
                 {
                     CORE.overlayactive =CORE.Votation[i].id; 
-                    var options = CORE.Votation[i].lisoptions; 
-                    var votlist = CORE.Votation[i].votlist; 
-                    GFX.addButtonOptionVotation(id, CORE.Votation[i].name, options); 
+                    // var options = CORE.Votation[i].lisoptions; 
+                    // var votlist = CORE.Votation[i].votlist; 
+                    GFX.addButtonOptionVotation(id, CORE.Votation[i].name, CORE.Votation[i].link, CORE.Votation[i].resp); 
                     //Modificar DB 
                     //this.modVotation(options,votlist); 
                 }
@@ -112,6 +112,27 @@ var LOGIC = {
             }
         }
         writeNewDatavotation(j, "votlist", CORE.Votation[j].votlist)
+    }, 
+    idChangeToDelate: function(event)
+    {
+        var id = event.name.substring(6,event.name.length); 
+        var indide= false;         
+        var db = firebase.database();
+        var leg = CORE.Votation.length; 
+        for(var i=0; i< leg; i++){
+            if(indide){
+                var keyoth = CORE.Votation[i].key;
+                CORE.Votation[i].id -=1; 
+                db.ref("Votation/"+keyoth+"/id").set(CORE.Votation[i].id);
+            }
+            if(CORE.Votation[i].id == id){
+                var k = CORE.Votation[i].key; 
+                indide = true; 
+                id = -1; 
+            }
+        }
+
+        db.ref("Votation/"+k).remove();
     }
 }; 
 CORE.modules.push(LOGIC); 
