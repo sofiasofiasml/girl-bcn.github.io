@@ -22,7 +22,7 @@ User.prototype.toJSON = function()
 }
 
 class News {
-    constructor(id, title, image, content, date, hour, votation, key) {
+    constructor(id, title, image, content, date, hour, votation, key, asistenteskey) {
         this.id = id, 
         this.key = key, 
         this.title = title, 
@@ -31,7 +31,8 @@ class News {
         this.date = date, 
         this.hour = hour, 
         this.votation = votation,
-        this.asistentes = []
+        this.asistentes = [], 
+        this.asistenteskey = []
     }
 }
 
@@ -41,8 +42,6 @@ class Votation {
         this.name = name, 
         this.link = link, 
         this.resp = resp, 
-        // this.lisoptions = lisoptions
-        // this.votlist = votlist, 
         this.key = key
     }
 }

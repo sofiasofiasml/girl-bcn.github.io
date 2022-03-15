@@ -133,6 +133,10 @@ var LOGIC = {
         }
 
         db.ref("Votation/"+k).remove();
+    },
+    delateAsistant: function(event)
+    {
+        alert('En proceso'); 
     }
 }; 
 CORE.modules.push(LOGIC); 

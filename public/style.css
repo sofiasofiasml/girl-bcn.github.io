@@ -69,12 +69,12 @@ header .overlay{
 
 header h1 {
   background: transparent; 
-	font-family: 'Festive', cursive;
-  font-family: 'Mali', cursive;
+  font-family: 'Saira Stencil One', cursive;
   margin-top: -10px;
 	font-size: 80px;
 	margin-bottom: 0px;
   text-shadow: 3px 3px #333;
+  color: rgb(243, 219, 219);
 }
 
  header h3, p {
@@ -312,7 +312,26 @@ ul{
   transform: translate(-50%,-50%) scale(1);
 
 } 
-
+.close-btn-Asistant{
+  /* position: absolute; */
+  float: left;
+  margin-right: 5%; 
+  right: 20px;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  background: #222;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 20;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.close-btn-Asistant:hover{
+  background: rgb(150, 147, 147);
+}
 /* swiper */
 
 

@@ -88,7 +88,7 @@ var GFX =
         descriptionEvent.classList.add("description-event");
         var proba= document.querySelector(".ck.ck-editor__main p");
         descriptionEvent.innerHTML = proba.innerHTML; 
-        var image = 'img/band.jpeg'; 
+        var image = 'img/pp.png'; 
         var id = CORE.DicEvents.length; 
 
         if(id!=0)
@@ -99,11 +99,11 @@ var GFX =
                     id++; 
             }
         }
-        var newEve = new News(id, valuenameEvent.value, image, descriptionEvent.innerHTML, valueDate.value, valueHour.value, "No", "", []); 
+        var newEve = new News(id, valuenameEvent.value, image, descriptionEvent.innerHTML, valueDate.value, valueHour.value, "No", "", [], []); 
         CORE.DicEvents[CORE.DicEvents.length]=newEve; 
 
     }, 
-    createDivEventosDB: function(title, id, date, hour, image, votation, content, asistentes, key)
+    createDivEventosDB: function(title, id, date, hour, image, votation, content, asistentes, key, asistenteskey)
     {
         var nameEvent = document.createElement("h4");
         var valuenameEvent = document.querySelector("#nameEvent"); 
@@ -137,6 +137,17 @@ var GFX =
         for (var i = 0; i<asistentes.length; i++){
             var liEvent = document.createElement("li"); 
                 liEvent.innerText = asistentes[i]; 
+                liEvent.setAttribute("name", id+"-"+i);
+
+            var delateli = document.createElement("div");
+                delateli.innerText= String.fromCodePoint(0x1F5D1);
+                delateli.setAttribute("class", "close-btn-Asistant");
+                delateli.setAttribute("onclick", "LOGIC.delateAsistant(this)");
+
+
+
+
+            liEvent.appendChild(delateli); 
                 ulEvent.appendChild(liEvent); 
         }
         var contEvent = document.createElement("div"); 
@@ -152,9 +163,11 @@ var GFX =
         div1Event.setAttribute("id", "Evento"+id);
 
         if(CORE.initDB){
-            var newEve = new News(id, valuenameEvent, imgEvent.src, descriptionEvent.innerHTML, valueDate, valueHour, votation, asistentes, key, asistentes); 
-            if(asistentes)
+            var newEve = new News(id, valuenameEvent, imgEvent.src, descriptionEvent.innerHTML, valueDate, valueHour, votation, asistentes, key, asistentes, asistenteskey); 
+            if(asistentes){
                 newEve.asistentes = asistentes; 
+                newEve.asistenteskey = asistenteskey; 
+            }
             CORE.DicEvents[CORE.DicEvents.length]=newEve; 
             
         }

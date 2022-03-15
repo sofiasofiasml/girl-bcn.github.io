@@ -111,10 +111,14 @@ function gotData(data)
                 var votation =  scores[k].votation; 
                 var content =  scores[k].content;
                 var asistentes  = [];  
-                if(scores[k].asistentes)
-                    var asistentes = Object.values(scores[k].asistentes); 
-
-                GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key); 
+                var asistenteskey = []; 
+                if(scores[k].asistentes){
+                    asistentes = Object.values(scores[k].asistentes); 
+                    
+                    asistenteskey= Object.keys(scores[k].asistentes); 
+                   
+                }
+                GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key, asistenteskey); 
             }
             CORE.initDB = false; 
         }
@@ -128,10 +132,13 @@ function gotData(data)
             var image =  scores[k].image; 
             var votation =  scores[k].votation; 
             var content =  scores[k].content; 
-            var asistentes  = [];  
-            if(scores[k].asistentes)
-                var asistentes = Object.values(scores[k].asistentes); 
-            GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key); 
+            var asistenteskey = []; 
+            if(scores[k].asistentes){
+                asistentes = Object.values(scores[k].asistentes);      
+                asistenteskey= Object.keys(scores[k].asistentes); 
+               
+            }
+            GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key, asistenteskey); 
             
         }
     }
