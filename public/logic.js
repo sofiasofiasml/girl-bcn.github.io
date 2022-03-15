@@ -136,7 +136,7 @@ var LOGIC = {
     },
     delateAsistant: function(event)
     {
-        alert('En proceso'); 
+        delateasistentEvenDB(event); 
     }
 }; 
 CORE.modules.push(LOGIC); 

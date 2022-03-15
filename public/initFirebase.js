@@ -77,6 +77,36 @@ function delatenodeDBforTime()
     }        
 }
 
+function delateasistentEvenDB(event)
+{
+    var index = event.id.indexOf("-");  
+    var id = event.id.substring(0,index); 
+    var pos = event.id.substring(index+1, event.id.length); 
+
+   
+    for(var i=0; i< CORE.DicEvents.length; i++){
+        if(CORE.DicEvents[i].id == id)
+        {
+            var k = CORE.DicEvents[i].key; 
+            var key = CORE.DicEvents[i].asistenteskey[pos]; 
+            var db = firebase.database();
+            db.ref("Eventos/"+k +"/asistentes/"+key).remove();
+            var value = document.querySelector(".li"+event.id); 
+            value.style.display = "none"; 
+
+            var asi = document.querySelector(".ContadorAsistentes"+id); 
+            var posvalue = asi.textContent.indexOf(": "); 
+
+            var value = asi.textContent.substring(posvalue+2,asi.textContent.length); 
+
+            var intvalue = parseInt(value); 
+            intvalue -=1; 
+            asi.textContent = 'Asistentes: '+intvalue; 
+
+        }
+    }        
+    
+}
 // Añadir votacion db
 function writeNewDatavotation(id, campo, value) {
 
