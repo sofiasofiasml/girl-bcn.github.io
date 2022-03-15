@@ -125,10 +125,12 @@ var GFX =
         var AsisDescEvent = document.createElement("label"); 
         AsisDescEvent.innerText= "Apuntarse:"; 
         AsistenciaEvent.id="Asistencia"+id; 
+        AsistenciaEvent.setAttribute("class", "AsistenciaInput");
+
 
         var bSubmit = document.createElement("input"); 
         bSubmit.setAttribute("type", "submit");
-        bSubmit.setAttribute("class", "submit");
+        bSubmit.setAttribute("class", "submitAsistencia");
         bSubmit.setAttribute("name", id);
         bSubmit.setAttribute("onclick", "GFX.addAsistent(this)");
         var ulEvent = document.createElement("ul");
@@ -216,7 +218,7 @@ var GFX =
         {/* <input type="submit" value="Borrar" onclick="LOGIC.idChangeToDelate(this)">  */}
         var sub = document.createElement("input");
         sub.setAttribute("type", "submit");
-        sub.setAttribute("value", "Borrar");
+        sub.setAttribute("value", "Eliminar");
         sub.setAttribute("onclick", "LOGIC.idChangeToDelate(this)");
         sub.setAttribute("name", "submit"+id);
         

@@ -4,7 +4,7 @@
  *:before {
    box-sizing: inherit;
 	background-color: #24262b;
-  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: 'Questrial', sans-serif;
 
  }
  
@@ -17,9 +17,9 @@
    font-size: 62.5%;
  }
  
- body {
-   color: #606c76;
-   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  body {
+    color: #606c76;
+   font-family: 'Questrial', sans-serif;
    font-size: 1.6em;
    font-weight: 300;
    letter-spacing: .01em;
@@ -29,10 +29,10 @@
    grid-gap: 1em;
    grid: 'header' auto
         'nav' auto
-        'main' 1fr
+        'main' auto
         'footer' auto
-      / 1fr; 
-}
+      / 1fr;  
+} 
 
 @media (min-width: 40em) {
   body {
@@ -361,4 +361,17 @@ ul{
 .swiper-slide img {
   display: block; 
   width: 100%; 
+}
+
+
+.AsistenciaInput{
+  border-radius: 20px;
+}
+
+
+input{
+  border-radius: 20px;
+}
+input:hover{
+  background: rgba(69, 65, 88, 0.2);
 }
