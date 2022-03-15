@@ -136,7 +136,9 @@ var LOGIC = {
     },
     delateAsistant: function(event)
     {
-        delateasistentEvenDB(event); 
+        if (confirm('Vas a borrar un asistente')) {
+            delateasistentEvenDB(event); 
+          } 
     }
 }; 
 CORE.modules.push(LOGIC); 
