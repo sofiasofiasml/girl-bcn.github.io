@@ -393,3 +393,16 @@ input{
 input:hover{
   background: rgba(69, 65, 88, 0.2);
 }
+
+.img_Event {
+  transition: opacity 0.5s;
+  transition: all .2s ease-in-out;
+  border-radius: 8px;
+  transition: border-radius 0.23s, transform 0.23s;
+}
+
+.img_Event:hover{
+  opacity: 0.5;
+  transform: scale(1.1);
+  border-radius: 18px;
+}

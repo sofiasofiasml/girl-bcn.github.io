@@ -123,6 +123,8 @@ var GFX =
         imgEvent.src = image.substring(index, image.length);
         imgEvent.alt = "img_event"; 
         imgEvent.title = "img_event"; 
+        imgEvent.setAttribute("class", "img_Event");
+
 
         var AsistenciaEvent = document.createElement("input"); 
         var AsisDescEvent = document.createElement("label"); 
