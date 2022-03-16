@@ -320,7 +320,7 @@ ul{
   top: 20px;
   width: 20px;
   height: 20px;
-  background: #222;
+  background: rgb(167, 7, 7);
   color: #fff;
   font-size: 20px;
   font-weight: 20;
@@ -330,7 +330,24 @@ ul{
   cursor: pointer;
 }
 .close-btn-Asistant:hover{
-  background: rgb(150, 147, 147);
+  background: rgb(160, 108, 108);
+}
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: 14px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.close-btn-Asistant:hover .tooltiptext {
+  visibility: visible;
 }
 /* swiper */
 
@@ -371,6 +388,7 @@ ul{
 
 input{
   border-radius: 20px;
+  font-weight: 900;
 }
 input:hover{
   background: rgba(69, 65, 88, 0.2);

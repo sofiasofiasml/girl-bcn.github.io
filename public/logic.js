@@ -32,6 +32,7 @@ var LOGIC = {
             li.appendChild(VotacionesNew); 
             CORE.navUl.appendChild(li); 
         }
+        document.location.reload();
     }, 
     writtenVotation:function()
     {
@@ -39,6 +40,7 @@ var LOGIC = {
         //DB  
         var data = CORE.Votation[CORE.Votation.length-1]
         insertData(data, "Votation"); 
+        document.location.reload();
     }, 
     saveDB: function()
     {
@@ -133,12 +135,15 @@ var LOGIC = {
         }
 
         db.ref("Votation/"+k).remove();
+        document.location.reload();
+
     },
     delateAsistant: function(event)
     {
         if (confirm('Vas a borrar un asistente')) {
             delateasistentEvenDB(event); 
-          } 
+            document.location.reload();
+        } 
     }
 }; 
 CORE.modules.push(LOGIC); 

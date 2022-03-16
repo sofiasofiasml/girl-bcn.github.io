@@ -65,6 +65,7 @@ var GFX =
         document.querySelector('#Asistencia'+event.name).value = ""; 
         var el = document.querySelector('#Evento'+event.name);
         el.remove(); // Removes the div with the 'div-02' id
+        document.location.reload();
     },
     seeAsistentes:function(event, value)
     {
@@ -114,6 +115,8 @@ var GFX =
         var descriptionEvent = document.createElement("div");
         descriptionEvent.classList.add("description-event");
         descriptionEvent.innerHTML =  content; 
+        descriptionEvent.style.fontWeight = "900";
+    
 
         var imgEvent = document.createElement("img");
         var index = image.indexOf("/img/");
@@ -124,6 +127,8 @@ var GFX =
         var AsistenciaEvent = document.createElement("input"); 
         var AsisDescEvent = document.createElement("label"); 
         AsisDescEvent.innerText= "Apuntarse:"; 
+        AsisDescEvent.style.fontWeight = "900";
+
         AsistenciaEvent.id="Asistencia"+id; 
         AsistenciaEvent.setAttribute("class", "AsistenciaInput");
 
@@ -139,27 +144,34 @@ var GFX =
             for (var i = 0; i<asistentes.length; i++){
                 var liEvent = document.createElement("li"); 
                     liEvent.innerText = asistentes[i]; 
+                    liEvent.style.fontWeight = "900";
                     liEvent.setAttribute("class", "li"+id+"-"+i);
 
                 var delateli = document.createElement("div");
-                    delateli.innerText= String.fromCodePoint(0x1F5D1);
+                    delateli.innerText= "X";
                     delateli.setAttribute("class", "close-btn-Asistant");
                     delateli.setAttribute("id", id+"-"+i);
                     delateli.setAttribute("onclick", "LOGIC.delateAsistant(this)");
 
+                    var tooltipli = document.createElement("div");
+                    tooltipli.innerText= "Borrar asistente";
+                    tooltipli.setAttribute("class", "tooltiptext");
 
-
-
-                liEvent.appendChild(delateli); 
+                    delateli.appendChild(tooltipli); 
+                    liEvent.appendChild(delateli); 
                     ulEvent.appendChild(liEvent); 
             }
         }
         var contEvent = document.createElement("div"); 
         contEvent.classList.add("ContadorAsistentes"+id);
-        if(asistentes)
+        if(asistentes){
             contEvent.innerText = "Asistentes: "+asistentes.length; 
-        else
+            contEvent.style.fontWeight = "900";
+        }
+        else{
             contEvent.innerText = "Asistentes: 0"; 
+            contEvent.style.fontWeight = "900";
+        }
 
 
 
