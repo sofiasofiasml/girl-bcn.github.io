@@ -128,7 +128,7 @@ function gotData(data)
     if(scores && data.key =="Eventos"){
         var keys = Object.keys(scores); 
         //console.log(keys); 
-        if(CORE.initDB){
+        if(CORE.initDB){ // añadir evento del db
             for (var i =0; i<keys.length; i++)
             {
                 var k = keys[i]; 
@@ -150,27 +150,28 @@ function gotData(data)
                 }
                 GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key, asistenteskey); 
             }
+            LOGIC.ordenarEventDate(); 
             CORE.initDB = false; 
         }
-        else{
-            var k = keys[keys.length-1]; 
-            var title =  scores[k].title; 
-            var id =  scores[k].id; 
-            var key =  k; 
-            var date =  scores[k].date; 
-            var hour =  scores[k].hour; 
-            var image =  scores[k].image; 
-            var votation =  scores[k].votation; 
-            var content =  scores[k].content; 
-            var asistenteskey = []; 
-            if(scores[k].asistentes){
-                asistentes = Object.values(scores[k].asistentes);      
-                asistenteskey= Object.keys(scores[k].asistentes); 
+        // else{ //añadir evento en el tiempo actual 
+        //     var k = keys[keys.length-1]; 
+        //     var title =  scores[k].title; 
+        //     var id =  scores[k].id; 
+        //     var key =  k; 
+        //     var date =  scores[k].date; 
+        //     var hour =  scores[k].hour; 
+        //     var image =  scores[k].image; 
+        //     var votation =  scores[k].votation; 
+        //     var content =  scores[k].content; 
+        //     var asistenteskey = []; 
+        //     if(scores[k].asistentes){
+        //         asistentes = Object.values(scores[k].asistentes);      
+        //         asistenteskey= Object.keys(scores[k].asistentes); 
                
-            }
-            GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key, asistenteskey); 
+        //     }
+        //     GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key, asistenteskey); 
             
-        }
+        // }
     }
     if(scores && data.key== "Votation")
     {
@@ -190,15 +191,15 @@ function gotData(data)
             }
             CORE.initDBVot = false; 
         }
-        else{
-            var k = keys[keys.length-1]; 
-            var name =  scores[k].name; 
-            var id =  scores[k].id; 
-            var resp =  scores[k].resp; 
-            CORE.Votation[CORE.Votation.length] = new Votation(id,name, key, link, resp); 
-            GFX.addlistnav(); 
+        // else{
+        //     var k = keys[keys.length-1]; 
+        //     var name =  scores[k].name; 
+        //     var id =  scores[k].id; 
+        //     var resp =  scores[k].resp; 
+        //     CORE.Votation[CORE.Votation.length] = new Votation(id,name, key, link, resp); 
+        //     GFX.addlistnav(); 
 
-        }
+        // }
     }
 }
  function errData(err)

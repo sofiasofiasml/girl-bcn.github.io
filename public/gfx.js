@@ -106,21 +106,43 @@ var GFX =
     }, 
     createDivEventosDB: function(title, id, date, hour, image, votation, content, asistentes, key, asistenteskey)
     {
-        var nameEvent = document.createElement("h4");
-        var valuenameEvent = document.querySelector("#nameEvent"); 
+
         var valueDate= date;
         var valueHour= hour;
-        nameEvent.innerText = title + " Fecha: "+ valueDate +" Hora: "+hour; 
+
+        var imgEvent; 
+        var index = image.indexOf("/img/");
+        imgEvent = image.substring(index, image.length);
+
+        if(CORE.initDB){
+            var newEve = new News(id, title, imgEvent, content, valueDate, valueHour, votation, asistentes, key, asistentes, asistenteskey); 
+            if(asistentes){
+                newEve.asistentes = asistentes; 
+                newEve.asistenteskey = asistenteskey; 
+            }
+            CORE.DicEvents[CORE.DicEvents.length]=newEve; 
+            
+        }
+        CORE.DicEvents[CORE.DicEvents.length-1].key =key; 
+
+    },
+    printEvent: function(indexEvent)
+    {
+        var nameEvent = document.createElement("h4");
+        var valuenameEvent = document.querySelector("#nameEvent"); 
+        var valueDate= CORE.DicEvents[indexEvent].date;
+        var valueHour= CORE.DicEvents[indexEvent].hour;
+        nameEvent.innerText = CORE.DicEvents[indexEvent].title + " Fecha: "+ valueDate +" Hora: "+valueHour; 
         
         var descriptionEvent = document.createElement("div");
         descriptionEvent.classList.add("description-event");
-        descriptionEvent.innerHTML =  content; 
+        descriptionEvent.innerHTML =  CORE.DicEvents[indexEvent].content; 
         descriptionEvent.style.fontWeight = "900";
     
 
         var imgEvent = document.createElement("img");
-        var index = image.indexOf("/img/");
-        imgEvent.src = image.substring(index, image.length);
+        var index = CORE.DicEvents[indexEvent].image.indexOf("/img/");
+        imgEvent.src = CORE.DicEvents[indexEvent].image.substring(index, CORE.DicEvents[indexEvent].image.length);
         imgEvent.alt = "img_event"; 
         imgEvent.title = "img_event"; 
         imgEvent.setAttribute("class", "img_Event");
@@ -131,28 +153,28 @@ var GFX =
         AsisDescEvent.innerText= "Apuntarse:"; 
         AsisDescEvent.style.fontWeight = "900";
 
-        AsistenciaEvent.id="Asistencia"+id; 
+        AsistenciaEvent.id="Asistencia"+CORE.DicEvents[indexEvent].id; 
         AsistenciaEvent.setAttribute("class", "AsistenciaInput");
 
 
         var bSubmit = document.createElement("input"); 
         bSubmit.setAttribute("type", "submit");
         bSubmit.setAttribute("class", "submitAsistencia");
-        bSubmit.setAttribute("name", id);
+        bSubmit.setAttribute("name", CORE.DicEvents[indexEvent].id);
         bSubmit.setAttribute("onclick", "GFX.addAsistent(this)");
         var ulEvent = document.createElement("ul");
-        ulEvent.setAttribute("id", "ul"+id);
-        if(asistentes){
-            for (var i = 0; i<asistentes.length; i++){
+        ulEvent.setAttribute("id", "ul"+CORE.DicEvents[indexEvent].id);
+        if(CORE.DicEvents[indexEvent].asistentes){
+            for (var i = 0; i<CORE.DicEvents[indexEvent].asistentes.length; i++){
                 var liEvent = document.createElement("li"); 
-                    liEvent.innerText = asistentes[i]; 
+                    liEvent.innerText = CORE.DicEvents[indexEvent].asistentes[i]; 
                     liEvent.style.fontWeight = "900";
-                    liEvent.setAttribute("class", "li"+id+"-"+i);
+                    liEvent.setAttribute("class", "li"+CORE.DicEvents[indexEvent].id+"-"+i);
 
                 var delateli = document.createElement("div");
                     delateli.innerText= "X";
                     delateli.setAttribute("class", "close-btn-Asistant");
-                    delateli.setAttribute("id", id+"-"+i);
+                    delateli.setAttribute("id", CORE.DicEvents[indexEvent].id+"-"+i);
                     delateli.setAttribute("onclick", "LOGIC.delateAsistant(this)");
 
                     var tooltipli = document.createElement("div");
@@ -165,9 +187,9 @@ var GFX =
             }
         }
         var contEvent = document.createElement("div"); 
-        contEvent.classList.add("ContadorAsistentes"+id);
-        if(asistentes){
-            contEvent.innerText = "Asistentes: "+asistentes.length; 
+        contEvent.classList.add("ContadorAsistentes"+CORE.DicEvents[indexEvent].id);
+        if(CORE.DicEvents[indexEvent].asistentes){
+            contEvent.innerText = "Asistentes: "+CORE.DicEvents[indexEvent].asistentes.length; 
             contEvent.style.fontWeight = "900";
         }
         else{
@@ -182,18 +204,9 @@ var GFX =
 
         var div1Event = document.createElement("div"); 
         div1Event.classList.add("Evento"); 
-        div1Event.setAttribute("id", "Evento"+id);
+        div1Event.setAttribute("id", "Evento"+CORE.DicEvents[indexEvent].id);
 
-        if(CORE.initDB){
-            var newEve = new News(id, valuenameEvent, imgEvent.src, descriptionEvent.innerHTML, valueDate, valueHour, votation, asistentes, key, asistentes, asistenteskey); 
-            if(asistentes){
-                newEve.asistentes = asistentes; 
-                newEve.asistenteskey = asistenteskey; 
-            }
-            CORE.DicEvents[CORE.DicEvents.length]=newEve; 
-            
-        }
-        CORE.DicEvents[CORE.DicEvents.length-1].key =key; 
+        
 
         descriptionEvent.appendChild(imgEvent); 
         cont1Event.appendChild(nameEvent); 
@@ -205,8 +218,7 @@ var GFX =
         cont1Event.appendChild(contEvent); 
         div1Event.appendChild(cont1Event); 
         CORE.addEvents.appendChild(div1Event); 
-
-    },
+    }, 
     addButtonOptionVotation: function(id, name, link, resp)
     {
         var divInfoVotation = document.querySelector("#InfoVotacionDB"); 

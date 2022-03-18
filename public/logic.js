@@ -62,20 +62,6 @@ var LOGIC = {
         
     },
     //Ordenar lista en funcion de la fecha
-    // https://es.stackoverflow.com/questions/259945/ordenar-ul-javascript
-    ordenarLista: function(idUl){
-        //Obtenemos el elemento ul
-        let ul = document.getElementById(idUl);    
-        //Obtenemos la lista de li
-        let lista = ul.getElementsByTagName("li");
-        //Creamos el array a partir de los elementos li
-        //A continuación ordenamos con sort (hay que ordenar mirando el textContent y evitando la etiqueta li
-        //Por último recorremos el array ya ordenado y vamos haciendo el append en el elemento ul (sobrescribiéndolo)
-        let arrayCanciones = Array.from(lista);
-        arrayCanciones.sort((a, b) => a.textContent.localeCompare(b.textContent))
-        .forEach(li => ul.appendChild(li));
-       
-    }, 
     //obtener info de la votacion o de la idea 
     InfoVotationElement: function(element)
     {
@@ -96,54 +82,123 @@ var LOGIC = {
             }
         }
         else //borrar hijos de overlay remove
-            GFX.removeChildOverlay(); 
-            
+        GFX.removeChildOverlay(); 
+        
     }, 
     // modVotation: function(options,votlist)
     // {
-           
-    // }, 
-    sumValue: function(event)
-    {
-        var j = CORE.overlayactive; 
-        for(var i =0; i<CORE.Votation[j].lisoptions.length; i++)
+        
+        // }, 
+        sumValue: function(event)
         {
-            if(event.textContent == CORE.Votation[j].lisoptions[i])
+            var j = CORE.overlayactive; 
+            for(var i =0; i<CORE.Votation[j].lisoptions.length; i++)
             {
-                CORE.Votation[j].votlist[i] += 1;  
+                if(event.textContent == CORE.Votation[j].lisoptions[i])
+                {
+                    CORE.Votation[j].votlist[i] += 1;  
+                }
             }
-        }
-        writeNewDatavotation(j, "votlist", CORE.Votation[j].votlist)
-    }, 
-    idChangeToDelate: function(event)
-    {
-        var id = event.name.substring(6,event.name.length); 
-        var indide= false;         
-        var db = firebase.database();
-        var leg = CORE.Votation.length; 
-        for(var i=0; i< leg; i++){
-            if(indide){
-                var keyoth = CORE.Votation[i].key;
-                CORE.Votation[i].id -=1; 
-                db.ref("Votation/"+keyoth+"/id").set(CORE.Votation[i].id);
+            writeNewDatavotation(j, "votlist", CORE.Votation[j].votlist)
+        }, 
+        idChangeToDelate: function(event)
+        {
+            var id = event.name.substring(6,event.name.length); 
+            var indide= false;         
+            var db = firebase.database();
+            var leg = CORE.Votation.length; 
+            for(var i=0; i< leg; i++){
+                if(indide){
+                    var keyoth = CORE.Votation[i].key;
+                    CORE.Votation[i].id -=1; 
+                    db.ref("Votation/"+keyoth+"/id").set(CORE.Votation[i].id);
+                }
+                if(CORE.Votation[i].id == id){
+                    var k = CORE.Votation[i].key; 
+                    indide = true; 
+                    id = -1; 
+                }
             }
-            if(CORE.Votation[i].id == id){
-                var k = CORE.Votation[i].key; 
-                indide = true; 
-                id = -1; 
-            }
-        }
-
-        db.ref("Votation/"+k).remove();
-        document.location.reload();
-
-    },
-    delateAsistant: function(event)
-    {
-        if (confirm('Vas a borrar un asistente')) {
+            
+            db.ref("Votation/"+k).remove();
+            document.location.reload();
+            
+        },
+        delateAsistant: function(event)
+        {
+            if (confirm('Vas a borrar un asistente')) {
             delateasistentEvenDB(event); 
             document.location.reload();
         } 
+    }, 
+    // https://es.stackoverflow.com/questions/259945/ordenar-ul-javascript
+    ordenarLista: function(idUl){
+        //Obtenemos el elemento ul
+        let ul = document.getElementById(idUl);    
+        //Obtenemos la lista de li
+        let lista = ul.getElementsByTagName("li");
+        //Creamos el array a partir de los elementos li
+        //A continuación ordenamos con sort (hay que ordenar mirando el textContent y evitando la etiqueta li
+        //Por último recorremos el array ya ordenado y vamos haciendo el append en el elemento ul (sobrescribiéndolo)
+        let arrayCanciones = Array.from(lista);
+        arrayCanciones.sort((a, b) => a.textContent.localeCompare(b.textContent))
+        .forEach(li => ul.appendChild(li));
+       
+    }, 
+    ordenarEventDate: function()
+    {
+        var listDate = []; 
+
+        for (var i =0; i< CORE.DicEvents.length; i++)
+        {
+            var dateOrdnear = CORE.DicEvents[i].date; 
+            var indexBar = dateOrdnear.indexOf('-'); 
+            var year = dateOrdnear.substring(0, indexBar);
+            dateOrdnear = dateOrdnear.replace(dateOrdnear.substring(0,indexBar+1),'');
+            var indexBar = dateOrdnear.indexOf('-'); 
+            var mes = dateOrdnear.substring(0, indexBar);
+            var dia = dateOrdnear.substring(indexBar+1, dateOrdnear.length);
+            dateOrdnear = mes+'/'+dia+'/'+year; 
+       
+            listDate.push(Date.parse(dateOrdnear)); 
+        }
+        listDate = Array.from(listDate);
+        listDate.sort(); 
+
+         var listOrdenarId = []; 
+         for(var i =0; i<CORE.DicEvents.length; i++)
+         {
+             var inside = false; 
+            var dateOrdnear = CORE.DicEvents[i].date; 
+            var indexBar = dateOrdnear.indexOf('-'); 
+            var year = dateOrdnear.substring(0, indexBar);
+            dateOrdnear = dateOrdnear.replace(dateOrdnear.substring(0,indexBar+1),'');
+            var indexBar = dateOrdnear.indexOf('-'); 
+            var mes = dateOrdnear.substring(0, indexBar);
+            var dia = dateOrdnear.substring(indexBar+1, dateOrdnear.length);
+            dateOrdnear = mes+'/'+dia+'/'+year; 
+       
+            dateOrdnear = Date.parse(dateOrdnear); 
+            for(var j =0; j<CORE.DicEvents.length; j++)
+            {
+                if(dateOrdnear == listDate[j] && !inside && !listOrdenarId[j])
+                {
+                    listOrdenarId[j]= CORE.DicEvents[i].id; 
+                    inside = true; 
+                }
+            }
+         }
+
+         var parent = document.getElementById('AddEvents');
+         parent.innerHTML = "";
+         for(var i =0; i< listOrdenarId.length; i++)
+         {
+             for(var j=0; j<CORE.DicEvents.length; j++)
+             {
+                 if(CORE.DicEvents[j].id==listOrdenarId[i])
+                    GFX.printEvent(j); 
+             }
+         }
     }
 }; 
 CORE.modules.push(LOGIC); 
