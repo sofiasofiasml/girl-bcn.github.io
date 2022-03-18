@@ -107,6 +107,22 @@ function delateasistentEvenDB(event)
     }        
     
 }
+
+function delateEvenDB(event){
+    var id = event.name; 
+    //var idElement = "Evento"+id; 
+
+    for(var i=0; i< CORE.DicEvents.length; i++){
+        if(CORE.DicEvents[i].id == id)
+        {
+            var k = CORE.DicEvents[i].key; 
+           
+            var db = firebase.database();
+            db.ref("Eventos/"+k ).remove();
+           
+        }
+    }        
+}
 // Añadir votacion db
 function writeNewDatavotation(id, campo, value) {
 

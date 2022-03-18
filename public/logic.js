@@ -85,52 +85,57 @@ var LOGIC = {
         GFX.removeChildOverlay(); 
         
     }, 
-    // modVotation: function(options,votlist)
-    // {
-        
-        // }, 
-        sumValue: function(event)
+    
+    sumValue: function(event)
+    {
+        var j = CORE.overlayactive; 
+        for(var i =0; i<CORE.Votation[j].lisoptions.length; i++)
         {
-            var j = CORE.overlayactive; 
-            for(var i =0; i<CORE.Votation[j].lisoptions.length; i++)
+            if(event.textContent == CORE.Votation[j].lisoptions[i])
             {
-                if(event.textContent == CORE.Votation[j].lisoptions[i])
-                {
-                    CORE.Votation[j].votlist[i] += 1;  
-                }
+                CORE.Votation[j].votlist[i] += 1;  
             }
-            writeNewDatavotation(j, "votlist", CORE.Votation[j].votlist)
-        }, 
-        idChangeToDelate: function(event)
-        {
-            var id = event.name.substring(6,event.name.length); 
-            var indide= false;         
-            var db = firebase.database();
-            var leg = CORE.Votation.length; 
-            for(var i=0; i< leg; i++){
-                if(indide){
-                    var keyoth = CORE.Votation[i].key;
-                    CORE.Votation[i].id -=1; 
-                    db.ref("Votation/"+keyoth+"/id").set(CORE.Votation[i].id);
-                }
-                if(CORE.Votation[i].id == id){
-                    var k = CORE.Votation[i].key; 
-                    indide = true; 
-                    id = -1; 
-                }
+        }
+        writeNewDatavotation(j, "votlist", CORE.Votation[j].votlist)
+    }, 
+    idChangeToDelate: function(event)
+    {
+        var id = event.name.substring(6,event.name.length); 
+        var indide= false;         
+        var db = firebase.database();
+        var leg = CORE.Votation.length; 
+        for(var i=0; i< leg; i++){
+            if(indide){
+                var keyoth = CORE.Votation[i].key;
+                CORE.Votation[i].id -=1; 
+                db.ref("Votation/"+keyoth+"/id").set(CORE.Votation[i].id);
             }
-            
-            db.ref("Votation/"+k).remove();
-            document.location.reload();
-            
-        },
-        delateAsistant: function(event)
-        {
-            if (confirm('Vas a borrar un asistente')) {
+            if(CORE.Votation[i].id == id){
+                var k = CORE.Votation[i].key; 
+                indide = true; 
+                id = -1; 
+            }
+        }
+        
+        db.ref("Votation/"+k).remove();
+        document.location.reload();
+        
+    },
+    delateAsistant: function(event)
+    {
+        if (confirm('Vas a borrar un asistente')) {
             delateasistentEvenDB(event); 
             document.location.reload();
-        } 
+        }
     }, 
+
+    delateEvent: function(event)
+    {
+        if (confirm('Vas a borrar un asistente')) {
+            delateEvenDB(event); 
+            document.location.reload();
+        }
+    },
     // https://es.stackoverflow.com/questions/259945/ordenar-ul-javascript
     ordenarLista: function(idUl){
         //Obtenemos el elemento ul

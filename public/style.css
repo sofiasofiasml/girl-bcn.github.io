@@ -386,11 +386,13 @@ ul{
 }
 
 
-input{
+input, 
+.delateEvent{
   border-radius: 20px;
   font-weight: 900;
 }
-input:hover{
+input:hover, .delateEvent:hover
+{
   background: rgba(69, 65, 88, 0.2);
 }
 
@@ -406,3 +408,4 @@ input:hover{
   transform: scale(1.1);
   border-radius: 18px;
 }
+

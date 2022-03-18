@@ -197,7 +197,12 @@ var GFX =
             contEvent.style.fontWeight = "900";
         }
 
-
+        var delatebutton = document.createElement("button"); 
+        delatebutton.setAttribute("type", "button");
+        delatebutton.innerText = "Eliminar"; 
+        delatebutton.setAttribute("class", "delateEvent");
+        delatebutton.setAttribute("name", CORE.DicEvents[indexEvent].id);
+        delatebutton.setAttribute("onclick", "LOGIC.delateEvent(this)");
 
         var cont1Event = document.createElement("div"); 
         cont1Event.classList.add("content"); 
@@ -216,6 +221,7 @@ var GFX =
         cont1Event.appendChild(bSubmit); 
         cont1Event.appendChild(ulEvent); 
         cont1Event.appendChild(contEvent); 
+        cont1Event.appendChild(delatebutton); 
         div1Event.appendChild(cont1Event); 
         CORE.addEvents.appendChild(div1Event); 
     }, 
