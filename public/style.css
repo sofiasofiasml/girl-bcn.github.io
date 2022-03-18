@@ -401,6 +401,7 @@ input:hover, .delateEvent:hover
   transition: all .2s ease-in-out;
   border-radius: 8px;
   transition: border-radius 0.23s, transform 0.23s;
+  margin: 10px;
 }
 
 .img_Event:hover{
