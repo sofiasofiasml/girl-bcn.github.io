@@ -66,6 +66,7 @@ function delatenodeDBforTime()
         var mes = dateOrdnear.substring(0, indexBar);
         var dia = dateOrdnear.substring(indexBar+1, dateOrdnear.length);
         dateOrdnear = mes+'/'+dia+'/'+year; 
+        //cuando ya ha pasado el día se borra el evento
         if(Date.parse(today)>Date.parse(dateOrdnear))
         {
             var k = CORE.DicEvents[i].key; 

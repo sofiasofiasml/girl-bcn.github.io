@@ -69,7 +69,7 @@ header .overlay{
 
 header h1 {
   background: transparent; 
-  font-family: 'Saira Stencil One', cursive;
+  font-family: 'Hurricane', cursive;
   margin-top: -10px;
 	font-size: 80px;
 	margin-bottom: 0px;
@@ -84,7 +84,10 @@ header h1 {
 	margin-bottom: 0px;
 } 
 
-
+#whatsap:hover{
+  background-color: #606c76;
+  border-radius: 10px;
+}
 nav { grid-area: nav; 
 	color: #ffffff;
 }

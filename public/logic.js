@@ -131,7 +131,7 @@ var LOGIC = {
 
     delateEvent: function(event)
     {
-        if (confirm('Vas a borrar un asistente')) {
+        if (confirm('Vas a borrar un Evento')) {
             delateEvenDB(event); 
             document.location.reload();
         }
@@ -204,6 +204,7 @@ var LOGIC = {
                     GFX.printEvent(j); 
              }
          }
+         delatenodeDBforTime(); 
     }
 }; 
 CORE.modules.push(LOGIC); 

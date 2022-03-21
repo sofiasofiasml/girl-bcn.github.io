@@ -56,6 +56,7 @@ var CORE =
         this.navUl = document.querySelector("nav ul"); 
         //this.loop();
         this.draw(); 
+        
     }, 
 
     onKey:  function(event)

@@ -5,7 +5,7 @@ var GFX =
     init: function()
     {
         this.addEventDB(); //setInterval('contador()',1000); Para que cada 1000 mili segundos se vaya actualizando
-        delatenodeDBforTime(); 
+        
     }, 
 
     draw: function()
@@ -48,7 +48,7 @@ var GFX =
         aEvent.classList.add("votacion");
         var leng =CORE.Votation.length-1;  
         aEvent.id = "votacion"+leng;
-        aEvent.innerText = CORE.Votation[CORE.Votation.length-1].name; 
+        aEvent.innerText = CORE.Votation[CORE.Votation.length-1].name.charAt(0).toUpperCase() +CORE.Votation[CORE.Votation.length-1].name.slice(1); 
         liEvent.appendChild(aEvent); 
         divnav.appendChild(liEvent); 
     },
@@ -132,7 +132,8 @@ var GFX =
         var valuenameEvent = document.querySelector("#nameEvent"); 
         var valueDate= CORE.DicEvents[indexEvent].date;
         var valueHour= CORE.DicEvents[indexEvent].hour;
-        nameEvent.innerText = CORE.DicEvents[indexEvent].title + " Fecha: "+ valueDate +" Hora: "+valueHour; 
+        var titleUpdate = CORE.DicEvents[indexEvent].title.charAt(0).toUpperCase() +CORE.DicEvents[indexEvent].title.slice(1);
+        nameEvent.innerText = titleUpdate + " Fecha: "+ valueDate +" Hora: "+valueHour; 
         
         var descriptionEvent = document.createElement("div");
         descriptionEvent.classList.add("description-event");
@@ -167,7 +168,7 @@ var GFX =
         if(CORE.DicEvents[indexEvent].asistentes){
             for (var i = 0; i<CORE.DicEvents[indexEvent].asistentes.length; i++){
                 var liEvent = document.createElement("li"); 
-                    liEvent.innerText = CORE.DicEvents[indexEvent].asistentes[i]; 
+                    liEvent.innerText = CORE.DicEvents[indexEvent].asistentes[i].charAt(0).toUpperCase() + CORE.DicEvents[indexEvent].asistentes[i].slice(1); 
                     liEvent.style.fontWeight = "900";
                     liEvent.setAttribute("class", "li"+CORE.DicEvents[indexEvent].id+"-"+i);
 
@@ -199,7 +200,7 @@ var GFX =
 
         var delatebutton = document.createElement("button"); 
         delatebutton.setAttribute("type", "button");
-        delatebutton.innerText = "Eliminar"; 
+        delatebutton.innerText = "Eliminar Evento"; 
         delatebutton.setAttribute("class", "delateEvent");
         delatebutton.setAttribute("name", CORE.DicEvents[indexEvent].id);
         delatebutton.setAttribute("onclick", "LOGIC.delateEvent(this)");
