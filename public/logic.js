@@ -1,4 +1,3 @@
-
 //logica de la app (Controler)
 var LOGIC = {
 
@@ -164,8 +163,12 @@ var LOGIC = {
             var mes = dateOrdnear.substring(0, indexBar);
             var dia = dateOrdnear.substring(indexBar+1, dateOrdnear.length);
             dateOrdnear = mes+'/'+dia+'/'+year; 
+
+            var time = CORE.DicEvents[i].hour;
+            var timeParts = time.split(":");
+            var milisegHour =(+timeParts[0] * (60000 * 60)) + (+timeParts[1] * 60000);
        
-            listDate.push(Date.parse(dateOrdnear)); 
+            listDate.push(Date.parse(dateOrdnear)+milisegHour); 
         }
         listDate = Array.from(listDate);
         listDate.sort(); 
@@ -173,7 +176,7 @@ var LOGIC = {
          var listOrdenarId = []; 
          for(var i =0; i<CORE.DicEvents.length; i++)
          {
-             var inside = false; 
+            var inside = false; 
             var dateOrdnear = CORE.DicEvents[i].date; 
             var indexBar = dateOrdnear.indexOf('-'); 
             var year = dateOrdnear.substring(0, indexBar);
@@ -183,7 +186,11 @@ var LOGIC = {
             var dia = dateOrdnear.substring(indexBar+1, dateOrdnear.length);
             dateOrdnear = mes+'/'+dia+'/'+year; 
        
-            dateOrdnear = Date.parse(dateOrdnear); 
+            var time = CORE.DicEvents[i].hour;
+            var timeParts = time.split(":");
+            var milisegHour =(+timeParts[0] * (60000 * 60)) + (+timeParts[1] * 60000);
+            dateOrdnear = Date.parse(dateOrdnear) +milisegHour; 
+
             for(var j =0; j<CORE.DicEvents.length; j++)
             {
                 if(dateOrdnear == listDate[j] && !inside && !listOrdenarId[j])
