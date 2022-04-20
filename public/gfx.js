@@ -89,7 +89,9 @@ var GFX =
         descriptionEvent.classList.add("description-event");
         var proba= document.querySelector(".ck.ck-editor__main p");
         descriptionEvent.innerHTML = proba.innerHTML; 
-        if(CORE.imageUploadURL=="")
+        var infoProcess = document.querySelector("#UploadImageProcess"); 
+
+        if(CORE.imageUploadURL=="" || infoProcess.innerText != 'Imagen Subida')
             var image = 'img/pp.png'; 
         else
             var image = CORE.imageUploadURL; 
@@ -308,6 +310,9 @@ var GFX =
             buttonImage.setAttribute("onclick", "UploadImage()");
             buttonImage.innerText= "Subir Imagen"; 
             
+            var infoProcess = document.createElement("div");
+            infoProcess.setAttribute("id", "UploadImageProcess");
+            infoProcess.innerText= "No subida la imagen"
             
             var imageshow = document.createElement("img");
             imageshow.setAttribute("id", "ShowImageUpload");
@@ -317,6 +322,7 @@ var GFX =
             imageDiv.appendChild(labelimage); 
             imageDiv.appendChild(buttonImage); 
             imageDiv.appendChild(imageshow); 
+            imageDiv.appendChild(infoProcess); 
               
         }
         else{

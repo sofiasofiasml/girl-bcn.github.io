@@ -201,42 +201,45 @@ function gotData(data)
  function UploadImage()
  {
     var imagenUpload = document.querySelector("#imagenUpload").files[0];
-    LOGIC.saveImageUpload(imagenUpload); 
+    if(imagenUpload){
+        LOGIC.saveImageUpload(imagenUpload); 
 
-    // Upload the file
-    var uploadTask = storage.ref().child('fotos/'+imagenUpload.name).put(imagenUpload);
-   
-    // Register three observers:
-    // 1. 'state_changed' observer, called any time the state changes
-    // 2. Error observer, called on failure
-    // 3. Completion observer, called on successful completion
-    uploadTask.on('state_changed',
-    (snapshot) => {
-        // Observe state change events such as progress, pause, and resume
-        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-        switch (snapshot.state) {
-        case firebase.storage.TaskState.PAUSED: // or 'paused'
-            console.log('Upload is paused');
-            break;
-        case firebase.storage.TaskState.RUNNING: // or 'running'
-            console.log('Upload is running');
-            break;
+        // Upload the file
+        var uploadTask = storage.ref().child('fotos/'+imagenUpload.name).put(imagenUpload);
+    
+        // Register three observers:
+        // 1. 'state_changed' observer, called any time the state changes
+        // 2. Error observer, called on failure
+        // 3. Completion observer, called on successful completion
+        uploadTask.on('state_changed',
+        (snapshot) => {
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            var infoProcess = document.querySelector("#UploadImageProcess"); 
+            infoProcess.innerText= 'Imagen subiendose: ' + progress + '% '; 
+            switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED: // or 'paused'
+                infoProcess.innerText= 'Error'; 
+                break;
+            case firebase.storage.TaskState.RUNNING: // or 'running'
+                infoProcess.innerText= 'Imagen Subida';
+                break;
+            }
+        },
+        (error) => {
+            // Handle unsuccessful uploads
+            alert("No se ha subido bien la imagen"); 
+        },
+        () => {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                LOGIC.saveImageUpload(downloadURL); 
+                console.log('File available at', downloadURL);
+            });
         }
-    },
-    (error) => {
-        // Handle unsuccessful uploads
-        alert("No se ha subido bien la imagen"); 
-    },
-    () => {
-        // Handle successful uploads on complete
-        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            LOGIC.saveImageUpload(downloadURL); 
-            console.log('File available at', downloadURL);
-        });
+        );
     }
-    );
  }
  

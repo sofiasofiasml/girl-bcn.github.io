@@ -18,20 +18,29 @@ var LOGIC = {
     //mirar si los datos estan vacios
     writtenData: function()
     {
-        GFX.createDivEventos(); 
-        this.saveDB(); 
+        var valuenameEvent = document.querySelector("#nameEvent"); 
+        var valueDate= document.querySelector("#dateEvent");
+        var valueHour= document.querySelector("#horaEvent");
+        if(valuenameEvent.value !="" && valueDate.value !="" && valueHour.value !=""){
 
-        
-        if(CORE.addEventVotation){
-            var VotacionesNew =  document.createElement("a");
-            VotacionesNew.classList.add("votacion");
-            VotacionesNew.setAttribute("onclick", "GFX.togglePopupVotacion()");
-            VotacionesNew.innerText=CORE.nameNewEvent.value;
-            var li =  document.createElement("li");
-            li.appendChild(VotacionesNew); 
-            CORE.navUl.appendChild(li); 
+            GFX.createDivEventos(); 
+            this.saveDB(); 
+            
+            
+            if(CORE.addEventVotation){
+                var VotacionesNew =  document.createElement("a");
+                VotacionesNew.classList.add("votacion");
+                VotacionesNew.setAttribute("onclick", "GFX.togglePopupVotacion()");
+                VotacionesNew.innerText=CORE.nameNewEvent.value;
+                var li =  document.createElement("li");
+                li.appendChild(VotacionesNew); 
+                CORE.navUl.appendChild(li); 
+            }
+            document.location.reload();
         }
-        document.location.reload();
+        else{
+            alert("Falta un campo"); 
+        }
     }, 
     writtenVotation:function()
     {
