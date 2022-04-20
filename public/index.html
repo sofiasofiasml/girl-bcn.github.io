@@ -68,12 +68,30 @@
                 <br>
 
                 <label> Descripción: <textarea id="NewEventDescription"></textarea></label>
-                <!-- <br>
-                <label>Imagen:      
-                <input type="file"
-                id="imagen" name="imagen"
-                accept="image/png, image/jpeg"></label>  
-                 -->
+                <br>
+                Categoría: 
+                <select name="combo" onchange="GFX.selectionValue(this);">
+                    <!-- Opciones de la lista -->
+                    <option value="1">Senderismo</option>
+                    <option value="2" selected>Girls-bcn</option> <!-- Opción por defecto -->
+                    <option value="3">Bar</option> 
+                    <option value="4">Arena</option> 
+                    <option value="5">Apolo</option> 
+                    <option value="6">Carita Bonita</option> 
+                    <option value="7">Casa Lambda</option> 
+                    <option value="8">Nenis</option> 
+                    <option value="9">Melon Party</option> 
+                    <option value="10">Cultura</option> 
+                    <option value="11">Gastronomía</option> 
+                    <option value="12">Deporte</option> 
+                    <option value="13">Cine</option> 
+                    <option value="14">Juegos Mesa</option>
+                    <option value="15">Pool&Beer</option>
+                    <option value="SubirImagen">Subir Imagen</option>
+                </select>
+
+                <div id="ImageOption"></div>
+                
                 <br><br>
                 <input type="submit" value="Enviar" onclick="LOGIC.writtenData()">
             </div>
@@ -102,11 +120,11 @@
         </div>
                         
         <h4>Entra en nuestro grupo de WhatsApp apretando aquí: <a href="https://chat.whatsapp.com/DZUy51OKOqW0TeIdfK45bO"><img id= "whatsap" src="img/whatsapp-brands.png" alt="whatsapp"   style= "margin-left: 10px;  height:20px"></a></h4>
-        <p>Viernes: Pool&Beer (bar con futbolín, billar con música) <a href="https://g.page/poolandbeer?share">Ubicación</a> 
-        <br>
-        Sábado: Carita bonita <a href="https://g.page/CaritaBonitaBarcelona?share">Ubicación</a> y Arena <a href="https://goo.gl/maps/QLxQFjwMv24P7SNH7">Ubicación</a> 
-        <br>
-        Lunes:  Punto BCN <a href="https://goo.gl/maps/nkjVg8YM1SM9jVQ18">Ubicación</a>.   </p>              
+        <p>Si no hay más de 2 personas apuntadas los planes se cancelan el día de antes</p>
+        <h3>Planes semanales: </h3>
+        <p style='margin-left: 2em'>Viernes: Pool&Beer (bar con futbolín, billar con música) <a href="https://g.page/poolandbeer?share">Ubicación</a> 
+        <p style='margin-left: 2em'>Sábado: Carita bonita <a href="https://g.page/CaritaBonitaBarcelona?share">Ubicación</a> y Arena <a href="https://goo.gl/maps/QLxQFjwMv24P7SNH7">Ubicación</a> </p>
+        <p style='margin-left: 2em'>Lunes:  Punto BCN <a href="https://goo.gl/maps/nkjVg8YM1SM9jVQ18">Ubicación</a>.   </p>              
         <h2>Eventos</h2>
         <div id="AddEvents"></div>
        

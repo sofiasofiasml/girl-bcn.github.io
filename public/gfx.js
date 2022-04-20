@@ -89,20 +89,27 @@ var GFX =
         descriptionEvent.classList.add("description-event");
         var proba= document.querySelector(".ck.ck-editor__main p");
         descriptionEvent.innerHTML = proba.innerHTML; 
-        var image = 'img/pp.png'; 
+        if(CORE.imageUploadURL=="")
+            var image = 'img/pp.png'; 
+        else
+            var image = CORE.imageUploadURL; 
+        
         var id = CORE.DicEvents.length; 
 
         if(id!=0)
         {
-            for(var i =0; i<CORE.DicEvents.length; i++)
+            for(var i =1; i<CORE.DicEvents.length+1; i++)
             {
-                if(CORE.DicEvents[i].id==id)
-                    id++; 
+                if(!CORE.arrayID[i]){
+                    id = i; 
+                    break; 
+                }
+                
             }
         }
         var newEve = new News(id, valuenameEvent.value, image, descriptionEvent.innerHTML, valueDate.value, valueHour.value, "No", "", [], []); 
         CORE.DicEvents[CORE.DicEvents.length]=newEve; 
-
+        
     }, 
     createDivEventosDB: function(title, id, date, hour, image, votation, content, asistentes, key, asistenteskey)
     {
@@ -124,6 +131,7 @@ var GFX =
             
         }
         CORE.DicEvents[CORE.DicEvents.length-1].key =key; 
+        CORE.arrayID[id] = id; 
 
     },
     printEvent: function(indexEvent)
@@ -272,6 +280,82 @@ var GFX =
         while (divInfoVotation.firstChild) {
             divInfoVotation.removeChild(divInfoVotation.lastChild);
             }
+    }, 
+    loadFile: function(event)
+    {
+        var imageShowDOM= document.querySelector("#ShowImageUpload");
+        
+        imageShowDOM.src = URL.createObjectURL(event.target.files[0]);
+    }, 
+    //Opciones de categoria e imagen 
+    selectionValue: function(selection)
+    {
+        if (selection.value == "SubirImagen") {
+           
+            var inputImage = document.createElement("input");
+            inputImage.setAttribute("type","file");
+            inputImage.setAttribute("id", "imagenUpload");
+            inputImage.setAttribute("name", "imagen");
+            inputImage.setAttribute("accept", "image/png, image/jpeg, image/jpg");
+            inputImage.setAttribute("onchange", "GFX.loadFile(event)");
+
+            var labelimage = document.createElement("label");
+            labelimage.innerText= "Imagen:"; 
+            labelimage.appendChild(inputImage); 
+            labelimage.appendChild(inputImage); 
+
+            var buttonImage = document.createElement("button");
+            buttonImage.setAttribute("onclick", "UploadImage()");
+            buttonImage.innerText= "Subir Imagen"; 
+            
+            
+            var imageshow = document.createElement("img");
+            imageshow.setAttribute("id", "ShowImageUpload");
+            imageshow.setAttribute("style", "width: 50%; height: 50%; margin-left: 25%;");
+
+            var imageDiv = document.querySelector("#ImageOption"); 
+            imageDiv.appendChild(labelimage); 
+            imageDiv.appendChild(buttonImage); 
+            imageDiv.appendChild(imageshow); 
+              
+        }
+        else{
+            var imageDiv = document.querySelector("#ImageOption"); 
+            while (imageDiv.firstChild)
+                imageDiv.removeChild(imageDiv.lastChild);
+            
+            if(selection.value == "1") //Senderismo
+                CORE.imageUploadURL = 'img/senderismo.jpg'; 
+            if(selection.value == "2") //girls-bcn
+                CORE.imageUploadURL = ""; 
+            if(selection.value == "3") //Bar
+                CORE.imageUploadURL = 'img/bar.jpg'; 
+            if(selection.value == "4") //Arena
+                CORE.imageUploadURL = 'img/arena.jpg'; 
+            if(selection.value == "5") //Apolo
+                CORE.imageUploadURL = 'img/apolo.jpg'; 
+            if(selection.value == "6") //Carita Bonita
+                CORE.imageUploadURL = 'img/carita.jpg'; 
+            if(selection.value == "7") //Casa Lambda
+                CORE.imageUploadURL = 'img/casalambda.jpg'; 
+            if(selection.value == "8") //Nenis
+                CORE.imageUploadURL = 'img/nenis.jpg'; 
+            if(selection.value == "9") //Melon Party
+                CORE.imageUploadURL = 'img/melon.jpg'; 
+            if(selection.value == "10") //Cultura
+                CORE.imageUploadURL = 'img/cultura.jpg'; 
+            if(selection.value == "11") //Gastronomia
+                CORE.imageUploadURL = 'img/gastronomia.jpg'; 
+            if(selection.value == "12") //Deporte
+                CORE.imageUploadURL = 'img/deporte.jpg'; 
+            if(selection.value == "13") //Cine
+                CORE.imageUploadURL = 'img/cine.jpg'; 
+            if(selection.value == "14") //Juegos Mesa
+                CORE.imageUploadURL = 'img/juegosmesa.jpg'; 
+            if(selection.value == "15") //Pool&Beer
+                CORE.imageUploadURL = 'img/poolBeer.jpg'; 
+        }
+            
     }
     
 }

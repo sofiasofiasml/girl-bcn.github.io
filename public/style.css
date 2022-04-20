@@ -8,7 +8,7 @@
 
  }
  
- h1, h2, h3, h4, h5, h6, input, p, label, textarea, button, div, ul, li, a
+ h1, h2, h3, h4, h5, h6, input, p, label, textarea, button, div, ul, li, a, select, img, option
  {
    background: transparent; 
  }

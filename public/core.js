@@ -34,6 +34,8 @@ var CORE =
     navUl: "", 
     DicEvents: [],
     Votation:[],
+    imageUploadURL: "", 
+    arrayID: {}, 
     init: function()
     {
         this.last_time = performance.now(); 

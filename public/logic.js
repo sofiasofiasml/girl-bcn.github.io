@@ -130,10 +130,18 @@ var LOGIC = {
 
     delateEvent: function(event)
     {
-        if (confirm('Vas a borrar un Evento')) {
+        let person = prompt("Contraseña para borrar:", "");
+        if (person == "EliminarEvento") {
             delateEvenDB(event); 
             document.location.reload();
         }
+        // else {
+        //     console.log("NO Borror"); 
+        // }
+        // if (confirm('Vas a borrar un Evento')) {
+        //     delateEvenDB(event); 
+        //     document.location.reload();
+        // }
     },
     // https://es.stackoverflow.com/questions/259945/ordenar-ul-javascript
     ordenarLista: function(idUl){
@@ -148,7 +156,7 @@ var LOGIC = {
         arrayCanciones.sort((a, b) => a.textContent.localeCompare(b.textContent))
         .forEach(li => ul.appendChild(li));
        
-    }, 
+    },
     ordenarEventDate: function()
     {
         var listDate = []; 
@@ -212,6 +220,10 @@ var LOGIC = {
              }
          }
          delatenodeDBforTime(); 
+    }, 
+    saveImageUpload:function(downloadURL)
+    {
+        CORE.imageUploadURL = downloadURL; 
     }
 }; 
 CORE.modules.push(LOGIC); 
