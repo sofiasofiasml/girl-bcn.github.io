@@ -155,7 +155,7 @@ function gotData(data)
                 var date =  scores[k].date; 
                 var hour =  scores[k].hour; 
                 var image =  scores[k].image; 
-                var votation =  scores[k].votation; 
+                var categoria =  scores[k].categoria; 
                 var content =  scores[k].content;
                 var asistentes  = [];  
                 var asistenteskey = []; 
@@ -165,7 +165,7 @@ function gotData(data)
                     asistenteskey= Object.keys(scores[k].asistentes); 
                    
                 }
-                GFX.createDivEventosDB(title, id, date, hour, image, votation, content, asistentes, key, asistenteskey); 
+                GFX.createDivEventosDB(title, id, date, hour, image, categoria, content, asistentes, key, asistenteskey); 
             }
             LOGIC.ordenarEventDate(); 
             CORE.initDB = false; 
@@ -203,7 +203,7 @@ function gotData(data)
     var imagenUpload = document.querySelector("#imagenUpload").files[0];
     if(imagenUpload){
         LOGIC.saveImageUpload(imagenUpload); 
-
+        CORE.imageokupload = false; 
         // Upload the file
         var uploadTask = storage.ref().child('fotos/'+imagenUpload.name).put(imagenUpload);
     
@@ -237,6 +237,7 @@ function gotData(data)
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                 LOGIC.saveImageUpload(downloadURL); 
                 console.log('File available at', downloadURL);
+                CORE.imageokupload = true; 
             });
         }
         );

@@ -36,6 +36,7 @@ var CORE =
     Votation:[],
     imageUploadURL: "", 
     arrayID: {}, 
+    imageokupload: true, 
     init: function()
     {
         this.last_time = performance.now(); 

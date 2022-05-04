@@ -22,6 +22,11 @@ var GFX =
         document.getElementById("popup-Votacion").classList.toggle("active"); 
         LOGIC.InfoVotationElement(element); 
     }, 
+    togglePopupShareAgenda: function()
+    {
+        document.getElementById("popup-shareAgenda").classList.toggle("active"); 
+        window.scrollTo(0,1);
+    },
     togglePopupVot: function()
     {
         document.getElementById("popup-Vot").classList.toggle("active"); 
@@ -79,20 +84,32 @@ var GFX =
     },
     createDivEventos: function()
     {
-        var nameEvent = document.createElement("h4");
         var valuenameEvent = document.querySelector("#nameEvent"); 
         var valueDate= document.querySelector("#dateEvent");
         var valueHour= document.querySelector("#horaEvent");
+        
+        var select = document.getElementById('categoria');
+        var valueCategoria = select.options[select.selectedIndex].value;
+        var categoria = valueCategoria; 
+
+        var nameEvent = document.createElement("h4");
         nameEvent.innerText = valuenameEvent.value +"Fecha: "+ valueDate.value + " Hora: "+valueHour.value; 
         
         var descriptionEvent = document.createElement("div");
         descriptionEvent.classList.add("description-event");
-        var proba= document.querySelector(".ck.ck-editor__main p");
-        descriptionEvent.innerHTML = proba.innerHTML; 
+        var proba= document.querySelectorAll(".ck.ck-editor__main p");
+         
+        for (var i =0; i<proba.length; i++){
+            descriptionEvent.innerHTML += proba[i].innerHTML + "<br>" ; 
+        }
         var infoProcess = document.querySelector("#UploadImageProcess"); 
-
-        if(CORE.imageUploadURL=="" || infoProcess.innerText != 'Imagen Subida')
+        if(CORE.imageUploadURL==""){
             var image = 'img/pp.png'; 
+            if(infoProcess){
+                if(infoProcess.innerText == 'Imagen Subida')
+                    var image = CORE.imageUploadURL; 
+            }
+        }
         else
             var image = CORE.imageUploadURL; 
         
@@ -109,22 +126,24 @@ var GFX =
                 
             }
         }
-        var newEve = new News(id, valuenameEvent.value, image, descriptionEvent.innerHTML, valueDate.value, valueHour.value, "No", "", [], []); 
+        if(!image || image =="")
+            var image = 'img/pp.png'; 
+        var newEve = new News(id, valuenameEvent.value, image, descriptionEvent.innerHTML, valueDate.value, valueHour.value, categoria, "", [], []); 
         CORE.DicEvents[CORE.DicEvents.length]=newEve; 
         
     }, 
-    createDivEventosDB: function(title, id, date, hour, image, votation, content, asistentes, key, asistenteskey)
+    createDivEventosDB: function(title, id, date, hour, image, categoria, content, asistentes, key, asistenteskey)
     {
 
         var valueDate= date;
         var valueHour= hour;
-
+        
         var imgEvent; 
         var index = image.indexOf("/img/");
         imgEvent = image.substring(index, image.length);
-
+        
         if(CORE.initDB){
-            var newEve = new News(id, title, imgEvent, content, valueDate, valueHour, votation, asistentes, key, asistentes, asistenteskey); 
+            var newEve = new News(id, title, imgEvent, content, valueDate, valueHour, categoria, asistentes, key, asistentes, asistenteskey); 
             if(asistentes){
                 newEve.asistentes = asistentes; 
                 newEve.asistenteskey = asistenteskey; 
@@ -134,7 +153,7 @@ var GFX =
         }
         CORE.DicEvents[CORE.DicEvents.length-1].key =key; 
         CORE.arrayID[id] = id; 
-
+        
     },
     printEvent: function(indexEvent)
     {
@@ -149,25 +168,25 @@ var GFX =
         descriptionEvent.classList.add("description-event");
         descriptionEvent.innerHTML =  CORE.DicEvents[indexEvent].content; 
         descriptionEvent.style.fontWeight = "900";
-    
-
+        
+        
         var imgEvent = document.createElement("img");
         var index = CORE.DicEvents[indexEvent].image.indexOf("/img/");
         imgEvent.src = CORE.DicEvents[indexEvent].image.substring(index, CORE.DicEvents[indexEvent].image.length);
         imgEvent.alt = "img_event"; 
         imgEvent.title = "img_event"; 
         imgEvent.setAttribute("class", "img_Event");
-
-
+        
+        
         var AsistenciaEvent = document.createElement("input"); 
         var AsisDescEvent = document.createElement("label"); 
         AsisDescEvent.innerText= "Apuntarse:"; 
         AsisDescEvent.style.fontWeight = "900";
-
+        
         AsistenciaEvent.id="Asistencia"+CORE.DicEvents[indexEvent].id; 
         AsistenciaEvent.setAttribute("class", "AsistenciaInput");
-
-
+        
+        
         var bSubmit = document.createElement("input"); 
         bSubmit.setAttribute("type", "submit");
         bSubmit.setAttribute("class", "submitAsistencia");
@@ -187,24 +206,24 @@ var GFX =
                     delateli.setAttribute("class", "close-btn-Asistant");
                     delateli.setAttribute("id", CORE.DicEvents[indexEvent].id+"-"+i);
                     delateli.setAttribute("onclick", "LOGIC.delateAsistant(this)");
-
+                    
                     var tooltipli = document.createElement("div");
                     tooltipli.innerText= "Borrar asistente";
                     tooltipli.setAttribute("class", "tooltiptext");
-
+                    
                     delateli.appendChild(tooltipli); 
                     liEvent.appendChild(delateli); 
                     ulEvent.appendChild(liEvent); 
+                }
             }
-        }
-        var contEvent = document.createElement("div"); 
-        contEvent.classList.add("ContadorAsistentes"+CORE.DicEvents[indexEvent].id);
-        if(CORE.DicEvents[indexEvent].asistentes){
-            contEvent.innerText = "Asistentes: "+CORE.DicEvents[indexEvent].asistentes.length; 
-            contEvent.style.fontWeight = "900";
-        }
-        else{
-            contEvent.innerText = "Asistentes: 0"; 
+            var contEvent = document.createElement("div"); 
+            contEvent.classList.add("ContadorAsistentes"+CORE.DicEvents[indexEvent].id);
+            if(CORE.DicEvents[indexEvent].asistentes){
+                contEvent.innerText = "Asistentes: "+CORE.DicEvents[indexEvent].asistentes.length; 
+                contEvent.style.fontWeight = "900";
+            }
+            else{
+                contEvent.innerText = "Asistentes: 0"; 
             contEvent.style.fontWeight = "900";
         }
 
@@ -214,16 +233,17 @@ var GFX =
         delatebutton.setAttribute("class", "delateEvent");
         delatebutton.setAttribute("name", CORE.DicEvents[indexEvent].id);
         delatebutton.setAttribute("onclick", "LOGIC.delateEvent(this)");
-
+        
         var cont1Event = document.createElement("div"); 
         cont1Event.classList.add("content"); 
-
+        
         var div1Event = document.createElement("div"); 
         div1Event.classList.add("Evento"); 
         div1Event.setAttribute("id", "Evento"+CORE.DicEvents[indexEvent].id);
-
         
-
+        this.colorBackgroundEvent( CORE.DicEvents[indexEvent].categoria, div1Event); 
+        
+        
         descriptionEvent.appendChild(imgEvent); 
         cont1Event.appendChild(nameEvent); 
         cont1Event.appendChild(descriptionEvent); 
@@ -236,6 +256,53 @@ var GFX =
         div1Event.appendChild(cont1Event); 
         CORE.addEvents.appendChild(div1Event); 
     }, 
+    ShowAgenda: function(msg)
+    {
+        var divShareAgenda = document.querySelector("#shareAgenda"); 
+        //delate child
+        while (divShareAgenda.firstChild) {
+            divShareAgenda.removeChild(divShareAgenda.lastChild);
+        }
+        var textarea = document.createElement("textarea"); 
+        textarea.setAttribute("style", "background: white; height: 300px; width: 100%; ");
+
+        textarea.value = msg; 
+
+        divShareAgenda.appendChild(textarea); 
+
+    },
+    colorBackgroundEvent: function(category, div1Event)
+    {
+        switch (category) {
+            case "1": // Senderismo
+                div1Event.setAttribute("style", "background:linear-gradient(to right bottom, #a4cd88 50%, #c3deb1 50.1%);");
+              break;
+            case "2": // Girls-bcn
+                div1Event.setAttribute("style", "background:linear-gradient(to right bottom, #c495e2 50%, #d9b8ec 50.1%);");
+              break;
+            case "3": // Fiesta/Bar --
+                div1Event.setAttribute("style", "background:linear-gradient(to right bottom, #fff8cd 50%, #fffade 50.1%)");
+              break;
+            case "4": // Cultura ---
+                div1Event.setAttribute("style", "background:linear-gradient(to right bottom, #f6bbcb 50%, #f9d2dd 50.1%);");
+              break;
+            case "5": // Gastronomía ---
+                div1Event.setAttribute("style", "background:linear-gradient(to right bottom, #efab48 50%, #f4c887 50.1%);");
+              break;
+            case "6": // Deporte --
+                div1Event.setAttribute("style", "background:linear-gradient(to right bottom, #aed6e3 50%, #cae4ec 50.1%);");
+              break;
+            case "7": // Cine --
+                div1Event.setAttribute("style", "background:linear-gradient(to right bottom, #e24756 50%, #ec8790 50.1%);");
+                break;
+            case "8": // Juegos ---
+                div1Event.setAttribute("style", "background:linear-gradient(to right bottom, #e1f9f8 50%, #f7fdfd 50.1%);");
+              break;
+            default: // Subir imagen 
+                div1Event.setAttribute("style", "background:linear-gradient(to right bottom, #c495e2 50%, #d9b8ec 50.1%);");
+          }
+          
+    },
     addButtonOptionVotation: function(id, name, link, resp)
     {
         var divInfoVotation = document.querySelector("#InfoVotacionDB"); 
@@ -330,36 +397,22 @@ var GFX =
             while (imageDiv.firstChild)
                 imageDiv.removeChild(imageDiv.lastChild);
             
-            if(selection.value == "1") //Senderismo
-                CORE.imageUploadURL = 'img/senderismo.jpg'; 
+            if(selection.value == "1") //Senderismo ----------------
+                CORE.imageUploadURL = 'img/naturaleza.png'; 
             if(selection.value == "2") //girls-bcn
                 CORE.imageUploadURL = ""; 
-            if(selection.value == "3") //Bar
-                CORE.imageUploadURL = 'img/bar.jpg'; 
-            if(selection.value == "4") //Arena
-                CORE.imageUploadURL = 'img/arena.jpg'; 
-            if(selection.value == "5") //Apolo
-                CORE.imageUploadURL = 'img/apolo.jpg'; 
-            if(selection.value == "6") //Carita Bonita
-                CORE.imageUploadURL = 'img/carita.jpg'; 
-            if(selection.value == "7") //Casa Lambda
-                CORE.imageUploadURL = 'img/casalambda.jpg'; 
-            if(selection.value == "8") //Nenis
-                CORE.imageUploadURL = 'img/nenis.jpg'; 
-            if(selection.value == "9") //Melon Party
-                CORE.imageUploadURL = 'img/melon.jpg'; 
-            if(selection.value == "10") //Cultura
-                CORE.imageUploadURL = 'img/cultura.jpg'; 
-            if(selection.value == "11") //Gastronomia
-                CORE.imageUploadURL = 'img/gastronomia.jpg'; 
-            if(selection.value == "12") //Deporte
-                CORE.imageUploadURL = 'img/deporte.jpg'; 
-            if(selection.value == "13") //Cine
-                CORE.imageUploadURL = 'img/cine.jpg'; 
-            if(selection.value == "14") //Juegos Mesa
-                CORE.imageUploadURL = 'img/juegosmesa.jpg'; 
-            if(selection.value == "15") //Pool&Beer
-                CORE.imageUploadURL = 'img/poolBeer.jpg'; 
+            if(selection.value == "3") //Bar FIESTA ---------------------
+                CORE.imageUploadURL = 'img/fiesta.png'; 
+            if(selection.value == "4") //Cultura --------
+                CORE.imageUploadURL = 'img/cultura.png'; 
+            if(selection.value == "5") //Gastronomia ---------------
+                CORE.imageUploadURL = 'img/comida.png'; 
+            if(selection.value == "6") //Deporte ------------------
+                CORE.imageUploadURL = 'img/deporte.png'; 
+            if(selection.value == "7") //Cine  ------------------------
+                CORE.imageUploadURL = 'img/cinemas.png'; 
+            if(selection.value == "8") //Juegos --------------------
+                CORE.imageUploadURL = 'img/juego.png'; 
         }
             
     }

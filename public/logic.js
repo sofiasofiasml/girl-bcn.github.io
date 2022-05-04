@@ -21,7 +21,7 @@ var LOGIC = {
         var valuenameEvent = document.querySelector("#nameEvent"); 
         var valueDate= document.querySelector("#dateEvent");
         var valueHour= document.querySelector("#horaEvent");
-        if(valuenameEvent.value !="" && valueDate.value !="" && valueHour.value !=""){
+        if(valuenameEvent.value !="" && valueDate.value !="" && valueHour.value !="" && CORE.imageokupload){
 
             GFX.createDivEventos(); 
             this.saveDB(); 
@@ -39,7 +39,7 @@ var LOGIC = {
             document.location.reload();
         }
         else{
-            alert("Falta un campo"); 
+            alert("Falta un campo o cargar la Imagen"); 
         }
     }, 
     writtenVotation:function()
@@ -144,13 +144,7 @@ var LOGIC = {
             delateEvenDB(event); 
             document.location.reload();
         }
-        // else {
-        //     console.log("NO Borror"); 
-        // }
-        // if (confirm('Vas a borrar un Evento')) {
-        //     delateEvenDB(event); 
-        //     document.location.reload();
-        // }
+       
     },
     // https://es.stackoverflow.com/questions/259945/ordenar-ul-javascript
     ordenarLista: function(idUl){
@@ -220,19 +214,33 @@ var LOGIC = {
 
          var parent = document.getElementById('AddEvents');
          parent.innerHTML = "";
+         var OrdenarDiv = []; 
          for(var i =0; i< listOrdenarId.length; i++)
          {
              for(var j=0; j<CORE.DicEvents.length; j++)
              {
-                 if(CORE.DicEvents[j].id==listOrdenarId[i])
+                 if(CORE.DicEvents[j].id==listOrdenarId[i]){
                     GFX.printEvent(j); 
+                    OrdenarDiv.push(CORE.DicEvents[j]); 
+                }
              }
          }
+         CORE.DicEvents = OrdenarDiv;
          delatenodeDBforTime(); 
     }, 
     saveImageUpload:function(downloadURL)
     {
         CORE.imageUploadURL = downloadURL; 
+    }, 
+    copyInfoAgenda: function()
+    {
+        var message= String.fromCodePoint(0x1F308) +" AGENDA " + String.fromCodePoint(0x1F308) +"\n"; 
+        for(var i=0; i< CORE.DicEvents.length; i++)
+        {
+            message += "*"+CORE.DicEvents[i].title + "* " + CORE.DicEvents[i].date +"\n"; 
+        }
+        GFX.togglePopupShareAgenda(); 
+        GFX.ShowAgenda(message); 
     }
 }; 
 CORE.modules.push(LOGIC); 

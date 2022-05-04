@@ -22,7 +22,7 @@ User.prototype.toJSON = function()
 }
 
 class News {
-    constructor(id, title, image, content, date, hour, votation, key, asistenteskey) {
+    constructor(id, title, image, content, date, hour, categoria, key, asistenteskey) {
         this.id = id, 
         this.key = key, 
         this.title = title, 
@@ -30,7 +30,7 @@ class News {
         this.content = content, 
         this.date = date, 
         this.hour = hour, 
-        this.votation = votation,
+        this.categoria = categoria,
         this.asistentes = [], 
         this.asistenteskey = []
     }
@@ -55,7 +55,7 @@ News.prototype.fromJSON = function(json)
     this.content = json.content, 
     this.date = json.date, 
     this.hour = json.hour, 
-    this.votation = json.votation, 
+    this.categoria = json.categoria, 
     this.asistentes = json.asistentes
 }
 //enviar info al servidor
@@ -69,7 +69,7 @@ News.prototype.toJSON = function()
         content: this.content, 
         date: this.date, 
         hour: this.hour, 
-        votation: this.votation,
+        categoria: this.categoria,
         asistentes: this.asistentes
     }
 }

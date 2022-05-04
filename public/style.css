@@ -8,9 +8,12 @@
 
  }
  
- h1, h2, h3, h4, h5, h6, input, p, label, textarea, button, div, ul, li, a, select, img, option
+ h1, h2, h3, h4, h5, h6, input, p, label, textarea, button, div, ul, li, a, select, img, option, b, i, u 
  {
    background: transparent; 
+ }
+ b {
+   font-size: 90%;
  }
  html {
    box-sizing: border-box;
@@ -45,7 +48,6 @@
 
 header { 
   grid-area: header; 
-	background: url('img/band.jpeg');
 	text-align: center;
 	width: 100%;
 	height: auto;
@@ -53,7 +55,8 @@ header {
 	background-attachment: fixed;
 	position: relative;
 	overflow: hidden;
-	border-radius: 0 0 85% 85% / 30%;
+	/* border-radius: 0 0 85% 85% / 30%; */
+  margin-bottom: -40px;
 }
 header .overlay{
 	width: 100%;
@@ -61,15 +64,21 @@ header .overlay{
 	padding: 50px;
 	color: #FFF;
 	text-shadow: 1px 1px 1px #333;
-  background-image: url('img/band.jpeg') ;
+  background-image: url('img/banner.png') ;
   background-repeat: no-repeat;
 	background-size: cover;
   background-position: center;
+  margin-top: -100px;
+  border-radius: 0 0 85% 85% / 30%;
 }
-
+@font-face {
+  font-family: 'Plaster-Regular';
+  src: URL('Plaster-Regular.ttf') format('truetype');
+}
 header h1 {
   background: transparent; 
-  font-family: 'Hurricane', cursive;
+  font-family: 'Plaster-Regular';
+  src: url('/Plaster-Regular.ttf');
   margin-top: -10px;
 	font-size: 80px;
 	margin-bottom: 0px;
@@ -91,8 +100,10 @@ header h1 {
 nav { grid-area: nav; 
 	color: #ffffff;
 }
-main { grid-area: main; 
+main { 
+  grid-area: main; 
 	color: #ffffff;
+  
 }
 
 footer { grid-area: footer; } 
@@ -197,7 +208,7 @@ ul{
 /* NEWS EVENTS */
 
 .Evento{
-  background: rgba(218, 208, 208, 0.9);
+  /* background:  linear-gradient(to right bottom, #a4cd88 50%, #c3deb1 50.1%); */
   border-radius: 20px;
   padding-bottom: 100px;
 
@@ -247,6 +258,7 @@ ul{
 
 .popup-AddEvent .overlay-AddEvent,
 .popup-Votacion .overlay-Votacion,
+.popup-shareAgenda .overlay-shareAgenda,
 .popup-Vot .overlay-Vot
 {
   position: fixed;
@@ -260,23 +272,44 @@ ul{
 }
 .popup-AddEvent  .content-AddEvent,
 .popup-Votacion .content-Votacion,
+.popup-shareAgenda .content-shareAgenda,
 .popup-Vot .content-Vot
 {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%) scale(0);
-  background: #fff;
+  background: #24262b;
   width: 70%; 
   /* height: 420px; */
   z-index: 2;
   /* text-align: center; */
   padding: 20px; 
   box-sizing: border-box;
-  color: #222;
+  color: rgb(0, 0, 0);
   border-radius: 20px;
 } 
 
+.popup-AddEvent  .content-AddEvent input,
+.popup-Vot  .content-Vot input,
+.popup-AddEvent  .content-AddEvent select,
+.popup-Vot  .content-Vot  select,
+.popup-AddEvent  .content-AddEvent #ImageOption,
+#InfoVotacionDB input
+{
+  background: #ffffff;
+  color: #000;
+  font-family: 'Questrial', sans-serif;
+}
+
+.popup-AddEvent h3, 
+.popup-AddEvent label, 
+.popup-Vot h3, 
+.popup-Vot label, 
+#InfoVotacionDB h4
+{
+  color: rgb(136, 132, 132);
+} 
 .popup-AddEvent  .content-AddEvent h3
 {
   background: transparent;
@@ -284,6 +317,7 @@ ul{
 } 
 .popup-AddEvent .close-btn,
 .popup-Votacion .close-btn,
+.popup-shareAgenda .close-btn,
 .popup-Vot .close-btn
 {
   position: absolute;
@@ -291,7 +325,7 @@ ul{
   top: 20px;
   width: 30px;
   height: 30px;
-  background: #222;
+  background: rgb(95, 4, 4);
   color: #fff;
   font-size: 50px;
   font-weight: 60;
@@ -303,12 +337,14 @@ ul{
 
 .popup-AddEvent.active .overlay-AddEvent, 
 .popup-Votacion.active .overlay-Votacion,
+.popup-shareAgenda.active .overlay-shareAgenda,
 .popup-Vot.active .overlay-Vot
 {
   display: block;
 }
 .popup-AddEvent.active .content-AddEvent,
 .popup-Votacion.active .content-Votacion, 
+.popup-shareAgenda.active .content-shareAgenda, 
 .popup-Vot.active .content-Vot
 {
   transition: all 300ms ease-in-out;
