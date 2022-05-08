@@ -35,7 +35,15 @@ class News {
         this.asistenteskey = []
     }
 }
-
+// class EventCalendar{
+//     constructor(title, start, end, url)
+//     {
+//         this.title = title,
+//         this.start = start,
+//         this.end = end, 
+//         url = url
+//     }
+// }
 class Votation {
     constructor(id, name, key, link, resp){
         this.id = id, 

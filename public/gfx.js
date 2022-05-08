@@ -130,7 +130,8 @@ var GFX =
             var image = 'img/pp.png'; 
         var newEve = new News(id, valuenameEvent.value, image, descriptionEvent.innerHTML, valueDate.value, valueHour.value, categoria, "", [], []); 
         CORE.DicEvents[CORE.DicEvents.length]=newEve; 
-        
+        //var newEvenCalendar = new EventCalendar(valuenameEvent.value, valueDate.value, valueDate.value, ""); 
+       // CORE.calendarEvents[CORE.calendarEvents.length]=newEvenCalendar;
     }, 
     createDivEventosDB: function(title, id, date, hour, image, categoria, content, asistentes, key, asistenteskey)
     {
@@ -149,7 +150,15 @@ var GFX =
                 newEve.asistenteskey = asistenteskey; 
             }
             CORE.DicEvents[CORE.DicEvents.length]=newEve; 
-            
+            //var newEvenCalendar = new EventCalendar(title, valueDate, valueDate, ""); 
+            //CORE.calendarEvents[CORE.calendarEvents.length]=newEvenCalendar;
+            calendarDiv.addEvent({
+                title: title,
+                start: valueDate+"T"+valueHour,
+                end: valueDate+"T"+valueHour, 
+                url: ""
+              });
+            //calendarDiv.addEvent(CORE.calendarEvents[CORE.calendarEvents.length]);  
         }
         CORE.DicEvents[CORE.DicEvents.length-1].key =key; 
         CORE.arrayID[id] = id; 
@@ -415,6 +424,29 @@ var GFX =
                 CORE.imageUploadURL = 'img/juego.png'; 
         }
             
+    }, 
+    hiddenEvents: function(date)
+    {
+        for(var i=0; i< CORE.DicEvents.length; i++)
+        {
+            var EventDiv = document.querySelector("#Evento"+CORE.DicEvents[i].id); 
+
+            if(CORE.DicEvents[i].date != date)
+            {
+                EventDiv.style.display = "none";
+            }
+            else
+                EventDiv.style.display = "";
+        }
+
+    }, 
+    seeAllEvents:function()
+    {
+        for(var i=0; i< CORE.DicEvents.length; i++)
+        {
+            var EventDiv = document.querySelector("#Evento"+CORE.DicEvents[i].id); 
+            EventDiv.style.display = "";
+        }
     }
     
 }

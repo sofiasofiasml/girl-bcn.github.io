@@ -37,6 +37,8 @@ var CORE =
     imageUploadURL: "", 
     arrayID: {}, 
     imageokupload: true, 
+    //calendarEvents: [], 
+    calendarDiv: "", 
     init: function()
     {
         this.last_time = performance.now(); 

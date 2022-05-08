@@ -26,6 +26,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hurricane&display=swap" rel="stylesheet">
+<link href='calendar.css' rel='stylesheet' />
+<script src='calendar.js'></script>
 </head>
 <body>
     
@@ -84,10 +86,14 @@
                 <label >Nombre Evento: </label>
                 <input type="text" id="nameEvent" name="nameEvent">
                 <br>
-                <label>Fecha del evento:
+                <label>Fecha del evento (inicio):
                     <input type="date" id= "dateEvent" name="dateEvent" required pattern="\d{4}-\d{2}-\d{2}">
                     <span class="validity"></span>
-                  </label>
+                </label>
+                <!-- <label>Fecha del evento (final):
+                    <input type="date" id= "dateEventFinish" name="dateEventFinish" required pattern="\d{4}-\d{2}-\d{2}">
+                    <span class="validity"></span>
+                </label> -->
                 <br>
                 <label>Hora: <input type="time" id="horaEvent" name="eta"></label>
                 <br>
@@ -142,15 +148,16 @@
         <p style='margin-left: 2em'>Viernes: Pool&Beer (bar con futbolín, billar con música) <a href="https://g.page/poolandbeer?share">Ubicación</a> 
         <p style='margin-left: 2em'>Sábado: Carita bonita <a href="https://g.page/CaritaBonitaBarcelona?share">Ubicación</a> y Arena <a href="https://goo.gl/maps/QLxQFjwMv24P7SNH7">Ubicación</a> </p>
         <p style='margin-left: 2em'>Lunes:  Punto BCN <a href="https://goo.gl/maps/nkjVg8YM1SM9jVQ18">Ubicación</a>.   </p>              
-        <h2>Eventos</h2>
+        <p>Calendario de eventos: </p>
+        <div >
+            <div id='calendar'></div>
+        </div>
+        <h2>Eventos &nbsp;&nbsp;&nbsp; <button id = "ViewAllEvents" onclick="GFX.seeAllEvents()">Ver todos los eventos</button></h2> 
         <div id="AddEvents"></div>
        
 
         <div id="news"></div>
-        <p>Calendario de eventos: </p>
-        <div >
-            <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=Europe%2FMadrid&showCalendars=0&showPrint=0&showTitle=0&src=c29maWEubWFydGluZXoubG9wZXouOThAZ21haWwuY29t&src=bXI3MjIxbmdpdGU4dDNrN3RzM3VwNHM5ZTBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%237986CB&color=%23F6BF26" id = "calendar"  ></iframe> 
-        </div>
+       
         <div>
             <h3>Publicidad y locales del colectivo</h3>
             

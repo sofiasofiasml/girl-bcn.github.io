@@ -243,4 +243,38 @@ function gotData(data)
         );
     }
  }
+
+ 
+ document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+    var yyyy = today.getFullYear();
+
+    today = yyyy +'-'+ mm + '-' + dd;
+    calendarDiv = new FullCalendar.Calendar(calendarEl, {
+      initialDate: today,
+      initialView: 'dayGridMonth',
+    //   nowIndicator: true,
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,listYear'
+      },
+      dateClick: function(info) {
+        // alert('clicked ' + info.dateStr);
+        GFX.hiddenEvents(info.dateStr); 
+      },
+    //   navLinks: true, // can click day/week names to navigate views
+    //   editable: false,
+    //   selectable: true,
+    //   selectMirror: true,
+    //   dayMaxEvents: true, // allow "more" link when too many events
+    //   events: []
+    });
+
+    calendarDiv.render();
+  });
+
  
