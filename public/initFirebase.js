@@ -245,7 +245,7 @@ function gotData(data)
     }
  }
 
- 
+ //Calendario 
  document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var today = new Date();
@@ -263,6 +263,8 @@ function gotData(data)
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,listYear'
       },
+      firstDay: 1,//  1(Monday) this can be changed to 0(Sunday) for the USA system
+      locales: 'es',
       dateClick: function(info) {
         // alert('clicked ' + info.dateStr);
         GFX.hiddenEvents(info.dateStr); 
