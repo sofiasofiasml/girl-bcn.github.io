@@ -20,30 +20,23 @@ User.prototype.toJSON = function()
         name: this.name
     }
 }
-
+//Eventos
 class News {
-    constructor(id, title, image, content, date, hour, categoria, key, asistenteskey) {
+    constructor(id, title, image, content, date, dateFin, hour, categoria, key, asistenteskey) {
         this.id = id, 
         this.key = key, 
         this.title = title, 
         this.image = image, 
         this.content = content, 
         this.date = date, 
+        this.dateFin = dateFin, 
         this.hour = hour, 
         this.categoria = categoria,
         this.asistentes = [], 
         this.asistenteskey = []
     }
 }
-// class EventCalendar{
-//     constructor(title, start, end, url)
-//     {
-//         this.title = title,
-//         this.start = start,
-//         this.end = end, 
-//         url = url
-//     }
-// }
+//Votacion e ideas
 class Votation {
     constructor(id, name, key, link, resp){
         this.id = id, 

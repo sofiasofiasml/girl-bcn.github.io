@@ -86,14 +86,13 @@ var GFX =
     {
         var valuenameEvent = document.querySelector("#nameEvent"); 
         var valueDate= document.querySelector("#dateEvent");
+        var valueDateFin= document.querySelector("#dateEventFinish");
         var valueHour= document.querySelector("#horaEvent");
         
         var select = document.getElementById('categoria');
         var valueCategoria = select.options[select.selectedIndex].value;
         var categoria = valueCategoria; 
 
-        var nameEvent = document.createElement("h4");
-        nameEvent.innerText = valuenameEvent.value +"Fecha: "+ valueDate.value + " Hora: "+valueHour.value; 
         
         var descriptionEvent = document.createElement("div");
         descriptionEvent.classList.add("description-event");
@@ -128,15 +127,16 @@ var GFX =
         }
         if(!image || image =="")
             var image = 'img/pp.png'; 
-        var newEve = new News(id, valuenameEvent.value, image, descriptionEvent.innerHTML, valueDate.value, valueHour.value, categoria, "", [], []); 
+        var newEve = new News(id, valuenameEvent.value, image, descriptionEvent.innerHTML, valueDate.value, valueDateFin.value, valueHour.value, categoria, "", [], []); 
         CORE.DicEvents[CORE.DicEvents.length]=newEve; 
         //var newEvenCalendar = new EventCalendar(valuenameEvent.value, valueDate.value, valueDate.value, ""); 
        // CORE.calendarEvents[CORE.calendarEvents.length]=newEvenCalendar;
     }, 
-    createDivEventosDB: function(title, id, date, hour, image, categoria, content, asistentes, key, asistenteskey)
+    createDivEventosDB: function(title, id, date,dateFin, hour, image, categoria, content, asistentes, key, asistenteskey)
     {
 
         var valueDate= date;
+        var valueDateFin= dateFin;
         var valueHour= hour;
         
         var imgEvent; 
@@ -144,7 +144,7 @@ var GFX =
         imgEvent = image.substring(index, image.length);
         
         if(CORE.initDB){
-            var newEve = new News(id, title, imgEvent, content, valueDate, valueHour, categoria, asistentes, key, asistentes, asistenteskey); 
+            var newEve = new News(id, title, imgEvent, content, valueDate,valueDateFin, valueHour, categoria, asistentes, key, asistentes, asistenteskey); 
             if(asistentes){
                 newEve.asistentes = asistentes; 
                 newEve.asistenteskey = asistenteskey; 
@@ -155,7 +155,7 @@ var GFX =
             calendarDiv.addEvent({
                 title: title,
                 start: valueDate+"T"+valueHour,
-                end: valueDate+"T"+valueHour, 
+                end: valueDateFin+"T"+valueHour, 
                 url: ""
               });
             //calendarDiv.addEvent(CORE.calendarEvents[CORE.calendarEvents.length]);  
@@ -169,9 +169,13 @@ var GFX =
         var nameEvent = document.createElement("h4");
         var valuenameEvent = document.querySelector("#nameEvent"); 
         var valueDate= CORE.DicEvents[indexEvent].date;
+        var valueDateFin= CORE.DicEvents[indexEvent].dateFin;
         var valueHour= CORE.DicEvents[indexEvent].hour;
         var titleUpdate = CORE.DicEvents[indexEvent].title.charAt(0).toUpperCase() +CORE.DicEvents[indexEvent].title.slice(1);
-        nameEvent.innerText = titleUpdate + " Fecha: "+ valueDate +" Hora: "+valueHour; 
+        var mydate = new Date(valueDate); 
+        var mydateFin = new Date(valueDateFin); 
+       
+        nameEvent.innerText = titleUpdate + " Fecha: "+  mydate.toLocaleDateString("es-ES") +"-"+ mydateFin.toLocaleDateString("es-ES")+" Hora: "+valueHour; 
         
         var descriptionEvent = document.createElement("div");
         descriptionEvent.classList.add("description-event");
@@ -425,18 +429,37 @@ var GFX =
         }
             
     }, 
+    
+    //Click calendar hidden events
     hiddenEvents: function(date)
     {
         for(var i=0; i< CORE.DicEvents.length; i++)
         {
-            var EventDiv = document.querySelector("#Evento"+CORE.DicEvents[i].id); 
-
+            var EventDiv = document.querySelector("#Evento"+CORE.DicEvents[i].id);  
+            var mydate = new Date(CORE.DicEvents[i].date); 
+            var myDateStirng = LOGIC.DatetoString(mydate); 
+            var dateFin = new Date(CORE.DicEvents[i].dateFin); 
+            dateFin = new Date(dateFin.getTime() + (1000 * 60 * 60 * 24));
+            dateFin = LOGIC.DatetoString(dateFin); 
             if(CORE.DicEvents[i].date != date)
             {
                 EventDiv.style.display = "none";
+                while(dateFin!= myDateStirng){
+                    EventDiv.style.display = "none";
+                    if(myDateStirng == date){
+                        EventDiv.style.display = "";
+                        break; 
+                    }
+                    mydate = new Date(mydate.getTime() + (1000 * 60 * 60 * 24));
+                    myDateStirng = LOGIC.DatetoString(mydate); 
+                }
             }
-            else
+            else{
                 EventDiv.style.display = "";
+                
+            }
+            
+            
         }
 
     }, 

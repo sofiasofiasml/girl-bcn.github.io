@@ -47,7 +47,7 @@ function insertData(data, name){
     db.ref("Eventos/"+k+"/"+campo).push(value);
         
 }
-
+//Delate Event
 function delatenodeDBforTime() 
 {
     var today = new Date();
@@ -58,7 +58,7 @@ function delatenodeDBforTime()
     today = mm + '/' + dd + '/' + yyyy;
 
     for(var i=0; i< CORE.DicEvents.length; i++){
-        var dateOrdnear = CORE.DicEvents[i].date; 
+        var dateOrdnear = CORE.DicEvents[i].dateFin; 
         var indexBar = dateOrdnear.indexOf('-'); 
         var year = dateOrdnear.substring(0, indexBar);
         dateOrdnear = dateOrdnear.replace(dateOrdnear.substring(0,indexBar+1),'');
@@ -153,6 +153,7 @@ function gotData(data)
                 var id =  scores[k].id; 
                 var key =  k; 
                 var date =  scores[k].date; 
+                var dateFin =  scores[k].dateFin; 
                 var hour =  scores[k].hour; 
                 var image =  scores[k].image; 
                 var categoria =  scores[k].categoria; 
@@ -165,7 +166,7 @@ function gotData(data)
                     asistenteskey= Object.keys(scores[k].asistentes); 
                    
                 }
-                GFX.createDivEventosDB(title, id, date, hour, image, categoria, content, asistentes, key, asistenteskey); 
+                GFX.createDivEventosDB(title, id, date,dateFin, hour, image, categoria, content, asistentes, key, asistenteskey); 
             }
             LOGIC.ordenarEventDate(); 
             CORE.initDB = false; 
