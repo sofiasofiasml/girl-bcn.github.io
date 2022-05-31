@@ -35,7 +35,7 @@
         <div class="overlay">
             <br>
             <br>
-            <h1>GIRLS BCN</h1>
+            <h1><a href="index.html">GIRLS BCN</a></h1>
             <p>Somos un grupo de chicas del colectivo que se reúne para ir a bares, hacer senderismo, ir de fiesta... Para conocernos y compartir experiencias vitales </p>
             <div class="social-links">
                 <a href="https://chat.whatsapp.com/LW62XW85Q2yCuiJgjvljkF"><img src="img/whatsapp-brands.png" alt="whatsapp" width="30px"></a>
@@ -142,18 +142,21 @@
                 <input type="submit" value="Enviar" onclick="LOGIC.writtenVotation()">
             </div>
         </div>
-                        
+            
         <p>Si no hay más de 2 personas apuntadas los planes se cancelan el día de antes. Contraseña eliminar evento: EliminarEvento</p>
         <h3>Planes semanales: </h3>
         <p style='margin-left: 2em'>Viernes: Pool&Beer (bar con futbolín, billar con música) <a href="https://g.page/poolandbeer?share">Ubicación</a> 
         <p style='margin-left: 2em'>Sábado: Carita bonita <a href="https://g.page/CaritaBonitaBarcelona?share">Ubicación</a> y Arena <a href="https://goo.gl/maps/QLxQFjwMv24P7SNH7">Ubicación</a> </p>
+        <div id="mybutton">
+            <button class="feedback" onclick="GFX.UPbotom()">Up</button>
+            <button class="feedback" onclick="GFX.downbotom()">Down</button>
+            </div>
         <p>Calendario de eventos: </p>
         <div >
             <div id='calendar'></div>
         </div>
         <h2>Eventos &nbsp;&nbsp;&nbsp; <button id = "ViewAllEvents" onclick="GFX.seeAllEvents()">Ver todos los eventos</button></h2> 
         <div id="AddEvents"></div>
-       
 
         <div id="news"></div>
        
@@ -226,6 +229,7 @@
                     <ul>
                         <li><a onclick="GFX.togglePopup()">Añadir evento</a></li>
                         <li><a onclick="GFX.togglePopupVot()">Añadir ideas/votaciones</a></li>
+                        <li><a href="cine.html">Recomendaciones/Info Anual</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

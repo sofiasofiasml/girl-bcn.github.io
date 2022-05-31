@@ -17,6 +17,14 @@ var GFX =
         document.getElementById("popup-AddEvent").classList.toggle("active"); 
         window.scrollTo(0,1);
     },
+    downbotom: function()
+    {
+        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+    },
+    UPbotom: function()
+    {
+        window.scrollTo(0,1);
+    },
     togglePopupVotacion: function(element)
     {
         document.getElementById("popup-Votacion").classList.toggle("active"); 

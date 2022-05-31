@@ -75,7 +75,7 @@ header .overlay{
   font-family: 'Plaster-Regular';
   src: URL('Plaster-Regular.ttf') format('truetype');
 }
-header h1 {
+header h1, header h1 a {
   background: transparent; 
   font-family: 'Plaster-Regular';
   src: url('/Plaster-Regular.ttf');
@@ -84,6 +84,7 @@ header h1 {
 	margin-bottom: 0px;
   text-shadow: 3px 3px #333;
   color: rgb(243, 219, 219);
+  text-decoration: none
 }
 
  header h3, p {
@@ -465,4 +466,17 @@ input:hover, .delateEvent:hover
 #ViewAllEvents:hover
 {
   background: #91979c !important;
+}
+.feedback {
+  background-color : #688d99;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border-color: #697174;
+}
+
+#mybutton {
+  position: fixed;
+  bottom: -4px;
+  right: 10px;
 }
