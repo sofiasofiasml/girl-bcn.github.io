@@ -146,6 +146,7 @@ var LOGIC = {
         }
        
     },
+    
     // https://es.stackoverflow.com/questions/259945/ordenar-ul-javascript
     ordenarLista: function(idUl){
         //Obtenemos el elemento ul
@@ -251,6 +252,36 @@ var LOGIC = {
         var StringDate = yyyy+ '-'+ mm + '-' + dd;
 
         return StringDate; 
+    }, 
+    sshareEvent: function(ss)
+    {
+        var TitleEvent= ""; 
+        var imageEvent= ""; 
+        var DateInitEvent = ""; 
+        var DateFinishEvent = "";
+        var HourEvent = "";  
+        var ContentEvent = "";  
+
+        for(var i =0; i< CORE.DicEvents.length; i++)
+        {
+            if(CORE.DicEvents[i].id == ss.name)
+            {
+                TitleEvent = CORE.DicEvents[i].title; 
+                imageEvent = CORE.DicEvents[i].image; 
+                DateInitEvent =  new Date(CORE.DicEvents[i].date); 
+                DateFinishEvent = new Date(CORE.DicEvents[i].dateFin); 
+                HourEvent = CORE.DicEvents[i].hour;   
+                ContentEvent = CORE.DicEvents[i].content;   
+                break; 
+            }
+        }
+        var StringCopyPortapapeles= "*"+TitleEvent+"* \nFecha: "+ DateInitEvent.toLocaleDateString("es-ES")+ "-"+ DateFinishEvent.toLocaleDateString("es-ES") +" Hora: "+ HourEvent+ "\nInfo: "+ ContentEvent +"\n"+ imageEvent; 
+        const el = document.createElement('textarea');
+        el.value = StringCopyPortapapeles;	//str is your string to copy
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');	// Copy command
+        alert("Copiado portapapeles");
     }
 }; 
 CORE.modules.push(LOGIC); 

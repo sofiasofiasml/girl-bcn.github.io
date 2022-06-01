@@ -431,11 +431,12 @@ ul{
 
 
 input, 
-.delateEvent{
+.delateEvent,
+.shareEvent{
   border-radius: 20px;
   font-weight: 900;
 }
-input:hover, .delateEvent:hover
+input:hover, .delateEvent:hover, .shareEvent:hover
 {
   background: rgba(69, 65, 88, 0.2);
 }

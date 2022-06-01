@@ -254,6 +254,13 @@ var GFX =
         delatebutton.setAttribute("class", "delateEvent");
         delatebutton.setAttribute("name", CORE.DicEvents[indexEvent].id);
         delatebutton.setAttribute("onclick", "LOGIC.delateEvent(this)");
+
+        var sharebutton = document.createElement("button"); 
+        sharebutton.setAttribute("type", "button");
+        sharebutton.innerText = "Share Evento"; 
+        sharebutton.setAttribute("class", "shareEvent");
+        sharebutton.setAttribute("name", CORE.DicEvents[indexEvent].id);
+        sharebutton.setAttribute("onclick", "LOGIC.sshareEvent(this)");
         
         var cont1Event = document.createElement("div"); 
         cont1Event.classList.add("content"); 
@@ -274,6 +281,7 @@ var GFX =
         cont1Event.appendChild(ulEvent); 
         cont1Event.appendChild(contEvent); 
         cont1Event.appendChild(delatebutton); 
+        cont1Event.appendChild(sharebutton); 
         div1Event.appendChild(cont1Event); 
         CORE.addEvents.appendChild(div1Event); 
     }, 
