@@ -268,20 +268,44 @@ var LOGIC = {
             {
                 TitleEvent = CORE.DicEvents[i].title; 
                 imageEvent = CORE.DicEvents[i].image; 
+
+                //Quitar img/ ... .png
+                if(imageEvent.indexOf("img/")!=-1)
+                    imageEvent = imageEvent.substring(4, imageEvent.length-4);
+        
                 DateInitEvent =  new Date(CORE.DicEvents[i].date); 
                 DateFinishEvent = new Date(CORE.DicEvents[i].dateFin); 
-                HourEvent = CORE.DicEvents[i].hour;   
+                HourEvent = CORE.DicEvents[i].hour; 
                 ContentEvent = CORE.DicEvents[i].content;   
                 break; 
             }
         }
-        var StringCopyPortapapeles= "*"+TitleEvent+"* \nFecha: "+ DateInitEvent.toLocaleDateString("es-ES")+ "-"+ DateFinishEvent.toLocaleDateString("es-ES") +" Hora: "+ HourEvent+ "\nInfo: "+ ContentEvent +"\n"+ imageEvent; 
+        var StringCopyPortapapeles= "*"+TitleEvent+"* \nFecha: "+ DateInitEvent.toLocaleDateString("es-ES")+ "-"+ DateFinishEvent.toLocaleDateString("es-ES") +" Hora: "+ HourEvent+ "\n"+ ContentEvent +"\n"+ imageEvent; 
+        var div = document.createElement("div");
+        StringCopyPortapapeles = LOGIC.URLify(StringCopyPortapapeles); 
+        div.innerHTML = StringCopyPortapapeles;
+        StringCopyPortapapeles = div.textContent || div.innerText || "";
+        StringCopyPortapapeles += "\nPara más información entra en la web: https://girls-bcn.web.app/ "; 
+
         const el = document.createElement('textarea');
         el.value = StringCopyPortapapeles;	//str is your string to copy
         document.body.appendChild(el);
         el.select();
         document.execCommand('copy');	// Copy command
         alert("Copiado portapapeles");
+
+    },
+    //Borrar <a href= ... </a> para http.....com
+    URLify: function(string){
+        var urls = string.match(/(((ftp|https?):\/\/)[\-\w@:%_\+.~#?,&\/\/=]+)/g);
+        var linkA = string.match(/<a(.*?)<\/a>/g);
+
+        for(var i =0; i< urls.length; i++)
+        {
+            string = string.replace(linkA[i],  urls[i]);
+        }
+        
+        return string;
     }
 }; 
 CORE.modules.push(LOGIC); 
