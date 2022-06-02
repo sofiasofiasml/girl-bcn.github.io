@@ -442,17 +442,18 @@ input:hover, .delateEvent:hover, .shareEvent:hover
 }
 
 .img_Event {
-  transition: opacity 0.5s;
-  transition: all .2s ease-in-out;
   border-radius: 8px;
   transition: border-radius 0.23s, transform 0.23s;
   margin: 10px;
+  z-index: -2 !important;
 }
 
 .img_Event:hover{
-  opacity: 0.5;
+  
   transform: scale(1.1);
   border-radius: 18px;
+  z-index: -2 !important;
+  
 }
 
 #ViewAllEvents
@@ -474,6 +475,7 @@ input:hover, .delateEvent:hover, .shareEvent:hover
   padding: 10px 20px;
   border-radius: 4px;
   border-color: #697174;
+  
 }
 
 #mybutton {
