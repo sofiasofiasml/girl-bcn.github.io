@@ -299,10 +299,12 @@ var LOGIC = {
     URLify: function(string){
         var urls = string.match(/(((ftp|https?):\/\/)[\-\w@:%_\+.~#?,&\/\/=]+)/g);
         var linkA = string.match(/<a(.*?)<\/a>/g);
-
-        for(var i =0; i< urls.length; i++)
+        if(urls != null && linkA!= null)
         {
-            string = string.replace(linkA[i],  urls[i]);
+            for(var i =0; i< urls.length; i++)
+            {
+                string = string.replace(linkA[i],  urls[i]);
+            }
         }
         
         return string;
