@@ -238,7 +238,7 @@ var LOGIC = {
         var message= String.fromCodePoint(0x1F308) +" AGENDA " + String.fromCodePoint(0x1F308) +"\n"; 
         for(var i=0; i< CORE.DicEvents.length; i++)
         {
-            message += "*"+CORE.DicEvents[i].title + "* " + CORE.DicEvents[i].date +"\n"; 
+            message += "*"+LOGIC.spaceTitle(CORE.DicEvents[i].title) + "* " + CORE.DicEvents[i].date +"\n"; 
         }
         GFX.togglePopupShareAgenda(); 
         GFX.ShowAgenda(message); 
@@ -253,6 +253,14 @@ var LOGIC = {
 
         return StringDate; 
     }, 
+    spaceTitle: function(title)
+    {
+        if(title[title.length-1] == ' ')
+            title = title.substring(0, title.length-1);
+        if(title[0] ==' ')
+            title = title.substring(1, title.length);
+        return title; 
+    }, 
     sshareEvent: function(ss)
     {
         var TitleEvent= ""; 
@@ -266,7 +274,7 @@ var LOGIC = {
         {
             if(CORE.DicEvents[i].id == ss.name)
             {
-                TitleEvent = CORE.DicEvents[i].title; 
+                TitleEvent = LOGIC.spaceTitle(CORE.DicEvents[i].title); 
                 imageEvent = CORE.DicEvents[i].image; 
 
                 //Quitar img/ ... .png
