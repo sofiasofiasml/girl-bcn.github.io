@@ -279,5 +279,10 @@ function gotData(data)
 
     calendarDiv.render();
   });
-
+  let menu = document.querySelector('.menu');
+  let toggle = document.querySelector('.toggle');
+  
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('active');
+  });
  

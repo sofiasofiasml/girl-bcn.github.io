@@ -28,6 +28,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Hurricane&display=swap" rel="stylesheet">
 <link href='calendar.css' rel='stylesheet' />
 <script src='calendar.js'></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
 <body>
     
@@ -56,6 +58,44 @@
         <ul id="ulnav">
             
         </ul>
+        <div class="card">
+            <div class="menu">
+              <div class="toggle">
+                <div class="line-1"></div>
+                <div class="line-2"></div>
+              </div>
+                <ul id="ulNav">
+                  <li class ="liNav">
+                      <a href="index.html"><i class="material-icons">home</i>
+                        <span>Home</span></a>
+                      
+                  </li>
+                  <li class ="liNav">
+                    <a onclick="GFX.togglePopup()">
+                        <i class="material-icons">
+                            library_add
+                            </i>
+                        <span>Add Event</span>
+                    </a>
+                  </li>
+                  <li class ="liNav">
+                    <a onclick="GFX.togglePopupVot()">
+                        <i class="material-icons">lightbulb</i>
+                        <span>Add Vote/Idea</span>
+                    </a>
+                  </li>
+                  <li class ="liNav">
+                    <a href="cine.html">
+                        <i  class="material-icons">
+                            menu_book
+                            </i>
+                        <span>Recommendation</span>
+                    </a>
+                    
+                  </li>
+                </ul>
+            </div>
+          </div>
     </nav>
     <main>
         <div class="popup-Votacion" id="popup-Votacion">
@@ -142,6 +182,7 @@
                 <input type="submit" value="Enviar" onclick="LOGIC.writtenVotation()">
             </div>
         </div>
+        
         <!-- <p><a href="#Evento8">Go Middle</a></p> -->
         <p>Si no hay más de 2 personas apuntadas los planes se cancelan el día de antes. Contraseña eliminar evento: EliminarEvento</p>
         <h3>Planes semanales: </h3>

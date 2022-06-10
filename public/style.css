@@ -8,7 +8,7 @@
 
  }
  
- h1, h2, h3, h4, h5, h6, input, p, label, textarea, button, div, ul, li, a, select, img, option, b, i, u 
+ h1, h2, h3, h4, h5, h6, input, p, label, textarea, button, div, ul, li, a, select, img, option, b, i, u, span 
  {
    background: transparent; 
  }
@@ -482,4 +482,112 @@ input:hover, .delateEvent:hover, .shareEvent:hover
   position: fixed;
   bottom: -4px;
   right: 10px;
+  z-index: 90;
+}
+
+.card {
+  position: fixed;
+  z-index: 90;
+  top: 50%;
+}
+
+.menu {
+  width: 0px;
+  height: 300px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 10px 0 50px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.menu.active {
+  width: 100%;
+}
+.menu.active .liNav{
+  margin-left: -40px;
+  padding: 30px;
+}
+.toggle {
+  position: absolute;
+  top: -20px;
+  /* right: -15px; */
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  z-index: 1;
+  background-color: #000000;
+  border: 4px solid #666666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.line-1,
+.line-2 {
+  height: 2px;
+  width: 15px;
+  background-color: #ffffff;
+  transition: 0.5s ease;
+}
+
+.line-1 {
+  transform: rotate(-35deg) translate(5px, 8px);
+}
+
+.line-2 {
+  transform: rotate(35deg) translate(-8px, 0px);
+}
+
+.menu.active .line-1 {
+  transform: rotate(-45deg) translate(5px, 6px);
+}
+
+.menu.active .line-2 {
+  transform: rotate(45deg) translate(-5px, 6px);
+}
+
+#ulNav{
+  position: relative;
+  width: 100%;
+}
+
+.liNav{
+  position: relative;
+  list-style: none;
+  height: 75px;
+  width: 100%;
+  padding-left: 23px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.liNav:hover {
+  background-color: #dddddd;
+  width: 100%;
+}
+
+span {
+  margin-left: 20px;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.menu.active span {
+  visibility: visible;
+  color: #000;
+  font-weight: 600;
+  opacity: 1;
+}
+
+.material-icons
+{
+  color: #000;
+}
+.liNav a {
+  display: flex;
+  text-decoration:none;
 }
