@@ -569,7 +569,7 @@ input:hover, .delateEvent:hover, .shareEvent:hover
   width: 100%;
 }
 
-span {
+.ulSpan {
   margin-left: 20px;
   white-space: nowrap;
   visibility: hidden;
@@ -590,4 +590,16 @@ span {
 .liNav a {
   display: flex;
   text-decoration:none;
+}
+
+.ReadMoreDescripction{
+  text-decoration-line: underline;
+  color: blue;
+  cursor: pointer; 
+  font-family: 'Questrial', sans-serif;
+  font-weight: 600;
+}
+
+.ReadMoreDescripction:hover{ 
+  color: red;
 }

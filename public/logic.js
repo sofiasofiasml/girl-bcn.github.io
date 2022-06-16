@@ -316,6 +316,29 @@ var LOGIC = {
         }
         
         return string;
+    }, 
+    seeReadMore: function(event)
+    {
+        var id = event.id.substring("ReadMoreDescripction".length, event.id.length);
+        var dots = document.getElementById("dots"+id);
+        var moreText = document.getElementById("more"+id);
+        var btnText = document.getElementById("ReadMoreDescripction"+id);
+        if(dots){
+            if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                btnText.innerHTML = "Leer más"; 
+                moreText.style.display = "none";
+            } else {
+                dots.style.display = "none";
+                btnText.innerHTML = "Leer menos";
+                moreText.style.display = "inline";
+            // if(moreText.style.display == "none") 
+            //     moreText.style.display = "";
+            // else
+            //     moreText.style.display = "none"
+            }
+        }
     }
+    
 }; 
 CORE.modules.push(LOGIC); 

@@ -109,6 +109,10 @@ var GFX =
         for (var i =0; i<proba.length; i++){
             descriptionEvent.innerHTML += proba[i].innerHTML + "<br>" ; 
         }
+        
+        
+
+
         var infoProcess = document.querySelector("#UploadImageProcess"); 
         if(CORE.imageUploadURL==""){
             var image = 'img/pp.png'; 
@@ -133,9 +137,16 @@ var GFX =
                 
             }
         }
+        var initDescription = descriptionEvent.innerHTML.substring(0, 120);
+        initDescription += "<span id='dots"+id+"'>...</span><span id='more"+id+"' style='display: none'>"
+        var finDescription = descriptionEvent.innerHTML.substring(120, descriptionEvent.length);
+        finDescription = finDescription +"</span>"; 
+        initDescription = initDescription + finDescription; 
+        
+
         if(!image || image =="")
             var image = 'img/pp.png'; 
-        var newEve = new News(id, valuenameEvent.value, image, descriptionEvent.innerHTML, valueDate.value, valueDateFin.value, valueHour.value, categoria, "", [], []); 
+        var newEve = new News(id, valuenameEvent.value, image, initDescription, valueDate.value, valueDateFin.value, valueHour.value, categoria, "", [], []); 
         CORE.DicEvents[CORE.DicEvents.length]=newEve; 
         //var newEvenCalendar = new EventCalendar(valuenameEvent.value, valueDate.value, valueDate.value, ""); 
        // CORE.calendarEvents[CORE.calendarEvents.length]=newEvenCalendar;
@@ -201,7 +212,7 @@ var GFX =
         
         var AsistenciaEvent = document.createElement("input"); 
         var AsisDescEvent = document.createElement("label"); 
-        AsisDescEvent.innerText= "Apuntarse:"; 
+        AsisDescEvent.innerText= "\nApuntarse:"; 
         AsisDescEvent.style.fontWeight = "900";
         
         AsistenciaEvent.id="Asistencia"+CORE.DicEvents[indexEvent].id; 
@@ -248,6 +259,12 @@ var GFX =
             contEvent.style.fontWeight = "900";
         }
 
+        var ReadMore = document.createElement("a"); 
+        ReadMore.innerText = "Leer más"; 
+        ReadMore.setAttribute("id", "ReadMoreDescripction"+CORE.DicEvents[indexEvent].id);
+        ReadMore.setAttribute("class", "ReadMoreDescripction");
+        ReadMore.setAttribute("onclick", "LOGIC.seeReadMore(this)");
+
         var delatebutton = document.createElement("button"); 
         delatebutton.setAttribute("type", "button");
         delatebutton.innerText = "Eliminar Evento"; 
@@ -261,6 +278,8 @@ var GFX =
         sharebutton.setAttribute("class", "shareEvent");
         sharebutton.setAttribute("name", CORE.DicEvents[indexEvent].id);
         sharebutton.setAttribute("onclick", "LOGIC.sshareEvent(this)");
+
+        
         
         var cont1Event = document.createElement("div"); 
         cont1Event.classList.add("content"); 
@@ -275,6 +294,7 @@ var GFX =
         descriptionEvent.appendChild(imgEvent); 
         cont1Event.appendChild(nameEvent); 
         cont1Event.appendChild(descriptionEvent); 
+        cont1Event.appendChild(ReadMore); 
         cont1Event.appendChild(AsisDescEvent); 
         cont1Event.appendChild(AsistenciaEvent); 
         cont1Event.appendChild(bSubmit); 
