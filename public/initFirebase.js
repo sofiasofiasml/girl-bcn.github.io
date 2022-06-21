@@ -266,12 +266,12 @@ function gotData(data)
       firstDay: 1,//  1(Monday) this can be changed to 0(Sunday) for the USA system
       locales: 'es',
       dateClick: function(info) {
-        // alert('clicked ' + info.dateStr);
+         //alert('clicked ' + info.dateStr);
         GFX.hiddenEvents(info.dateStr); 
       },
     //   navLinks: true, // can click day/week names to navigate views
     //   editable: false,
-    //   selectable: true,
+       selectable: true,
     //   selectMirror: true,
     //   dayMaxEvents: true, // allow "more" link when too many events
     //   events: []

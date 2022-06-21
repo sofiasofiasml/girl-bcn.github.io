@@ -557,7 +557,7 @@ input:hover, .delateEvent:hover, .shareEvent:hover
   position: relative;
   list-style: none;
   height: 75px;
-  width: 100%;
+  width: 230px;
   padding-left: 23px;
   display: flex;
   align-items: center;
@@ -566,7 +566,9 @@ input:hover, .delateEvent:hover, .shareEvent:hover
 
 .liNav:hover {
   background-color: #dddddd;
-  width: 100%;
+  width: 230px;
+  border-radius: 20px;
+
 }
 
 .ulSpan {
@@ -602,4 +604,8 @@ input:hover, .delateEvent:hover, .shareEvent:hover
 
 .ReadMoreDescripction:hover{ 
   color: red;
+}
+
+.fc-highlight {
+  background: rgb(96, 143, 96) !important;
 }

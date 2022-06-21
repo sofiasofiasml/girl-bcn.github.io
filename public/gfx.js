@@ -467,7 +467,7 @@ var GFX =
     }, 
     
     //Click calendar hidden events
-    hiddenEvents: function(date)
+    hiddenEvents: function(dateclick)
     {
         for(var i=0; i< CORE.DicEvents.length; i++)
         {
@@ -477,12 +477,12 @@ var GFX =
             var dateFin = new Date(CORE.DicEvents[i].dateFin); 
             dateFin = new Date(dateFin.getTime() + (1000 * 60 * 60 * 24));
             dateFin = LOGIC.DatetoString(dateFin); 
-            if(CORE.DicEvents[i].date != date)
+            if(CORE.DicEvents[i].date != dateclick)
             {
                 EventDiv.style.display = "none";
-                while(dateFin!= myDateStirng){
+                while(dateFin > myDateStirng && dateclick >= myDateStirng){
                     EventDiv.style.display = "none";
-                    if(myDateStirng == date){
+                    if(myDateStirng == dateclick){
                         EventDiv.style.display = "";
                         break; 
                     }

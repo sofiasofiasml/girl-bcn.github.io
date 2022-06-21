@@ -238,7 +238,7 @@ var LOGIC = {
         var message= String.fromCodePoint(0x1F308) +" AGENDA " + String.fromCodePoint(0x1F308) +"\n"; 
         for(var i=0; i< CORE.DicEvents.length; i++)
         {
-            message += "*"+LOGIC.spaceTitle(CORE.DicEvents[i].title) + "* " + CORE.DicEvents[i].date +"\n"; 
+            message += "*"+LOGIC.spaceTitle(CORE.DicEvents[i].title) + "* " + CORE.DicEvents[i].date + " hasta " + CORE.DicEvents[i].dateFin +"\n"; 
         }
         GFX.togglePopupShareAgenda(); 
         GFX.ShowAgenda(message); 
