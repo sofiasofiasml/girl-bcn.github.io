@@ -169,6 +169,7 @@ function gotData(data)
                 GFX.createDivEventosDB(title, id, date,dateFin, hour, image, categoria, content, asistentes, key, asistenteskey); 
             }
             LOGIC.ordenarEventDate(); 
+            //LOGIC.cambiarIDIfRepite(); 
             CORE.initDB = false; 
         }
        

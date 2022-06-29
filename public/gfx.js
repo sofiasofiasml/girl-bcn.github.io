@@ -128,13 +128,12 @@ var GFX =
 
         if(id!=0)
         {
-            for(var i =1; i<CORE.DicEvents.length+1; i++)
+            for(var i =1; i<(Math.max(...Object.values(CORE.arrayID))+1); i++)
             {
                 if(!CORE.arrayID[i]){
                     id = i; 
                     break; 
                 }
-                
             }
         }
         var initDescription = descriptionEvent.innerHTML.substring(0, 120);

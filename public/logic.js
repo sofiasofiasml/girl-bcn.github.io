@@ -338,7 +338,15 @@ var LOGIC = {
             //     moreText.style.display = "none"
             }
         }
-    }
+    },
+    // cambiarIDIfRepite: function()
+    // {
+        
+    //     for(var i=0; i<CORE.DicEvents.length; i++)
+    //     {
+
+    //     }
+    // }
     
 }; 
 CORE.modules.push(LOGIC); 
