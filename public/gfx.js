@@ -505,7 +505,36 @@ var GFX =
             var EventDiv = document.querySelector("#Evento"+CORE.DicEvents[i].id); 
             EventDiv.style.display = "";
         }
-    }
+    },
+    printOut: function(str) {
+        var i = 0;
+        var timePerLetter = 200,
+        text = document.createTextNode('');
+        document.getElementById('test').appendChild(text);
+        (function main() {
+          var char = str[i++];
+          
+          text.nodeValue += char;
+          if(i < str.length){
+            setTimeout(main, timePerLetter);
+            
+          }
+          else
+          {
+            // text.nodeValue = ' ';
+            text.nodeValue  = text.nodeValue .substring(1); 
+            
+            i=0;
+            setTimeout(main, timePerLetter);
+            
+          }
+          if(text.nodeValue.length > 20 ){
+            text.nodeValue  = text.nodeValue .substring(1); 
+            
+          }
+        
+        })();
+      }
     
 }
 

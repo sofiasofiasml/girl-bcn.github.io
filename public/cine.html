@@ -29,6 +29,8 @@
 <link href='calendar.css' rel='stylesheet' />
 <script src='calendar.js'></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
 </head>
 <body>
     
@@ -84,7 +86,7 @@
                         <i  class="material-icons">
                             menu_book
                             </i>
-                        <span>Recomendation</span>
+                        <span> Revista</span>
                     </a>
                     
                   </li>
@@ -97,18 +99,86 @@
             <button class="feedback" onclick="GFX.UPbotom()">Up</button>
             <button class="feedback" onclick="GFX.downbotom()">Down</button>
         </div>
-        <h2>Eventos Anuales</h2>   
-        <h3>Cine</h3>  
-        <ul>
-            <li>Mayo: Lgtbiq+ mostra de cine: Endimaris Sitges. INFO: <a href="https://mostraendimarissitges.com/">LINK</a></li>
-            <li>Junio: Fire! Info: <a href="https://mostrafire.com/es/">LINK</a> </li>
-            <li>Cada mes aproximadamente: proyecciones en Ca la dona</li>
-          </ul>
-        <h3>Fiestas</h3> 
-        <ul>
-            <li>Junio-Julio: Pride!</li>
-          </ul>
-        <h2>Recomendaciones</h2>   
+        <h1 style="text-align: center;">REVISTA</h1> 
+        <h3>Proyectos</h3>  
+        <h4>Cortos</h4> 
+         
+        <video
+        id="my-video"
+        class="video-js"
+        controls
+        preload="auto"
+        width="640"
+        height="264"
+        poster="video/botella.PNG"
+        data-setup="{}"
+      >
+        <source src="video/la_botella.mp4" type="video/mp4" />
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a
+          web browser that
+          <a href="https://videojs.com/html5-video-support/" target="_blank"
+            >supports HTML5 video</a
+          >
+        </p>
+      </video>
+         
+        <h4>Podcast</h4> 
+        <div class="contenedorPodcast">
+          <div class="contenedor-Podcast">
+            <a class="Podcast_link" href="https://open.spotify.com/show/0lZfSadbYRm95ZPeCd3wqp?si=ea67e3a92853438c">
+            <div class="cardPodcast" style="background-image: url('https://i.scdn.co/image/d926b3d7883d985cfb0b90c13155383adf0c5ab7')">
+              <div class="textos">
+                <h3 >Contigo_ysinti</h3>
+                <!-- <p>27 de Octubre 2021</p>  -->
+                <!-- https://open.spotify.com/show/0lZfSadbYRm95ZPeCd3wqp?si=ea67e3a92853438c -->
+              </div>
+            </div>
+          </a>
+          <a class="Podcast_link" href="https://open.spotify.com/show/58GWxoHkZPuwTAKiziNCfW?si=9dcc8b0b598c454b">
+            
+            <div class="cardPodcast" style="background-image: url('https://i.scdn.co/image/ab67656300005f1f187e78bacacc6811f45f91b6')">
+              <div class="textos">
+                <h3>Col·lectius en xarxa</h3>
+                <!-- <p>12 de Noviembre 2021</p> -->
+                <!-- https://open.spotify.com/show/58GWxoHkZPuwTAKiziNCfW?si=9dcc8b0b598c454b -->
+              </div>
+            </div>
+          </a>
+          <a class="Podcast_link" href="https://open.spotify.com/show/6ZaLxRWEHs8cHk8iJBlVL0?si=9b77e9ea0971402f">
+            
+            <div class="cardPodcast" style="background-image: url('https://i.scdn.co/image/ab67656300005f1f22b19593db69274404783fa9')">
+              <div class="textos">
+                <h3>InOutRadio</h3>
+                <!-- <p>13 de Diciembre 2021</p> -->
+                <!-- https://open.spotify.com/show/6ZaLxRWEHs8cHk8iJBlVL0?si=9b77e9ea0971402f -->
+              </div>
+            </div>
+          </a>
+          <a class="Podcast_link" href="https://inoutradio.com/programas/la-hora-del-bollo/">
+            
+            <div class="cardPodcast" style="background-image: url('https://inoutradio.com/wp-content/uploads/2021/11/Portada-podcast-Orgullosamente-bi-web-620-x-350-px.png')">
+              <div class="textos">
+                <h3>La Hora del Bollo</h3>
+                <!-- <p>13 de Diciembre 2021</p> -->
+                <!-- https://inoutradio.com/programas/la-hora-del-bollo/ -->
+              </div>
+            </div>
+          </a>
+          </div>
+        
+      
+          <!-- <div class="bannerPodcast" style="background-image: url('./img/pp.png')">
+            <h3>Girls BCN</h3>
+            <ul>
+              <li>Pins</li>
+              <li>Camisetas</li>
+              
+            </ul>
+            <button class="botonPodcast">Comprar Boletos</button>
+          </div> -->
+        </div>
+        
     </main>
     <footer class="footer">
         <div class="container">
@@ -151,6 +221,8 @@
    </footer>
     
     <!-- Javascript -->
+    <script src="https://vjs.zencdn.net/7.19.2/video.min.js"></script>
+
     <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>

@@ -140,7 +140,7 @@ var LOGIC = {
     delateEvent: function(event)
     {
         let person = prompt("Contraseña para borrar:", "");
-        if (person == "EliminarEvento") {
+        if (person == CORE.paswordEliminar) {
             delateEvenDB(event); 
             document.location.reload();
         }

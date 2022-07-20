@@ -37,6 +37,7 @@ var CORE =
     imageUploadURL: "", 
     arrayID: {}, 
     imageokupload: true, 
+    paswordEliminar:"EliminarEvento",
     //calendarEvents: [], 
     calendarDiv: "", 
     init: function()
@@ -61,6 +62,7 @@ var CORE =
         this.navUl = document.querySelector("nav ul"); 
         //this.loop();
         this.draw(); 
+        GFX.printOut("NOVEDAD: VÍDEO Y PODCASTS EN LA SECCIÓN REVISTA ");
         
     }, 
 

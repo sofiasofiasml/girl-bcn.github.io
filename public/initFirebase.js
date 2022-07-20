@@ -24,6 +24,7 @@
  const app = firebase.initializeApp(firebaseConfig);
  var database = firebase.database();
  var storage = firebase.storage();
+ var storageRef = storage.ref();
 function insertData(data, name){
     
     var ref = database.ref(name); 
@@ -71,7 +72,15 @@ function delatenodeDBforTime()
         {
             var k = CORE.DicEvents[i].key; 
             var db = firebase.database();
-
+            // if(CORE.DicEvents[i].categoria =="SubirImagen")
+            // {
+            //     var imgRef = storageRef.child(CORE.DicEvents[i].image); 
+            //     imgRef.delete().then(() => {
+            //         console.log("Borrado ok Image"); 
+            //       }).catch((error) => {
+            //         console.log("No borrada image"); 
+            //       });
+            // }
             db.ref("Eventos/"+k).remove();
 
         }
@@ -119,6 +128,16 @@ function delateEvenDB(event){
             var k = CORE.DicEvents[i].key; 
            
             var db = firebase.database();
+            // if(CORE.DicEvents[i].categoria =="SubirImagen")
+            // {
+            //     var imgRef = storageRef.child(CORE.DicEvents[i].image); 
+            //     var imgRef2= storage.ref().child('fotos/'+imagenUpload.name);
+            //     imgRef.delete().then(() => {
+            //         console.log("Borrado ok Image"); 
+            //       }).catch((error) => {
+            //         console.log("No borrada image"); 
+            //       });
+            // }
             db.ref("Eventos/"+k ).remove();
            
         }
@@ -266,16 +285,16 @@ function gotData(data)
       },
       firstDay: 1,//  1(Monday) this can be changed to 0(Sunday) for the USA system
       locales: 'es',
+
       dateClick: function(info) {
-         //alert('clicked ' + info.dateStr);
+         
         GFX.hiddenEvents(info.dateStr); 
+        $(".day-highlight").removeClass("day-highlight");
+        info.dayEl.classList.remove('fc-day-future')
+        info.dayEl.classList.add('day-highlight'); 
       },
-    //   navLinks: true, // can click day/week names to navigate views
-    //   editable: false,
+
        selectable: true,
-    //   selectMirror: true,
-    //   dayMaxEvents: true, // allow "more" link when too many events
-    //   events: []
     });
 
     calendarDiv.render();
@@ -286,4 +305,12 @@ function gotData(data)
   toggle.addEventListener('click', () => {
     menu.classList.toggle('active');
   });
+
+
+
+
+
+
+  
+ 
  
