@@ -1,0 +1,36 @@
+{
+  "dependencies": {
+    "add": "^2.0.6",
+    "bootstrap": "^5.1.3",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.6",
+    "expres": "^0.0.5",
+    "express": "^4.18.1",
+    "google-spreadsheet": "^3.2.0",
+    "googleapis": "^95.0.0",
+    "jquery": "^3.6.0",
+    "or": "^0.2.0",
+    "yarn": "^1.22.17"
+  },
+  "name": "girl-bcn",
+  "description": "Para hacer lo del firebase es seguir este video [link](https://www.youtube.com/watch?v=8eFHnC70bYk)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sofiasofiasml/girl-bcn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sofiasofiasml/girl-bcn/issues"
+  },
+  "homepage": "https://github.com/sofiasofiasml/girl-bcn#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "keywords": []
+}

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girls BCN</title>
+    <link rel="shortcut icon" href="img/title.png"> 
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet"> -->
+    <link type="text/css" rel="stylesheet" media="all" href="style.css" />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Festive&family=Mali:wght@500&display=swap" rel="stylesheet"> -->
+    <link  rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hurricane&display=swap" rel="stylesheet">
+<link href='calendar.css' rel='stylesheet' />
+<script src='calendar.js'></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+<body>
+    
+    <header>
+        <div class="overlay">
+            <br>
+            <br>
+            <h1><a href="index.html">GIRLS BCN</a></h1>
+            <p>Mujeres lesbianas (lesbian), bisexuales, transexuales de Barcelona (BCN) con la intención de hacer quedadas, conocer a gente y amistades</p>
+            <div class="socialL">
+                <a href="https://chat.whatsapp.com/LW62XW85Q2yCuiJgjvljkF"><img src="img/whatsapp-brands.png" alt="whatsapp" width="30px"></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href=" https://t.me/joinchat/neoZsnH3bas5M2Q0"><img src="img/telegram-brands.png" alt="telegram" width="30px"></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.instagram.com/girlsbcn_/"><img src="img/instagram-brands.png" alt="instagram" width="30px"></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href = "mailto:sofia.martinez.lopez.98@gmail.com"><img src="img/google-plus-g-brands.png" alt="google" width="30px"></a>
+            </div>
+            <img id="img-banner" src="img/pp.png" width="150px"  />
+        </div>
+        
+    </header>
+    
+    <nav>
+        <h2>Ideas/Votaciones</h2>
+        <ul id="ulnav">
+            
+        </ul>
+        <div class="card">
+            <div class="menu">
+              <div class="toggle">
+                <div class="line-1"></div>
+                <div class="line-2"></div>
+              </div>
+                <ul id="ulNav">
+                  <li class ="liNav">
+                      <a href="index.html"><i class="material-icons">home</i>
+                        <span class="ulSpan">Home</span></a>
+                      
+                  </li>
+                  <li class ="liNav">
+                    <a onclick="GFX.togglePopup()">
+                        <i class="material-icons">
+                            library_add
+                            </i>
+                        <span class="ulSpan">Add Event</span>
+                    </a>
+                  </li>
+                  <li class ="liNav">
+                    <a onclick="GFX.togglePopupVot()">
+                        <i class="material-icons">lightbulb</i>
+                        <span class="ulSpan">Add Vote/Idea</span>
+                    </a>
+                  </li>
+                  <li class ="liNav">
+                    <a href="cine.html">
+                        <i  class="material-icons">
+                            menu_book
+                            </i>
+                        <span class="ulSpan"> Revista</span>
+                    </a>
+                    
+                  </li>
+                </ul>
+            </div>
+          </div>
+    </nav>
+    <main>
+        <div class="popup-Votacion" id="popup-Votacion">
+            <div class="overlay-Votacion"></div>
+            <div class="content-Votacion">
+                <div class="close-btn" onclick="GFX.togglePopupVotacion()">&times</div>
+                <div id="InfoVotacionDB"></div>
+                <!-- <br><br> -->
+                <!-- <input type="submit" value="Borrar" onclick="LOGIC.idChangeToDelate(this)">  -->
+            </div>
+        </div>
+
+        <div class="popup-shareAgenda" id="popup-shareAgenda">
+            <div class="overlay-shareAgenda"></div>
+            <div class="content-shareAgenda">
+                <div class="close-btn" onclick="GFX.togglePopupShareAgenda()">&times</div>
+                <div id="shareAgenda"></div>
+                <!-- <br><br> -->
+                <!-- <input type="submit" value="Borrar" onclick="LOGIC.idChangeToDelate(this)">  -->
+            </div>
+        </div>
+
+        <div class="popup-AddEvent" id="popup-AddEvent">
+            <div class="overlay-AddEvent"></div>
+            <div class="content-AddEvent">
+                <div class="close-btn" onclick="GFX.togglePopup()">&times</div>
+                <h3>Añadir evento</h3>
+                <label >Nombre Evento: </label>
+                <input type="text" id="nameEvent" name="nameEvent">
+                <br>
+                <label>Fecha del evento (inicio):
+                    <input type="date" id= "dateEvent" name="dateEvent" required pattern="\d{4}-\d{2}-\d{2}">
+                    <span class="validity"></span>
+                </label>
+                <label>Fecha del evento (final):
+                    <input type="date" id= "dateEventFinish" name="dateEventFinish" required pattern="\d{4}-\d{2}-\d{2}">
+                    <span class="validity"></span>
+                </label>
+                <br>
+                <label>Hora: <input type="time" id="horaEvent" name="eta"></label>
+                <br>
+
+                <label> Descripción: <textarea id="NewEventDescription"></textarea></label>
+                <br>
+                <label>Categoría: </label>
+                <select id="categoria" name="combo" onchange="GFX.selectionValue(this);">
+                    <!-- Opciones de la lista -->
+                    <option value="1">Senderismo</option>
+                    <option value="2" selected>Girls-bcn</option> <!-- Opción por defecto -->
+                    <option value="3">Fiesta/Bar</option> 
+                    <option value="4">Cultura</option> 
+                    <option value="5">Gastronomía</option> 
+                    <option value="6">Deporte</option> 
+                    <option value="7">Cine y Teatro</option> 
+                    <option value="8">Juegos</option>
+                    <option value="SubirImagen">Subir Imagen</option>
+                </select>
+
+                <div id="ImageOption"></div>
+                
+                <br><br>
+                <input type="submit" value="Enviar" onclick="LOGIC.writtenData()">
+            </div>
+        </div>
+
+            <div class="popup-Vot" id="popup-Vot">
+                <div class="overlay-Vot"></div>
+                <div class="content-Vot">
+                    <div class="close-btn" onclick="GFX.togglePopupVot()">&times</div>
+                <h3>Añadir Votación o idea</h3>
+                <label>Nombre Evento/votacion: </label>
+                <input type="text" id="nameVotationOverlay" name="nameVotation">
+                <br>
+                <label>Link google aswers: </label>
+                <input type="text" id="googleaswer" name="googleaswer">
+                <br>
+                <label>Link ver respuestas: </label>
+                <input type="text" id="googleResp" name="googleResp">
+
+                <!-- <div id="addOtherInput"lll></div>
+                <br>
+                <button onclick="GFX.addInput()">+</button> -->
+                <br><br>
+                <input type="submit" value="Enviar" onclick="LOGIC.writtenVotation()">
+            </div>
+        </div>
+        
+        <!-- <p><a href="#Evento8">Go Middle</a></p> -->
+        <p>Si no hay más de 2 personas apuntadas los planes se cancelan el día de antes. Contraseña eliminar evento: EliminarEvento</p>
+        
+        <div class = "ticker-container">
+            <div id='test'></div>
+        </div>
+        <div id="mybutton">
+            <button class="feedback" onclick="GFX.UPbotom()">Up</button>
+            <button class="feedback" onclick="GFX.downbotom()">Down</button>
+        </div>
+        <p>Calendario de eventos: </p>
+        <div >
+            <div id='calendar'></div>
+        </div>
+        <h2>Eventos &nbsp;&nbsp;&nbsp; <button id = "ViewAllEvents" onclick="GFX.seeAllEvents()">Ver todos los eventos</button></h2> 
+        <div id="AddEvents"></div>
+
+        <div id="news"></div>
+       
+        <div>
+            <h3>Publicidad y locales del colectivo</h3>
+            
+        <!-- Swiper -->
+        <div id = "swip">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="img/1.png" />
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://g.page/CaritaBonitaBarcelona?share"><img src="img/carita.jpg"
+                            alt="Carita Bonita"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://lambda.cat/"><img src="img/casalambda.jpg"
+                            alt="Casa Lambda"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://grupoarena.com/"><img src="img/arena.jpg"
+                            alt="Arena"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="http://nenis.info/"><img src="img/nenis.jpg"
+                            alt="Arena"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://www.facebook.com/melonpartybcn"><img src="img/melon.jpg"
+                            alt="melon party bcn"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://www.sala-apolo.com/es/clubs/churros-con-chocolate"><img src="img/apolo.jpg"
+                            alt="Apolo"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://caladona.org/agenda-caladona/"><img src="img/CLD.jpg"
+                            alt="CLD"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://barcelonasecreta.com/"><img src="img/bcnSecreta.png"
+                            alt="BcnSecreta"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://www.timeout.es/barcelona/es"><img src="img/timeOut.jpg"
+                            alt="TimeOut"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://inoutradio.com/"><img src="https://i.scdn.co/image/ab67656300005f1f22b19593db69274404783fa9"
+                            alt="inOutRadio"></a>
+                    </div>
+                    
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div> 
+
+        
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Organizadoras</h4>
+                    <ul>
+                        <li><a href = "mailto:sofia.martinez.lopez.98@gmail.com">Programadora: Sofia Martínez</ahref></li>
+                        <li><a href = "mailto:emoro.bcn@artsgrafiques.org">Diseñadora gráfica: Camila Umpiérrez</a></li>
+                        <li><a href = "mailto:michela.capparelli@gmail.com">Diseñadora gráfica: Michela Capparelli</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Info del grupo</h4>
+                    <ul>
+                        <li><a href="https://cutt.ly/YUN6bG9">Normativa del grupo</a></li>
+                        <li><a href="https://cutt.ly/4TJaEMY">Quedadas Documento</a></li>
+                        <li> <a  onclick="LOGIC.copyInfoAgenda()">Agenda Provisional &#127752;</a> </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contribuir</h4>
+                    <ul>
+                        <li><a onclick="GFX.togglePopup()">Añadir evento</a></li>
+                        <li><a onclick="GFX.togglePopupVot()">Añadir ideas/votaciones</a></li>
+                        <li><a href="cine.html">Revista</a></li>
+                    </ul>
+                </div>
+                <!-- <div class="footer-col">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-links">
+                        <a href="https://chat.whatsapp.com/LW62XW85Q2yCuiJgjvljkF"><img src="img/whatsapp-brands.png" alt="whatsapp" width="50%"></a>
+                        <a href=" https://t.me/joinchat/neoZsnH3bas5M2Q0"><img src="img/telegram-brands.png" alt="telegram" width="50%"></a>
+                        <a href="https://www.instagram.com/girlsbcn_/"><img src="img/instagram-brands.png" alt="instagram" width="50%"></a>
+                        <a href = "mailto:sofia.martinez.lopez.98@gmail.com"><img src="img/google-plus-g-brands.png" alt="google" width="50%"></a>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+   </footer>
+    
+    
+    <!-- Javascript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    
+    <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script type="text/javascript" src="initFirebase.js"></script>
+    <script type="text/javascript" src="core.js"></script>
+    <script type="text/javascript" src="client.js"></script>
+    <script type="text/javascript" src="gfx.js"></script>
+    <script type="text/javascript" src="logic.js"></script>
+    <script type="text/javascript" src="world.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script type="text/javascript" src="swiper.min.js"></script>
+    <!-- Arracncamos app -->
+    <script>CORE.init()</script>
+</body>
+</html>
