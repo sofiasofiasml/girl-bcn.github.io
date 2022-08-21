@@ -17,6 +17,14 @@ var GFX =
         document.getElementById("popup-AddEvent").classList.toggle("active"); 
         window.scrollTo(0,1);
     },
+    toggleEditPopup: function(event)
+    {
+        if(event)
+            CORE.idEdit = event.name; 
+        document.getElementById("popup-EditEvent").classList.toggle("active"); 
+        window.scrollTo(0,1);
+        GFX.FillInfo(); 
+    },
     downbotom: function()
     {
         window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
@@ -51,6 +59,23 @@ var GFX =
         inputdiv.id = "Input"+CORE.contvoationactual;
         divOverlay.appendChild(inputdiv); 
 
+    },
+    FillInfo: function()
+    {
+        var id = CORE.idEdit;  
+        for(var i=0; i< CORE.DicEvents.length; i++){
+            if(CORE.DicEvents[i].id == id)
+            {
+                document.querySelector("#nameEditEvent").value = CORE.DicEvents[i].title; 
+                document.querySelector("#dateEditEvent").value = CORE.DicEvents[i].date; 
+                document.querySelector("#dateEventEditFinish").value = CORE.DicEvents[i].dateFin; 
+                document.querySelector("#horaEditEvent").value = CORE.DicEvents[i].hour; 
+                document.querySelector("#categoriaEdit").value = CORE.DicEvents[i].categoria; 
+                CORE.editors.NewEventEditDescription.setData(CORE.DicEvents[i].content); 
+                CORE.editors.NewEventEditDescription.setData(CORE.editors.NewEventEditDescription.getData().replace("...", ""));
+                break;
+            }
+        }
     },
     addlistnav:function()
     {
@@ -104,11 +129,12 @@ var GFX =
         
         var descriptionEvent = document.createElement("div");
         descriptionEvent.classList.add("description-event");
-        var proba= document.querySelectorAll(".ck.ck-editor__main p");
+        // var proba= document.querySelectorAll(".ck.ck-editor__main p");
+        descriptionEvent.innerHTML  = CORE.editors.NewEventDescription.getData();
          
-        for (var i =0; i<proba.length; i++){
-            descriptionEvent.innerHTML += proba[i].innerHTML + "<br>" ; 
-        }
+        // for (var i =0; i<proba.length; i++){
+        //     descriptionEvent.innerHTML += proba[i].innerHTML + "<br>" ; 
+        // }
         
         
 
@@ -128,7 +154,7 @@ var GFX =
 
         if(id!=0)
         {
-            for(var i =1; i<(Math.max(...Object.values(CORE.arrayID))+1); i++)
+            for(var i =1; i<(Math.max(...Object.values(CORE.arrayID))+2); i++)
             {
                 if(!CORE.arrayID[i]){
                     id = i; 
@@ -136,11 +162,11 @@ var GFX =
                 }
             }
         }
-        var initDescription = descriptionEvent.innerHTML.substring(0, 120);
-        initDescription += "<span id='dots"+id+"'>...</span><span id='more"+id+"' style='display: none'>"
-        var finDescription = descriptionEvent.innerHTML.substring(120, descriptionEvent.length);
-        finDescription = finDescription +"</span>"; 
-        initDescription = initDescription + finDescription; 
+        // var initDescription = descriptionEvent.innerHTML.substring(0, 120);
+        // initDescription += "<span id='dots"+id+"'>...</span><span id='more"+id+"' style='display: none'>"
+        // var finDescription = descriptionEvent.innerHTML.substring(120, descriptionEvent.length);
+        // finDescription = finDescription +"</span>"; 
+        initDescription = GFX.createLeerMas(descriptionEvent.innerHTML, id); 
         
 
         if(!image || image =="")
@@ -150,6 +176,14 @@ var GFX =
         //var newEvenCalendar = new EventCalendar(valuenameEvent.value, valueDate.value, valueDate.value, ""); 
        // CORE.calendarEvents[CORE.calendarEvents.length]=newEvenCalendar;
     }, 
+    createLeerMas: function(event, id){
+        var initDescription = event.substring(0, 120);
+        initDescription += "<span id='dots"+id+"'>...</span><span id='more"+id+"' style='display: none'>"
+        var finDescription = event.substring(120, event.length);
+        finDescription = finDescription +"</span>"; 
+        initDescription = initDescription + finDescription; 
+        return initDescription; 
+    },
     createDivEventosDB: function(title, id, date,dateFin, hour, image, categoria, content, asistentes, key, asistenteskey)
     {
 
@@ -292,7 +326,7 @@ var GFX =
         editbutton.innerText = "Edit Evento"; 
         editbutton.setAttribute("class", "editEvent");
         editbutton.setAttribute("name", CORE.DicEvents[indexEvent].id);
-        editbutton.setAttribute("onclick", "LOGIC.seditEvent(this)");
+        editbutton.setAttribute("onclick", "GFX.toggleEditPopup(this)");
         
         var cont1Event = document.createElement("div"); 
         cont1Event.classList.add("content"); 
@@ -315,7 +349,7 @@ var GFX =
         cont1Event.appendChild(contEvent); 
         cont1Event.appendChild(delatebutton); 
         cont1Event.appendChild(sharebutton); 
-        // cont1Event.appendChild(editbutton); 
+        cont1Event.appendChild(editbutton); 
         div1Event.appendChild(cont1Event); 
         CORE.addEvents.appendChild(div1Event); 
     }, 
@@ -459,27 +493,31 @@ var GFX =
             var imageDiv = document.querySelector("#ImageOption"); 
             while (imageDiv.firstChild)
                 imageDiv.removeChild(imageDiv.lastChild);
+            GFX.imageForCategory(selection.value); 
             
-            if(selection.value == "1") //Senderismo ----------------
-                CORE.imageUploadURL = 'img/naturaleza.png'; 
-            if(selection.value == "2") //girls-bcn
-                CORE.imageUploadURL = ""; 
-            if(selection.value == "3") //Bar FIESTA ---------------------
-                CORE.imageUploadURL = 'img/fiesta.png'; 
-            if(selection.value == "4") //Cultura --------
-                CORE.imageUploadURL = 'img/cultura.png'; 
-            if(selection.value == "5") //Gastronomia ---------------
-                CORE.imageUploadURL = 'img/comida.png'; 
-            if(selection.value == "6") //Deporte ------------------
-                CORE.imageUploadURL = 'img/deporte.png'; 
-            if(selection.value == "7") //Cine  ------------------------
-                CORE.imageUploadURL = 'img/cinemas.png'; 
-            if(selection.value == "8") //Juegos --------------------
-                CORE.imageUploadURL = 'img/juego.png'; 
         }
             
     }, 
-    
+    imageForCategory:function(selection)
+    {
+        if(selection == "1") //Senderismo ----------------
+                CORE.imageUploadURL = 'img/naturaleza.png'; 
+            if(selection == "2") //girls-bcn
+                CORE.imageUploadURL = ""; 
+            if(selection == "3") //Bar FIESTA ---------------------
+                CORE.imageUploadURL = 'img/fiesta.png'; 
+            if(selection == "4") //Cultura --------
+                CORE.imageUploadURL = 'img/cultura.png'; 
+            if(selection == "5") //Gastronomia ---------------
+                CORE.imageUploadURL = 'img/comida.png'; 
+            if(selection == "6") //Deporte ------------------
+                CORE.imageUploadURL = 'img/deporte.png'; 
+            if(selection == "7") //Cine  ------------------------
+                CORE.imageUploadURL = 'img/cinemas.png'; 
+            if(selection == "8") //Juegos --------------------
+                CORE.imageUploadURL = 'img/juego.png'; 
+            return CORE.imageUploadURL; 
+    },
     //Click calendar hidden events
     hiddenEvents: function(dateclick)
     {

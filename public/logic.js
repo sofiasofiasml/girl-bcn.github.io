@@ -1,4 +1,5 @@
-//logica de la app (Controler)
+
+ //logica de la app (Controler)
 var LOGIC = {
 
     init: function()
@@ -146,7 +147,37 @@ var LOGIC = {
         }
        
     },
+    seditEvent: function()
+    {
+        // let person = prompt("Contraseña para borrar:", "");
+        // if (person == CORE.paswordEliminar) {
+            var title = document.querySelector("#nameEditEvent").value; 
+            var content= GFX.createLeerMas(CORE.editors.NewEventEditDescription.getData(),CORE.idEdit); 
+            var date= document.querySelector("#dateEditEvent").value; 
+            var dateFin= document.querySelector("#dateEventEditFinish").value; 
+            var hour= document.querySelector("#horaEditEvent").value; 
+            var categoria= document.querySelector("#categoriaEdit").value; 
+            if(categoria=="1" || categoria=="2" || categoria=="3" ||
+            categoria=="4" || categoria=="5" || categoria=="6" || categoria=="7" ||
+            categoria=="8")
+                var image = GFX.imageForCategory(categoria); 
+            else
+            {
+                var id = CORE.idEdit;  
     
+                for(var i=0; i< CORE.DicEvents.length; i++){
+                    if(CORE.DicEvents[i].id == id)
+                    {
+                        var image = CORE.DicEvents[i].image; 
+                    }
+                }
+            }
+            editEvenDB( title, image, content,date, dateFin, hour, categoria); 
+            document.location.reload();
+           
+       // }
+       
+    },
     // https://es.stackoverflow.com/questions/259945/ordenar-ul-javascript
     ordenarLista: function(idUl){
         //Obtenemos el elemento ul
@@ -348,6 +379,16 @@ var LOGIC = {
             }
         }
     },
+    RegisterUser: function(event)
+    {
+        event.preventDefault(); 
+    }, 
+    InitUser: function(event)
+    {
+        event.preventDefault(); 
+        const InitEmail = document.querySelector("");
+
+    }, 
     // cambiarIDIfRepite: function()
     // {
         

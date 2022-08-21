@@ -6,8 +6,9 @@
 
  // Your web app's Firebase configuration
  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//  let prueba = 'https://nominatim.openstreetmap.org/reverse?lat=41.63125237270472&lon=-4.742565007934635&format=json';
 
- 
+
  const firebaseConfig = {
    apiKey: "AIzaSyAQC3c8Uc8z-AI89EdScSyYy6rNZzyXYgs",
    authDomain: "girls-bcn.firebaseapp.com",
@@ -23,6 +24,7 @@
  // Initialize Firebase
  const app = firebase.initializeApp(firebaseConfig);
  var database = firebase.database();
+ var auth = firebase.auth(); 
  var storage = firebase.storage();
  var storageRef = storage.ref();
 function insertData(data, name){
@@ -128,18 +130,40 @@ function delateEvenDB(event){
             var k = CORE.DicEvents[i].key; 
            
             var db = firebase.database();
-            // if(CORE.DicEvents[i].categoria =="SubirImagen")
-            // {
-            //     var imgRef = storageRef.child(CORE.DicEvents[i].image); 
-            //     var imgRef2= storage.ref().child('fotos/'+imagenUpload.name);
-            //     imgRef.delete().then(() => {
-            //         console.log("Borrado ok Image"); 
-            //       }).catch((error) => {
-            //         console.log("No borrada image"); 
-            //       });
-            // }
+            
             db.ref("Eventos/"+k ).remove();
            
+        }
+    }        
+}
+
+function editEvenDB( title, image, content,date, dateFin, hour, categoria){
+    var id = CORE.idEdit;  
+    
+    for(var i=0; i< CORE.DicEvents.length; i++){
+        if(CORE.DicEvents[i].id == id)
+        {
+            var k = CORE.DicEvents[i].key; 
+           
+            var db = firebase.database();
+            const updates = {};
+            updates[ `/id`] =  CORE.DicEvents[i].id;
+            updates[ `/key`] =  CORE.DicEvents[i].key;
+            updates[ `title`] =  title;
+            if(image=="")
+                updates[`image`] =  CORE.DicEvents[i].image;
+            else
+                updates[`image`] =  image;
+            updates[`content`] =  content;
+            updates[ `date`] =  date;
+            updates[ `dateFin`] =  dateFin;
+            updates[ `hour`] =  hour;
+            updates[ `categoria`] =  categoria;
+            updates[ `asistentes`] =  CORE.DicEvents[i].asistentes;
+
+
+           firebase.database().ref("Eventos/"+k).update(updates);
+           CORE.idEdit =-1; 
         }
     }        
 }

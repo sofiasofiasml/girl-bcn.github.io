@@ -161,27 +161,102 @@
             </div>
         </div>
 
-            <div class="popup-Vot" id="popup-Vot">
-                <div class="overlay-Vot"></div>
-                <div class="content-Vot">
-                    <div class="close-btn" onclick="GFX.togglePopupVot()">&times</div>
-                <h3>Añadir Votación o idea</h3>
-                <label>Nombre Evento/votacion: </label>
-                <input type="text" id="nameVotationOverlay" name="nameVotation">
+        <div class="popup-EditEvent" id="popup-EditEvent">
+            <div class="overlay-EditEvent"></div>
+            <div class="content-EditEvent">
+                <div class="close-btn" onclick="GFX.toggleEditPopup()">&times</div>
+                <h3>Editar evento</h3>
+                <label >Nombre Evento: </label>
+                <input type="text" id="nameEditEvent" name="nameEditEvent">
                 <br>
-                <label>Link google aswers: </label>
-                <input type="text" id="googleaswer" name="googleaswer">
+                <label>Fecha del evento (inicio):
+                    <input type="date" id= "dateEditEvent" name="dateEditEvent" required pattern="\d{4}-\d{2}-\d{2}">
+                    <span class="validity"></span>
+                </label>
+                <label>Fecha del evento (final):
+                    <input type="date" id= "dateEventEditFinish" name="dateEventEditFinish" required pattern="\d{4}-\d{2}-\d{2}">
+                    <span class="validity"></span>
+                </label>
                 <br>
-                <label>Link ver respuestas: </label>
-                <input type="text" id="googleResp" name="googleResp">
+                <label>Hora: <input type="time" id="horaEditEvent" name="horaEditEvent"></label>
+                <br>
 
-                <!-- <div id="addOtherInput"lll></div>
+                <label> Descripción: <textarea id="NewEventEditDescription"></textarea></label>
                 <br>
-                <button onclick="GFX.addInput()">+</button> -->
+                <label>Categoría: </label>
+                <select id="categoriaEdit" name="combo" onchange="GFX.selectionValue(this);">
+                    <!-- Opciones de la lista -->
+                    <option value="1">Senderismo</option>
+                    <option value="2" selected>Girls-bcn</option> <!-- Opción por defecto -->
+                    <option value="3">Fiesta/Bar</option> 
+                    <option value="4">Cultura</option> 
+                    <option value="5">Gastronomía</option> 
+                    <option value="6">Deporte</option> 
+                    <option value="7">Cine y Teatro</option> 
+                    <option value="8">Juegos</option>
+                    <option value="SubirImagen">Subir Imagen</option>
+                </select>
+
+                <div id="ImageOption"></div>
+                
                 <br><br>
+                <input type="submit" value="Editar" onclick="LOGIC.seditEvent()">
+            </div>
+        </div>
+
+        <div class="popup-Vot" id="popup-Vot">
+            <div class="overlay-Vot"></div>
+            <div class="content-Vot">
+                <div class="close-btn" onclick="GFX.togglePopupVot()">&times</div>
+            <h3>Añadir Votación o idea</h3>
+            <label>Nombre Evento/votacion: </label>
+            <input type="text" id="nameVotationOverlay" name="nameVotation">
+            <br>
+            <label>Link google aswers: </label>
+            <input type="text" id="googleaswer" name="googleaswer">
+            <br>
+            <label>Link ver respuestas: </label>
+            <input type="text" id="googleResp" name="googleResp">
+
+            <!-- <div id="addOtherInput"lll></div>
+            <br>
+            <button onclick="GFX.addInput()">+</button> -->
+            <br><br>
                 <input type="submit" value="Enviar" onclick="LOGIC.writtenVotation()">
             </div>
         </div>
+
+        <!-- <div class="popup-InitUser" id="popup-InitUser">
+            <div class="overlay-InitUser"></div>
+            <div class="content-InitUser">
+                <div class="close-btn" onclick="GFX.togglePopupVot()">&times</div>
+            <h3>Iniciar Sesión</h3>
+            <label>Correo:</label>
+            <input type="text" id="Init_correo" name="nameVotation" placeholder="Correo" required>
+            <br>
+            <label>Contraseña: </label>
+            <input type="password" id="Init_password" name="googleaswer" placeholder="Password" required>
+            
+            <br><br>
+                <input type="submit" value="Enviar" onclick="LOGIC.InitUser(this)">
+            </div>
+        </div>
+
+        <div class="popup-RegisterUser" id="popup-RegisterUser">
+            <div class="overlay-RegisterUser"></div>
+            <div class="content-RegisterUser">
+                <div class="close-btn" onclick="GFX.togglePopupVot()">&times</div>
+            <h3>Registrar usuario</h3>
+            <label>Correo:</label>
+            <input type="text" id="Registar_correo" name="nameVotation" placeholder="Carreo" required>
+            <br>
+            <label>Contraseña: </label>
+            <input type="password" id="Registar_password" name="googleaswer" placeholder="Password" required>
+            
+            <br><br>
+                <input type="submit" value="Enviar" onclick="LOGIC.RegisterUser(this)">
+            </div>
+        </div> -->
         
         <!-- <p><a href="#Evento8">Go Middle</a></p> -->
         <p>Si no hay más de 2 personas apuntadas los planes se cancelan el día de antes. Contraseña eliminar evento: EliminarEvento</p>
@@ -252,6 +327,10 @@
                         <a href="https://inoutradio.com/"><img src="https://i.scdn.co/image/ab67656300005f1f22b19593db69274404783fa9"
                             alt="inOutRadio"></a>
                     </div>
+                    <div class="swiper-slide">
+                        <a href="https://laculturanovalres.com/"><img src="img/laCulturaNoValRes.png"
+                            alt="inOutRadio"></a>
+                    </div>
                     
                 </div>
                 <div class="swiper-pagination"></div>
@@ -285,6 +364,7 @@
                         <li><a onclick="GFX.togglePopup()">Añadir evento</a></li>
                         <li><a onclick="GFX.togglePopupVot()">Añadir ideas/votaciones</a></li>
                         <li><a href="cine.html">Revista</a></li>
+                        <li><a href="https://girls-vlc.web.app/">Girls VLC</a></li>
                     </ul>
                 </div>
                 <!-- <div class="footer-col">
@@ -307,6 +387,7 @@
     
     <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>

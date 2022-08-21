@@ -1,19 +1,3 @@
-//Todo accesible global, todo lo importante de la app (MODEL)
-ClassicEditor
-    .create( document.querySelector( '#NewEventDescription' ), {
-        toolbar: [ ],
-        
-        link: {
-            defaultProtocol: 'http://'
-            
-        }
-    } )
-.then(  )
-.catch( error =>{console.error(error)
-} );
-
-
-
 var CORE = 
 {
     //state of app
@@ -38,6 +22,8 @@ var CORE =
     arrayID: {}, 
     imageokupload: true, 
     paswordEliminar:"EliminarEvento",
+    idEdit: -1, 
+    editors : {},
     //calendarEvents: [], 
     calendarDiv: "", 
     init: function()
@@ -63,7 +49,9 @@ var CORE =
         //this.loop();
         this.draw(); 
         GFX.printOut("NOVEDAD: VÍDEO Y PODCASTS EN LA SECCIÓN REVISTA ");
-        
+        //CKeditor
+        CORE.createEditor( 'NewEventDescription' );
+        CORE.createEditor( 'NewEventEditDescription' );
     }, 
 
     onKey:  function(event)
@@ -84,6 +72,19 @@ var CORE =
         }
 
     }, 
+    createEditor:function( elementId ) { 
+        return ClassicEditor 
+        .create( document.getElementById( elementId ), {
+                    toolbar: [ ],
+                    
+                    link: {
+                        defaultProtocol: 'http://'
+                        
+                    }
+                } ) 
+        .then( editor => { CORE.editors[ elementId ] = editor; } ) 
+        .catch( err => console.error( err.stack ) );
+    },
 
     onMouse: function(e)
     {

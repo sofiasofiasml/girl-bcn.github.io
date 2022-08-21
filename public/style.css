@@ -259,6 +259,7 @@ ul{
 /* Overlay: AddEvent*/
 
 .popup-AddEvent .overlay-AddEvent,
+.popup-EditEvent .overlay-EditEvent,
 .popup-Votacion .overlay-Votacion,
 .popup-shareAgenda .overlay-shareAgenda,
 .popup-Vot .overlay-Vot
@@ -273,6 +274,7 @@ ul{
   display: none; 
 }
 .popup-AddEvent  .content-AddEvent,
+.popup-EditEvent  .content-EditEvent,
 .popup-Votacion .content-Votacion,
 .popup-shareAgenda .content-shareAgenda,
 .popup-Vot .content-Vot
@@ -293,10 +295,13 @@ ul{
 } 
 
 .popup-AddEvent  .content-AddEvent input,
+.popup-EditEvent  .content-EditEvent input,
 .popup-Vot  .content-Vot input,
 .popup-AddEvent  .content-AddEvent select,
+.popup-EditEvent  .content-EditEvent select,
 .popup-Vot  .content-Vot  select,
 .popup-AddEvent  .content-AddEvent #ImageOption,
+.popup-EditEvent  .content-EditEvent #ImageOption,
 #InfoVotacionDB input
 {
   background: #ffffff;
@@ -305,7 +310,9 @@ ul{
 }
 
 .popup-AddEvent h3, 
-.popup-AddEvent label, 
+.popup-AddEvent label,
+.popup-EditEvent h3, 
+.popup-EditEvent label,  
 .popup-Vot h3, 
 .popup-Vot label, 
 #InfoVotacionDB h4
@@ -313,11 +320,13 @@ ul{
   color: rgb(136, 132, 132);
 } 
 .popup-AddEvent  .content-AddEvent h3
+.popup-EditEvent  .content-EditEvent h3
 {
   background: transparent;
   text-align: center;
 } 
 .popup-AddEvent .close-btn,
+.popup-EditEvent .close-btn,
 .popup-Votacion .close-btn,
 .popup-shareAgenda .close-btn,
 .popup-Vot .close-btn
@@ -338,6 +347,7 @@ ul{
 }
 
 .popup-AddEvent.active .overlay-AddEvent, 
+.popup-EditEvent.active .overlay-EditEvent, 
 .popup-Votacion.active .overlay-Votacion,
 .popup-shareAgenda.active .overlay-shareAgenda,
 .popup-Vot.active .overlay-Vot
@@ -345,6 +355,7 @@ ul{
   display: block;
 }
 .popup-AddEvent.active .content-AddEvent,
+.popup-EditEvent.active .content-EditEvent,
 .popup-Votacion.active .content-Votacion, 
 .popup-shareAgenda.active .content-shareAgenda, 
 .popup-Vot.active .content-Vot
