@@ -91,7 +91,7 @@ header h1, header h1 a {
   text-decoration: none
 }
 
- header h3, p {
+ header h3, .paraf {
   background: transparent; 
   font-weight: bold;
   font-size: 18px;
@@ -261,6 +261,7 @@ ul{
 .popup-AddEvent .overlay-AddEvent,
 .popup-EditEvent .overlay-EditEvent,
 .popup-Votacion .overlay-Votacion,
+.popup-Horoscopo .overlay-Horoscopo, 
 .popup-shareAgenda .overlay-shareAgenda,
 .popup-Vot .overlay-Vot
 {
@@ -276,6 +277,7 @@ ul{
 .popup-AddEvent  .content-AddEvent,
 .popup-EditEvent  .content-EditEvent,
 .popup-Votacion .content-Votacion,
+.popup-Horoscopo .content-Horoscopo, 
 .popup-shareAgenda .content-shareAgenda,
 .popup-Vot .content-Vot
 {
@@ -315,7 +317,9 @@ ul{
 .popup-EditEvent label,  
 .popup-Vot h3, 
 .popup-Vot label, 
-#InfoVotacionDB h4
+#InfoVotacionDB h4,
+.popup-Horoscopo p, 
+.popup-Horoscopo h3
 {
   color: rgb(136, 132, 132);
 } 
@@ -329,7 +333,8 @@ ul{
 .popup-EditEvent .close-btn,
 .popup-Votacion .close-btn,
 .popup-shareAgenda .close-btn,
-.popup-Vot .close-btn
+.popup-Vot .close-btn,
+.popup-Horoscopo .close-btn
 {
   position: absolute;
   right: 20px;
@@ -350,7 +355,8 @@ ul{
 .popup-EditEvent.active .overlay-EditEvent, 
 .popup-Votacion.active .overlay-Votacion,
 .popup-shareAgenda.active .overlay-shareAgenda,
-.popup-Vot.active .overlay-Vot
+.popup-Vot.active .overlay-Vot,
+.popup-Horoscopo.active .overlay-Horoscopo
 {
   display: block;
 }
@@ -358,7 +364,8 @@ ul{
 .popup-EditEvent.active .content-EditEvent,
 .popup-Votacion.active .content-Votacion, 
 .popup-shareAgenda.active .content-shareAgenda, 
-.popup-Vot.active .content-Vot
+.popup-Vot.active .content-Vot,
+.popup-Horoscopo.active .content-Horoscopo
 {
   transition: all 300ms ease-in-out;
   transform: translate(-50%,-50%) scale(1);
@@ -769,4 +776,120 @@ input:hover, .delateEvent:hover, .shareEvent:hover
 	grid-template-columns: repeat(1, 1fr);
 	
 }
+}
+
+/* Horoscopos */
+.image_bar{
+  width: 30px;
+  margin-right: 10px;
+}
+.galeria{
+  font-family: 'open sans';
+}
+
+.galeria h1{
+  text-align: center;
+  margin:20px 0 15px 0;
+  font-weight: 300;
+}
+
+.linea{
+  border-top: 5px solid #0077C0;
+  margin-bottom: 40px;
+}
+
+.contenedor-imagenes{
+  display:flex;
+  width: 85%;
+  margin: auto;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border-radius:3px;
+  cursor: pointer;
+}
+
+.contenedor-imagenes .imagen{
+  width: 32%;
+  position: relative;
+  height:250px;
+  margin-bottom:5px;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, .75);
+  background:linear-gradient(to right bottom, #51376a 50%, #553c6e 50.1%);
+  border-radius: 20px;
+  
+}
+.imagen img{
+  object-fit: cover;
+    margin: auto;
+    display: flex;
+    margin-top: 70px;
+
+}
+ .imagen:hover{
+  background: rgba(189, 17, 17, 0.1);
+} 
+.nameHoroscopo,
+.overlayHorscopo{
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+  border-radius: 20px;
+}
+.overlayHorscopo{
+  position: absolute;
+  background:rgba(0, 118, 192, 0.781) ;
+  
+  overflow: hidden;
+
+  
+}
+
+.overlayHorscopo h6,
+.nameHoroscopo h6{
+  color: #fff;
+  font-weight: 300;
+  font-size:30px;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+.overlayHorscopo p{
+  word-break:break-all;
+  font-size: auto;
+}
+
+.imagen:hover .overlayHorscopo{
+  height:100%;
+  cursor: pointer;
+}
+
+@media screen and (max-width:1000px){
+  .contenedor-imagenes{
+      width: 95%;
+  }
+}
+
+@media screen and (max-width:700px){
+  .contenedor-imagenes{
+      width: 90%;
+  }
+  .contenedor-imagenes .imagen{
+      width: 48%;
+  }
+}
+
+@media screen and (max-width:450px){
+  h1{
+      font-size:22px;
+  }
+  .contenedor-imagenes{
+      width: 98%;
+  }
+  .contenedor-imagenes .imagen{
+      width: 80%;
+  }
 }

@@ -68,27 +68,27 @@
                       
                   </li>
                   <li class ="liNav">
-                    <a onclick="GFX.togglePopup()">
-                        <i class="material-icons">
-                            library_add
-                            </i>
-                        <span>Add Event</span>
+                    <a href="cine.html#horoscopo">
+                      <img class="image_bar" src="img/horoscopo.png" alt="Italian Trulli">
+                        <span>Horóscopo</span>
                     </a>
                   </li>
                   <li class ="liNav">
-                    <a onclick="GFX.togglePopupVot()">
-                        <i class="material-icons">lightbulb</i>
-                        <span>Add Votation/idea</span>
-                    </a>
+                    <a href="cine.html#Proyectos">
+                      <i  class="material-icons">
+                          article
+                          </i>
+                      <span> Proyectos</span>
+                  </a>
+                  
                   </li>
                   <li class ="liNav">
-                    <a href="cine.html">
-                        <i  class="material-icons">
-                            menu_book
-                            </i>
-                        <span> Revista</span>
-                    </a>
-                    
+                    <a href="cine.html#Podcast">
+                      <i  class="material-icons">
+                        headset_mic
+                          </i>
+                      <span> Podcast</span>
+                  </a>
                   </li>
                 </ul>
             </div>
@@ -101,8 +101,133 @@
         </div>
         <h1 style="text-align: center;">REVISTA</h1> 
         
-        <h3>Proyectos</h3>  
-        <h4>Cortos</h4> 
+        <div class="popup-Horoscopo" id="popup-Horoscopo">
+          <div class="overlay-Horoscopo"></div>
+          <div class="content-Horoscopo">
+            <div class="close-btn" onclick="GFX.togglePopupHoroscopo()">&times</div>
+            <h3 id="Value-Horoscopo" style=" text-transform: capitalize;"></h3>
+            <p id="Explication_Horoscopo" style=" text-transform: capitalize;"></p>
+        </div>
+      </div>
+
+        <div class="galeria">
+          <h1 id="horoscopo">Horóscopo</h1>
+          <div class="linea"></div>
+          <div class="contenedor-imagenes">
+              <div class="imagen" onclick="GFX.togglePopupHoroscopo('Aries')">
+                  <img src="img/aries.png" alt="">
+                  <div class="nameHoroscopo">
+                    <h6>Aries</h6>
+                  </div>
+                  <!-- <div class="overlayHorscopo">
+                      <p>Apreta para leer...</p>
+                    </div> -->
+              </div>
+              <div class="imagen"  onclick="GFX.togglePopupHoroscopo('Tauro')">
+                  <img src="img/tauro.png" alt="">
+                  <div class="nameHoroscopo">
+                    <h6>Tauro</h6>
+                  </div>
+                  <!-- <div class="overlayHorscopo">
+                      <h6>Tauro</h6>
+                  </div> -->
+              </div>
+              <div class="imagen" onclick="GFX.togglePopupHoroscopo('géminis')">
+                  <img src="img/geminis.png" alt="">
+                  <div class="nameHoroscopo">
+                    <h6>Géminis</h6>
+                  </div>
+                  <!-- <div class="overlayHorscopo">
+                      <h6>Géminis</h6>
+                  </div> -->
+              </div>
+              <div class="imagen" onclick="GFX.togglePopupHoroscopo('cáncer')">
+                  <img src="img/cancer.png" alt="">
+                  <div class="nameHoroscopo">
+                    <h6>Cáncer</h6>
+                  </div>
+                  <!-- <div class="overlayHorscopo">
+                      <h6>Cáncer</h6>
+                  </div> -->
+              </div>
+              <div class="imagen"  onclick="GFX.togglePopupHoroscopo('leo')">
+                  <img src="img/leo.png" alt="">
+                  <div class="nameHoroscopo">
+                    <h6>Leo</h6>
+                  </div>
+                  <!-- <div class="overlayHorscopo">
+                      <h6>Leo</h6>
+                  </div> -->
+              </div>
+              <div class="imagen"  onclick="GFX.togglePopupHoroscopo('virgo')">
+                  <img src="img/virgo.png" alt="">
+                  <div class="nameHoroscopo">
+                    <h6>Virgo</h6>
+                  </div>
+                  <!-- <div class="overlayHorscopo">
+                      <h6>Virgo</h6>
+                  </div> -->
+              </div>
+              <div class="imagen"  onclick="GFX.togglePopupHoroscopo('libra')">
+                  <img src="img/libra.png" alt="">
+                  <div class="nameHoroscopo">
+                    <h6>Libra</h6>
+                  </div>
+                  <!-- <div class="overlayHorscopo">
+                      <h6>Libra</h6>
+                  </div> -->
+              </div>
+              <div class="imagen" onclick="GFX.togglePopupHoroscopo('escorpio')">
+                  <img src="img/escorpio.png" alt="">
+                  <div class="nameHoroscopo">
+                    <h6>Escorpio</h6>
+                  </div>
+                  <!-- <div class="overlayHorscopo">
+                      <h6>Escorpio</h6>
+                  </div> -->
+              </div>
+              <div class="imagen" onclick="GFX.togglePopupHoroscopo('sagitario')">
+                  <img src="img/sagitario.png" alt="">
+                  <div class="nameHoroscopo">
+                    <h6>Sagitario</h6>
+                  </div>
+                  <!-- <div class="overlayHorscopo">
+                      <h6>Sagitario</h6>
+                  </div> -->
+              </div>
+              <div class="imagen" onclick="GFX.togglePopupHoroscopo('capricornio')">
+                <img src="img/capricornio.png" alt="">
+                <div class="nameHoroscopo">
+                  <h6>Capricornio</h6>
+                </div>
+                <!-- <div class="overlayHorscopo">
+                    <h6>Capricornio</h6>
+                </div> -->
+            </div>
+            <div class="imagen"  onclick="GFX.togglePopupHoroscopo('acuario')">
+                <img src="img/acuario.png" alt="">
+                <div class="nameHoroscopo">
+                  <h6>Acuario</h6>
+                </div>
+                <!-- <div class="overlayHorscopo">
+                    <h6>Acuario</h6>
+                </div> -->
+            </div>
+            <div class="imagen"  onclick="GFX.togglePopupHoroscopo('piscis')">
+                <img src="img/piscis.png" alt="">
+                <div class="nameHoroscopo">
+                  <h6>Piscis</h6>
+                </div>
+                <!-- <div class="overlayHorscopo">
+                    <h6>Piscis</h6>
+                </div> -->
+            </div>
+              <!-- <div class="imagen">
+                  <img src="img/1 (2).jpg" alt="">
+              </div> -->
+          </div>
+      </div>
+        <h4 id="Proyectos">Proyectos</h4> 
          
         <video
         id="my-video"
@@ -124,7 +249,7 @@
         </p>
       </video>
       
-        <h4>Podcast</h4> 
+        <h4 id="Podcast">Podcast</h4> 
         <div class="contenedorPodcast">
           <div class="contenedor-Podcast">
             <a class="Podcast_link" href="https://open.spotify.com/show/0lZfSadbYRm95ZPeCd3wqp?si=ea67e3a92853438c">
@@ -223,6 +348,7 @@
    </footer>
     
     <!-- Javascript -->
+    <!-- <script type="text/javascript" src="des_Horoscopo.json"></script> -->
     <script src="https://vjs.zencdn.net/7.19.2/video.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>

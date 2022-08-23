@@ -24,6 +24,11 @@ var CORE =
     paswordEliminar:"EliminarEvento",
     idEdit: -1, 
     editors : {},
+    des_Horosc: ['1. Aries amigo',
+    '2.',
+     '3.',
+      '4.',
+      '5.','6.','7.', '8.', '9.', '10.', '11.', '12.'], 
     //calendarEvents: [], 
     calendarDiv: "", 
     init: function()
@@ -46,6 +51,7 @@ var CORE =
         this.nameNewEvent = document.querySelector("input#nameUser"); 
         this.addEvents = document.querySelector("#AddEvents"); 
         this.navUl = document.querySelector("nav ul"); 
+         //CORE.ReadJson("./des_Horoscopo.json"); 
         //this.loop();
         this.draw(); 
         GFX.printOut("NOVEDAD: VÍDEO Y PODCASTS EN LA SECCIÓN REVISTA ");
@@ -53,7 +59,18 @@ var CORE =
         CORE.createEditor( 'NewEventDescription' );
         CORE.createEditor( 'NewEventEditDescription' );
     }, 
-
+    // ReadJson: function(fichero)
+    // {
+    //     // var results= fetch(fichero).then(function (resp){return resp.json()}).then(console.log)
+    //     // return results; 
+    //     let response =  fetch(fichero); 
+    //     if (response.ok) { // si el HTTP-status es 200-299
+    //         // obtener cuerpo de la respuesta (método debajo)
+    //         let json =  response.json();
+    //       } else {
+    //         alert("Error-HTTP: " + response.status);
+    //       }
+    // },
     onKey:  function(event)
     {
         //process key 

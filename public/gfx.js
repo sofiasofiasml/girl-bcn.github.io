@@ -38,6 +38,53 @@ var GFX =
         document.getElementById("popup-Votacion").classList.toggle("active"); 
         LOGIC.InfoVotationElement(element); 
     }, 
+    togglePopupHoroscopo: function(val)
+    {
+        window.scrollTo(0,1);
+        document.getElementById("popup-Horoscopo").classList.toggle("active"); 
+        if(val){
+            document.getElementById("Value-Horoscopo").innerHTML =val;
+            switch (val) {
+                case "Aries":
+                  document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[0]; 
+                  break;
+                case "Tauro":
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[1]; 
+                  break;
+                case "géminis":
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[2]; 
+                  break;
+                case "cáncer":
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[3]; 
+                    break;
+                case "leo":
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[4]; 
+                    break;
+                case "virgo":
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[5]; 
+                    break;
+                case "libra":
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[6]; 
+                    break;
+                case "escorpio":
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[7]; 
+                    break;
+                case "sagitario":
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[8]; 
+                    break;
+                case "capricornio":
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[8]; 
+                    break;
+                case "acuario":
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[9]; 
+                    break;
+                case "piscis":
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[10]; 
+                    break;
+              }
+        }
+        
+    }, 
     togglePopupShareAgenda: function()
     {
         document.getElementById("popup-shareAgenda").classList.toggle("active"); 
