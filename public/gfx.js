@@ -46,40 +46,40 @@ var GFX =
             document.getElementById("Value-Horoscopo").innerHTML =val;
             switch (val) {
                 case "Aries":
-                  document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[0]; 
+                  document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc.Aries; 
                   break;
                 case "Tauro":
-                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[1]; 
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc.Tauro; 
                   break;
                 case "géminis":
-                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[2]; 
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc.Geminis; 
                   break;
                 case "cáncer":
-                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[3]; 
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc.Cancer; 
                     break;
                 case "leo":
-                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[4]; 
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc.Leo; 
                     break;
                 case "virgo":
-                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[5]; 
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc.Virgo; 
                     break;
                 case "libra":
-                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[6]; 
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc.Libra; 
                     break;
                 case "escorpio":
-                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[7]; 
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc.Escorpio; 
                     break;
                 case "sagitario":
-                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[8]; 
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc.Sagitario; 
                     break;
                 case "capricornio":
-                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[8]; 
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc.Capricornio; 
                     break;
                 case "acuario":
-                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[9]; 
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc.Acuario; 
                     break;
                 case "piscis":
-                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc[10]; 
+                    document.getElementById("Explication_Horoscopo").innerHTML = CORE.des_Horosc.Piscis; 
                     break;
               }
         }
