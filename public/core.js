@@ -53,7 +53,7 @@ var CORE =
         // this.draw(); 
         //CKeditor
         if(document.title=="Girls BCN"){
-            GFX.printOut("NOVEDAD: VÍDEO Y PODCASTS EN LA SECCIÓN REVISTA ");
+            GFX.printOut("NOVEDAD: HÓROSCOPO EN LA SECCIÓN REVISTA ");
             CORE.createEditor( 'NewEventDescription' );
             CORE.createEditor( 'NewEventEditDescription' );
         }
