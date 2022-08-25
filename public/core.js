@@ -63,7 +63,7 @@ var CORE =
         })
         .then(data =>  CORE.des_Horosc= data);
 
-                
+        //Title Horoscopo
         let mesActual = new Intl.DateTimeFormat('es-ES', { month: 'long'}).format(new Date());
 
         var horoscopoTitiel = document.getElementById("horoscopo"); 

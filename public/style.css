@@ -825,6 +825,9 @@ input:hover, .delateEvent:hover, .shareEvent:hover
     margin-top: 70px;
 
 }
+.imagen img:hover{
+  transform: scale(1.1);
+}
  .imagen:hover{
   background: rgba(189, 17, 17, 0.1);
 } 
