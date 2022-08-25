@@ -291,37 +291,39 @@ function gotData(data)
 
  //Calendario 
  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); 
-    var yyyy = today.getFullYear();
+    if(document.title=="Girls BCN"){
+        var calendarEl = document.getElementById('calendar');
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+        var yyyy = today.getFullYear();
 
-    today = yyyy +'-'+ mm + '-' + dd;
-    calendarDiv = new FullCalendar.Calendar(calendarEl, {
-      initialDate: today,
-      initialView: 'dayGridMonth',
-    //   nowIndicator: true,
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,listYear'
-      },
-      firstDay: 1,//  1(Monday) this can be changed to 0(Sunday) for the USA system
-      locales: 'es',
+        today = yyyy +'-'+ mm + '-' + dd;
+        calendarDiv = new FullCalendar.Calendar(calendarEl, {
+        initialDate: today,
+        initialView: 'dayGridMonth',
+        //   nowIndicator: true,
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,listYear'
+        },
+        firstDay: 1,//  1(Monday) this can be changed to 0(Sunday) for the USA system
+        locales: 'es',
 
-      dateClick: function(info) {
-         
-        GFX.hiddenEvents(info.dateStr); 
-        $(".day-highlight").removeClass("day-highlight");
-        info.dayEl.classList.remove('fc-day-future')
-        info.dayEl.classList.add('day-highlight'); 
-      },
+        dateClick: function(info) {
+            
+            GFX.hiddenEvents(info.dateStr); 
+            $(".day-highlight").removeClass("day-highlight");
+            info.dayEl.classList.remove('fc-day-future')
+            info.dayEl.classList.add('day-highlight'); 
+        },
 
-       selectable: true,
-    });
+        selectable: true,
+        });
 
-    calendarDiv.render();
+        calendarDiv.render();
+    }
   });
   let menu = document.querySelector('.menu');
   let toggle = document.querySelector('.toggle');

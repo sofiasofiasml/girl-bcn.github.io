@@ -38,6 +38,7 @@ var CORE =
         WORLD.init(); 
         LOGIC.init(); 
         //bind events
+        
         document.body.addEventListener("keydown", this.onKey.bind(this)); 
         document.body.addEventListener("keyup", this.onKey.bind(this)); 
         document.body.addEventListener("mousedown", this.onMouse.bind(this)); 
@@ -49,11 +50,13 @@ var CORE =
         this.navUl = document.querySelector("nav ul"); 
         CORE.ReadJson("./des_Horoscopo.json"); 
 
-        this.draw(); 
-        GFX.printOut("NOVEDAD: VÍDEO Y PODCASTS EN LA SECCIÓN REVISTA ");
+        // this.draw(); 
         //CKeditor
-        CORE.createEditor( 'NewEventDescription' );
-        CORE.createEditor( 'NewEventEditDescription' );
+        if(document.title=="Girls BCN"){
+            GFX.printOut("NOVEDAD: VÍDEO Y PODCASTS EN LA SECCIÓN REVISTA ");
+            CORE.createEditor( 'NewEventDescription' );
+            CORE.createEditor( 'NewEventEditDescription' );
+        }
     }, 
     ReadJson: function(fichero)
     {
@@ -63,13 +66,17 @@ var CORE =
         })
         .then(data =>  CORE.des_Horosc= data);
 
-        //Title Horoscopo
-        let mesActual = new Intl.DateTimeFormat('es-ES', { month: 'long'}).format(new Date());
-
-        var horoscopoTitiel = document.getElementById("horoscopo"); 
-
-        horoscopoTitiel.innerHTML= "Horóscopo: "+mesActual.charAt(0).toUpperCase() + mesActual.slice(1); 
+       
     },
+    // ChangeTitile: function()
+    // {
+    //      //Title Horoscopo
+    //      let mesActual = new Intl.DateTimeFormat('es-ES', { month: 'long'}).format(new Date());
+
+    //      var horoscopoTitiel = document.getElementById("horoscopo"); 
+ 
+    //      horoscopoTitiel.innerHTML= "Horóscopo: "+mesActual.charAt(0).toUpperCase() + mesActual.slice(1); 
+    // },
     onKey:  function(event)
     {
         //process key 
@@ -134,23 +141,23 @@ var CORE =
 
     // },
 
-    draw: function()
-    {
-        for(var i =0; i< this.modules.length; i++)
-        {
-            var modules = this.modules[i]; 
-            if (modules.draw)
-                modules.draw(); 
-        }
-    }, 
-    update: function(dt)
-    {
-        for(var i =0; i< this.modules.length; i++)
-        {
-            var modules = this.modules[i]; 
-            if (modules.update)
-                modules.update(dt); 
-        }
-    }
+    // draw: function()
+    // {
+    //     for(var i =0; i< this.modules.length; i++)
+    //     {
+    //         var modules = this.modules[i]; 
+    //         if (modules.draw)
+    //             modules.draw(); 
+    //     }
+    // }, 
+    // update: function(dt)
+    // {
+    //     for(var i =0; i< this.modules.length; i++)
+    //     {
+    //         var modules = this.modules[i]; 
+    //         if (modules.update)
+    //             modules.update(dt); 
+    //     }
+    // }
     
 }

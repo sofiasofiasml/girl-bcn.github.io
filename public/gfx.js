@@ -126,16 +126,18 @@ var GFX =
     },
     addlistnav:function()
     {
-        var divnav = document.querySelector("#ulnav"); 
-        var liEvent = document.createElement("li"); 
-        var aEvent = document.createElement("a"); 
-        aEvent.setAttribute("onclick", "GFX.togglePopupVotacion(this)");
-        aEvent.classList.add("votacion");
-        var leng =CORE.Votation.length-1;  
-        aEvent.id = "votacion"+leng;
-        aEvent.innerText = CORE.Votation[CORE.Votation.length-1].name.charAt(0).toUpperCase() +CORE.Votation[CORE.Votation.length-1].name.slice(1); 
-        liEvent.appendChild(aEvent); 
-        divnav.appendChild(liEvent); 
+        if(document.title=="Girls BCN"){
+            var divnav = document.querySelector("#ulnav"); 
+            var liEvent = document.createElement("li"); 
+            var aEvent = document.createElement("a"); 
+            aEvent.setAttribute("onclick", "GFX.togglePopupVotacion(this)");
+            aEvent.classList.add("votacion");
+            var leng =CORE.Votation.length-1;  
+            aEvent.id = "votacion"+leng;
+            aEvent.innerText = CORE.Votation[CORE.Votation.length-1].name.charAt(0).toUpperCase() +CORE.Votation[CORE.Votation.length-1].name.slice(1); 
+            liEvent.appendChild(aEvent); 
+            divnav.appendChild(liEvent); 
+        }
     },
     addEventDB:function()
     {
@@ -233,34 +235,35 @@ var GFX =
     },
     createDivEventosDB: function(title, id, date,dateFin, hour, image, categoria, content, asistentes, key, asistenteskey)
     {
-
-        var valueDate= date;
-        var valueDateFin= dateFin;
-        var valueHour= hour;
-        
-        var imgEvent; 
-        var index = image.indexOf("/img/");
-        imgEvent = image.substring(index, image.length);
-        
-        if(CORE.initDB){
-            var newEve = new News(id, title, imgEvent, content, valueDate,valueDateFin, valueHour, categoria, asistentes, key, asistentes, asistenteskey); 
-            if(asistentes){
-                newEve.asistentes = asistentes; 
-                newEve.asistenteskey = asistenteskey; 
+        if(document.title=="Girls BCN"){
+            var valueDate= date;
+            var valueDateFin= dateFin;
+            var valueHour= hour;
+            
+            var imgEvent; 
+            var index = image.indexOf("/img/");
+            imgEvent = image.substring(index, image.length);
+            
+            if(CORE.initDB){
+                var newEve = new News(id, title, imgEvent, content, valueDate,valueDateFin, valueHour, categoria, asistentes, key, asistentes, asistenteskey); 
+                if(asistentes){
+                    newEve.asistentes = asistentes; 
+                    newEve.asistenteskey = asistenteskey; 
+                }
+                CORE.DicEvents[CORE.DicEvents.length]=newEve; 
+                //var newEvenCalendar = new EventCalendar(title, valueDate, valueDate, ""); 
+                //CORE.calendarEvents[CORE.calendarEvents.length]=newEvenCalendar;
+                calendarDiv.addEvent({
+                    title: title,
+                    start: valueDate+"T"+valueHour,
+                    end: valueDateFin+"T"+valueHour, 
+                    url: ""
+                });
+                //calendarDiv.addEvent(CORE.calendarEvents[CORE.calendarEvents.length]);  
             }
-            CORE.DicEvents[CORE.DicEvents.length]=newEve; 
-            //var newEvenCalendar = new EventCalendar(title, valueDate, valueDate, ""); 
-            //CORE.calendarEvents[CORE.calendarEvents.length]=newEvenCalendar;
-            calendarDiv.addEvent({
-                title: title,
-                start: valueDate+"T"+valueHour,
-                end: valueDateFin+"T"+valueHour, 
-                url: ""
-              });
-            //calendarDiv.addEvent(CORE.calendarEvents[CORE.calendarEvents.length]);  
+            CORE.DicEvents[CORE.DicEvents.length-1].key =key; 
+            CORE.arrayID[id] = id; 
         }
-        CORE.DicEvents[CORE.DicEvents.length-1].key =key; 
-        CORE.arrayID[id] = id; 
         
     },
     printEvent: function(indexEvent)

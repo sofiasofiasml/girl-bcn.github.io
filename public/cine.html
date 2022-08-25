@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Girls BCN</title>
+    <title>Girls BCN/Revista</title>
     <link rel="shortcut icon" href="img/title.png"> 
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -369,5 +369,12 @@
     <script type="text/javascript" src="swiper.min.js"></script>
     <!-- Arracncamos app -->
     <script>CORE.init()</script>
+    <script>
+       let mesActual = new Intl.DateTimeFormat('es-ES', { month: 'long'}).format(new Date());
+
+        var horoscopoTitiel = document.getElementById("horoscopo"); 
+
+        horoscopoTitiel.innerHTML= "Horóscopo: "+mesActual.charAt(0).toUpperCase() + mesActual.slice(1);
+    </script>
 </body>
 </html>

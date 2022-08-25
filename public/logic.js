@@ -194,71 +194,73 @@ var LOGIC = {
     },
     ordenarEventDate: function()
     {
-        var listDate = []; 
+        if(document.title=="Girls BCN"){
+            var listDate = []; 
 
-        for (var i =0; i< CORE.DicEvents.length; i++)
-        {
-            var dateOrdnear = CORE.DicEvents[i].date; 
-            var indexBar = dateOrdnear.indexOf('-'); 
-            var year = dateOrdnear.substring(0, indexBar);
-            dateOrdnear = dateOrdnear.replace(dateOrdnear.substring(0,indexBar+1),'');
-            var indexBar = dateOrdnear.indexOf('-'); 
-            var mes = dateOrdnear.substring(0, indexBar);
-            var dia = dateOrdnear.substring(indexBar+1, dateOrdnear.length);
-            dateOrdnear = mes+'/'+dia+'/'+year; 
-
-            var time = CORE.DicEvents[i].hour;
-            var timeParts = time.split(":");
-            var milisegHour =(+timeParts[0] * (60000 * 60)) + (+timeParts[1] * 60000);
-       
-            listDate.push(Date.parse(dateOrdnear)+milisegHour); 
-        }
-        listDate = Array.from(listDate);
-        listDate.sort(); 
-
-         var listOrdenarId = []; 
-         for(var i =0; i<CORE.DicEvents.length; i++)
-         {
-            var inside = false; 
-            var dateOrdnear = CORE.DicEvents[i].date; 
-            var indexBar = dateOrdnear.indexOf('-'); 
-            var year = dateOrdnear.substring(0, indexBar);
-            dateOrdnear = dateOrdnear.replace(dateOrdnear.substring(0,indexBar+1),'');
-            var indexBar = dateOrdnear.indexOf('-'); 
-            var mes = dateOrdnear.substring(0, indexBar);
-            var dia = dateOrdnear.substring(indexBar+1, dateOrdnear.length);
-            dateOrdnear = mes+'/'+dia+'/'+year; 
-       
-            var time = CORE.DicEvents[i].hour;
-            var timeParts = time.split(":");
-            var milisegHour =(+timeParts[0] * (60000 * 60)) + (+timeParts[1] * 60000);
-            dateOrdnear = Date.parse(dateOrdnear) +milisegHour; 
-
-            for(var j =0; j<CORE.DicEvents.length; j++)
+            for (var i =0; i< CORE.DicEvents.length; i++)
             {
-                if(dateOrdnear == listDate[j] && !inside && !listOrdenarId[j])
+                var dateOrdnear = CORE.DicEvents[i].date; 
+                var indexBar = dateOrdnear.indexOf('-'); 
+                var year = dateOrdnear.substring(0, indexBar);
+                dateOrdnear = dateOrdnear.replace(dateOrdnear.substring(0,indexBar+1),'');
+                var indexBar = dateOrdnear.indexOf('-'); 
+                var mes = dateOrdnear.substring(0, indexBar);
+                var dia = dateOrdnear.substring(indexBar+1, dateOrdnear.length);
+                dateOrdnear = mes+'/'+dia+'/'+year; 
+
+                var time = CORE.DicEvents[i].hour;
+                var timeParts = time.split(":");
+                var milisegHour =(+timeParts[0] * (60000 * 60)) + (+timeParts[1] * 60000);
+        
+                listDate.push(Date.parse(dateOrdnear)+milisegHour); 
+            }
+            listDate = Array.from(listDate);
+            listDate.sort(); 
+
+            var listOrdenarId = []; 
+            for(var i =0; i<CORE.DicEvents.length; i++)
+            {
+                var inside = false; 
+                var dateOrdnear = CORE.DicEvents[i].date; 
+                var indexBar = dateOrdnear.indexOf('-'); 
+                var year = dateOrdnear.substring(0, indexBar);
+                dateOrdnear = dateOrdnear.replace(dateOrdnear.substring(0,indexBar+1),'');
+                var indexBar = dateOrdnear.indexOf('-'); 
+                var mes = dateOrdnear.substring(0, indexBar);
+                var dia = dateOrdnear.substring(indexBar+1, dateOrdnear.length);
+                dateOrdnear = mes+'/'+dia+'/'+year; 
+        
+                var time = CORE.DicEvents[i].hour;
+                var timeParts = time.split(":");
+                var milisegHour =(+timeParts[0] * (60000 * 60)) + (+timeParts[1] * 60000);
+                dateOrdnear = Date.parse(dateOrdnear) +milisegHour; 
+
+                for(var j =0; j<CORE.DicEvents.length; j++)
                 {
-                    listOrdenarId[j]= CORE.DicEvents[i].id; 
-                    inside = true; 
+                    if(dateOrdnear == listDate[j] && !inside && !listOrdenarId[j])
+                    {
+                        listOrdenarId[j]= CORE.DicEvents[i].id; 
+                        inside = true; 
+                    }
                 }
             }
-         }
 
-         var parent = document.getElementById('AddEvents');
-         parent.innerHTML = "";
-         var OrdenarDiv = []; 
-         for(var i =0; i< listOrdenarId.length; i++)
-         {
-             for(var j=0; j<CORE.DicEvents.length; j++)
-             {
-                 if(CORE.DicEvents[j].id==listOrdenarId[i]){
-                    GFX.printEvent(j); 
-                    OrdenarDiv.push(CORE.DicEvents[j]); 
+            var parent = document.getElementById('AddEvents');
+            parent.innerHTML = "";
+            var OrdenarDiv = []; 
+            for(var i =0; i< listOrdenarId.length; i++)
+            {
+                for(var j=0; j<CORE.DicEvents.length; j++)
+                {
+                    if(CORE.DicEvents[j].id==listOrdenarId[i]){
+                        GFX.printEvent(j); 
+                        OrdenarDiv.push(CORE.DicEvents[j]); 
+                    }
                 }
-             }
-         }
-         CORE.DicEvents = OrdenarDiv;
-         delatenodeDBforTime(); 
+            }
+            CORE.DicEvents = OrdenarDiv;
+            delatenodeDBforTime(); 
+        }
     }, 
     saveImageUpload:function(downloadURL)
     {
