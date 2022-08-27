@@ -220,7 +220,9 @@ ul{
   margin-left: 20px;
   color: #24262b;
 }
-
+.ImageOption{
+  color: #24262b !important;
+}
 .Evento .content h4{
   font-size: 20px;
   margin-bottom: 10px;
@@ -302,8 +304,8 @@ ul{
 .popup-AddEvent  .content-AddEvent select,
 .popup-EditEvent  .content-EditEvent select,
 .popup-Vot  .content-Vot  select,
-.popup-AddEvent  .content-AddEvent #ImageOption,
-.popup-EditEvent  .content-EditEvent #ImageOption,
+.popup-AddEvent  .content-AddEvent .imagenUpload,
+.popup-EditEvent  .content-EditEvent .ImageOption,
 #InfoVotacionDB input
 {
   background: #ffffff;

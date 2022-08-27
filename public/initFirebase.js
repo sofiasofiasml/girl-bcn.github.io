@@ -245,7 +245,7 @@ function gotData(data)
 
  function UploadImage()
  {
-    var imagenUpload = document.querySelector("#imagenUpload").files[0];
+    var imagenUpload = document.querySelector(".imagenUpload").files[0];
     if(imagenUpload){
         LOGIC.saveImageUpload(imagenUpload); 
         CORE.imageokupload = false; 

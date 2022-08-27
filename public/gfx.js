@@ -118,6 +118,10 @@ var GFX =
                 document.querySelector("#dateEventEditFinish").value = CORE.DicEvents[i].dateFin; 
                 document.querySelector("#horaEditEvent").value = CORE.DicEvents[i].hour; 
                 document.querySelector("#categoriaEdit").value = CORE.DicEvents[i].categoria; 
+                if(document.querySelector("#categoriaEdit").value=="SubirImagen")
+                    GFX.selection2Value(document.querySelector("#categoriaEdit")); 
+                if(document.querySelector(".ImageOption2 .imagenUpload"))
+                    document.querySelector(".ImageOption2 .imagenUpload").value = CORE.DicEvents[i].image; 
                 CORE.editors.NewEventEditDescription.setData(CORE.DicEvents[i].content); 
                 CORE.editors.NewEventEditDescription.setData(CORE.editors.NewEventEditDescription.getData().replace("...", ""));
                 break;
@@ -504,43 +508,97 @@ var GFX =
         imageShowDOM.src = URL.createObjectURL(event.target.files[0]);
     }, 
     //Opciones de categoria e imagen 
-    selectionValue: function(selection)
+    selection2Value: function(selection)
     {
         if (selection.value == "SubirImagen") {
-           
             var inputImage = document.createElement("input");
-            inputImage.setAttribute("type","file");
-            inputImage.setAttribute("id", "imagenUpload");
+            inputImage.setAttribute("type","url");
+            inputImage.setAttribute("class", "imagenUpload");
+            inputImage.setAttribute("pattern", "https://.*");
+            inputImage.setAttribute("placeholder", "https://imagen.png");
             inputImage.setAttribute("name", "imagen");
-            inputImage.setAttribute("accept", "image/png, image/jpeg, image/jpg");
-            inputImage.setAttribute("onchange", "GFX.loadFile(event)");
-
             var labelimage = document.createElement("label");
-            labelimage.innerText= "Imagen:"; 
-            labelimage.appendChild(inputImage); 
-            labelimage.appendChild(inputImage); 
+            labelimage.innerText= "Link imagen:"; 
+            labelimage.setAttribute("class", "imagenUploadLabel");
 
-            var buttonImage = document.createElement("button");
-            buttonImage.setAttribute("onclick", "UploadImage()");
-            buttonImage.innerText= "Subir Imagen"; 
+            labelimage.appendChild(inputImage); 
+            //var imageDiv = document.querySelector(".ImageOption"); 
+            var imageDiv2 = document.querySelector(".ImageOption2"); 
             
-            var infoProcess = document.createElement("div");
-            infoProcess.setAttribute("id", "UploadImageProcess");
-            infoProcess.innerText= "No subida la imagen"
-            
-            var imageshow = document.createElement("img");
-            imageshow.setAttribute("id", "ShowImageUpload");
-            imageshow.setAttribute("style", "width: 50%; height: 50%; margin-left: 25%;");
-
-            var imageDiv = document.querySelector("#ImageOption"); 
-            imageDiv.appendChild(labelimage); 
-            imageDiv.appendChild(buttonImage); 
-            imageDiv.appendChild(imageshow); 
-            imageDiv.appendChild(infoProcess); 
-              
+           
+            imageDiv2.appendChild(labelimage);
+            for(var i=0; i< CORE.DicEvents.length; i++){
+                if(CORE.DicEvents[i].id == CORE.idEdit)
+                {
+                    if(document.querySelector(".ImageOption2 .imagenUpload"))
+                        document.querySelector(".ImageOption2 .imagenUpload").value = CORE.DicEvents[i].image;
+                }
+            }
+            // if(imageDiv2)
+            //     imageDiv2.appendChild(labelimage);
         }
         else{
-            var imageDiv = document.querySelector("#ImageOption"); 
+            var imageDiv = document.querySelector(".ImageOption2"); 
+            while (imageDiv.firstChild)
+                imageDiv.removeChild(imageDiv.lastChild);
+            GFX.imageForCategory(selection.value); 
+            
+        }
+    },
+    selectionValue: function(selection)
+    {
+        // if (selection.value == "SubirImagen") {
+           
+        //     var inputImage = document.createElement("input");
+        //     inputImage.setAttribute("type","file");
+        //     inputImage.setAttribute("id", "imagenUpload");
+        //     inputImage.setAttribute("name", "imagen");
+        //     inputImage.setAttribute("accept", "image/png, image/jpeg, image/jpg");
+        //     inputImage.setAttribute("onchange", "GFX.loadFile(event)");
+
+        //     var labelimage = document.createElement("label");
+        //     labelimage.innerText= "Imagen:"; 
+        //     labelimage.appendChild(inputImage); 
+        //     labelimage.appendChild(inputImage); 
+
+        //     var buttonImage = document.createElement("button");
+        //     buttonImage.setAttribute("onclick", "UploadImage()");
+        //     buttonImage.innerText= "Subir Imagen"; 
+            
+        //     var infoProcess = document.createElement("div");
+        //     infoProcess.setAttribute("id", "UploadImageProcess");
+        //     infoProcess.innerText= "No subida la imagen"
+            
+        //     var imageshow = document.createElement("img");
+        //     imageshow.setAttribute("id", "ShowImageUpload");
+        //     imageshow.setAttribute("style", "width: 50%; height: 50%; margin-left: 25%;");
+
+        //     var imageDiv = document.querySelector("#ImageOption"); 
+        //     imageDiv.appendChild(labelimage); 
+        //     imageDiv.appendChild(buttonImage); 
+        //     imageDiv.appendChild(imageshow); 
+        //     imageDiv.appendChild(infoProcess); 
+              
+        // }
+        if (selection.value == "SubirImagen") {
+            var inputImage = document.createElement("input");
+            inputImage.setAttribute("type","url");
+            inputImage.setAttribute("class", "imagenUpload");
+            inputImage.setAttribute("pattern", "https://.*");
+            inputImage.setAttribute("placeholder", "https://imagen.png");
+            inputImage.setAttribute("name", "imagen");
+            var labelimage = document.createElement("label");
+            labelimage.innerText= "Link imagen:"; 
+            labelimage.setAttribute("class", "imagenUploadLabel");
+
+            labelimage.appendChild(inputImage); 
+            var imageDiv = document.querySelector(".ImageOption"); 
+            imageDiv.appendChild(labelimage);
+            // if(imageDiv2)
+            //     imageDiv2.appendChild(labelimage);
+        }
+        else{
+            var imageDiv = document.querySelector(".ImageOption"); 
             while (imageDiv.firstChild)
                 imageDiv.removeChild(imageDiv.lastChild);
             GFX.imageForCategory(selection.value); 

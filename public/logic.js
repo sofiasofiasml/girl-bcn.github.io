@@ -21,9 +21,16 @@ var LOGIC = {
     {
         var valuenameEvent = document.querySelector("#nameEvent"); 
         var valueDate= document.querySelector("#dateEvent");
+        var valueDateFin= document.querySelector("#dateEventFinish");
         var valueHour= document.querySelector("#horaEvent");
-        if(valuenameEvent.value !="" && valueDate.value !="" && valueHour.value !="" && CORE.imageokupload){
+        var valueImage= document.querySelector(".imagenUpload");
 
+        
+
+        if(valuenameEvent.value !="" && valueDate.value !="" && valueDateFin!="" && valueHour.value !="" ){
+            if(valueImage.value!="")
+                LOGIC.saveImageUpload(valueImage.value);
+            
             GFX.createDivEventos(); 
             this.saveDB(); 
             
@@ -168,7 +175,7 @@ var LOGIC = {
                 for(var i=0; i< CORE.DicEvents.length; i++){
                     if(CORE.DicEvents[i].id == id)
                     {
-                        var image = CORE.DicEvents[i].image; 
+                        var image = document.querySelector(".ImageOption2 .imagenUpload").value; 
                     }
                 }
             }
