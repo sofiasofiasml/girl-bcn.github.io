@@ -53,7 +53,7 @@ var CORE =
         // this.draw(); 
         //CKeditor
         if(document.title=="Girls BCN"){
-            GFX.printOut("NOVEDAD: HÓROSCOPO EN LA SECCIÓN REVISTA ");
+            GFX.printOut("¡NOS HEMOS MUDADO DE WEB! ");
             CORE.createEditor( 'NewEventDescription' );
             CORE.createEditor( 'NewEventEditDescription' );
         }
