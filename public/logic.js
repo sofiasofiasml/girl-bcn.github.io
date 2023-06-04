@@ -28,8 +28,8 @@ var LOGIC = {
         
 
         if(valuenameEvent.value !="" && valueDate.value !="" && valueDateFin!="" && valueHour.value !="" ){
-            if(valueImage.value!="")
-                LOGIC.saveImageUpload(valueImage.value);
+            // if(valueImage.value!="")
+            //     LOGIC.saveImageUpload(valueImage.value);
             
             GFX.createDivEventos(); 
             this.saveDB(); 
