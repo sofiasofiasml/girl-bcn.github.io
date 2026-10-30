@@ -22,4 +22,3 @@ Que el proceso es:
 Explicación: [link](https://medium.com/front-end-chile/c%C3%B3mo-alojar-tu-sitio-web-en-firebase-hosting-1a828641d7b3)
 
 
-Contraseña para borrar: EliminarEvento, lo hace LOGIC.delateEvent
